@@ -1,0 +1,9 @@
+{
+  "commands": [
+    "CreateAccount",
+    "CreateSite",
+    "DeleteAccount",
+    "DeleteSite"
+  ],
+  "password": "MySQL Root Password Here"
+}

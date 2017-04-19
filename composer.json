@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {"SharedHosting\\": "lib/"}
+    },
+    "require": {
+        "symfony/console": "^3.2",
+        "symfony/finder": "^3.2",
+        "ramsey/uuid": "^3.6"
+    }
+}
