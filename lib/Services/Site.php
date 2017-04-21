@@ -118,6 +118,52 @@
       $statement->execute([':input' => $this->uuid]);
     }
 
+    public function hasPKI(): bool {
+      // Prepare an SQL statement to determine if this site has a PKI
+      $statement = $this->db->prepare('SELECT NULLIF(`tls_certificate`, \'\') '.
+        'IS NOT NULL AND NULLIF(`tls_private`, \'\') IS NOT NULL AS `has_pki` '.
+        'FROM `hosting_schema`.`sites` WHERE `uuid` = :uuid');
+      // Run the prepared SQL statement to determine if this site has a PKI
+      $statement->execute([':uuid' => $this->uuid]);
+      return boolval($statement->fetch()['has_pki']);
+    }
+
+    public function isTLSEnabled(): bool {
+      // Prepare an SQL statement to determine if this site has TLS
+      $statement = $this->db->prepare('SELECT `tls_enabled` '.
+        'FROM `hosting_schema`.`sites` WHERE `uuid` = :uuid');
+      // Run the prepared SQL statement to determine if this site has TLS
+      $statement->execute([':uuid' => $this->uuid]);
+      return boolval($statement->fetch()['tls_enabled']);
+    }
+
+    public function setTLSEnabled(bool $on) {
+      // Prepare an SQL statement to set the `tls_enabled` flag
+      $statement = $this->db->prepare('UPDATE '.
+        '`hosting_schema`.`sites` SET `tls_enabled` = :input WHERE '.
+        '`uuid` = :uuid');
+      // Run the prepared SQL statement to set the `tls_enabled` flag
+      $statement->execute([':uuid' => $this->uuid, ':input' => $on]);
+    }
+
+    public function setTLSCertificate(string $path) {
+      // Prepare an SQL statement to set the `tls_certificate` value
+      $statement = $this->db->prepare('UPDATE '.
+        '`hosting_schema`.`sites` SET `tls_certificate` = :input '.
+        'WHERE `uuid` = :uuid');
+      // Run the prepared SQL statement to set the `tls_certificate` value
+      $statement->execute([':uuid' => $this->uuid, ':input' => $path]);
+    }
+
+    public function setTLSPrivate(string $path) {
+      // Prepare an SQL statement to set the `tls_private` value
+      $statement = $this->db->prepare('UPDATE '.
+        '`hosting_schema`.`sites` SET `tls_private` = :input '.
+        'WHERE `uuid` = :uuid');
+      // Run the prepared SQL statement to set the `tls_private` value
+      $statement->execute([':uuid' => $this->uuid, ':input' => $path]);
+    }
+
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested site exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.

@@ -29,8 +29,8 @@
 
     public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd &&  $this->exists() && $this->reload()) ||
-             (!$this->fwd && !$this->exists() && $this->reload());
+      return ( $this->fwd &&  $this->exists() && $this->result) ||
+             (!$this->fwd && !$this->exists() && $this->result);
     }
 
     public function forward(): void {
@@ -54,8 +54,9 @@
       $account   = $this->account->fetchAccount();
       $site      = $this->site->fetchSite();
       $html      = $account['home'].'/public_html';
-      $root      = $html.'/'.$this->site->fetchSite()['root'];
-      $config    = file_get_contents(__PROJECTROOT__.'/nginx-http.tpl');
+      $root      = $html.'/'.$site['root'];
+      $sitetpl   = boolval($site['tls_enabled']) ? 'https' : 'http';
+      $config    = file_get_contents(__PROJECTROOT__.'/nginx-'.$sitetpl.'.tpl');
       $config    = str_replace('{{SITEUSER}}', $account['username'], $config);
       $config    = str_replace('{{TEMPLATE}}', $site['template'],    $config);
       $config    = str_replace('{{DOMAINS}}', implode(' ', array_map(

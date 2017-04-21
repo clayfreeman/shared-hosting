@@ -20,8 +20,10 @@
           'required security standards.');
     }
 
-    public static function template(?string $input): void {
-      if (!file_exists('/etc/nginx/templates/'.$input.'-http.conf'))
+    public static function template(?string $input, bool $https = false): void {
+      $file = '/etc/nginx/templates/'.$input.'-'.
+        ($https ? 'https' : 'http').'.conf';
+      if (!file_exists($file))
         throw new \Exception('An unknown template was specified.');
     }
 

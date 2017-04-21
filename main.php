@@ -55,6 +55,8 @@
   // Create the expected schema if it doesn't exist
   $GLOBALS['db']->exec(file_get_contents(implode(__DS__, [
     __PROJECTROOT__, 'schema.sql'])));
+  // Add the configured e-mail address to the globals array
+  $GLOBALS['email'] = $config['email'] ?? '';
 
   // Create a Symfony console application
   $application = new \Symfony\Component\Console\Application();
