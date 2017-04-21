@@ -2,6 +2,7 @@
   namespace SharedHosting\Services;
 
   use \SharedHosting\Interfaces\Service;
+  use \SharedHosting\Utility\Validation;
 
   class TLS implements Service {
     protected $account    = null;
