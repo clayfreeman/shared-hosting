@@ -42,17 +42,16 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `account_id` int(11) unsigned NOT NULL,
   `template` varchar(255) NOT NULL,
-  `primary_domain` varchar(191) DEFAULT NULL,
   `uuid` varchar(36) NOT NULL,
   `disabled` tinyint(1) NOT NULL DEFAULT '0',
   `tls_enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `tls_certificate` varchar(255) DEFAULT NULL,
+  `tls_private` varchar(255) DEFAULT NULL,
   `root` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `primary_domain` (`primary_domain`),
   UNIQUE KEY `uuid` (`uuid`),
   KEY `account_id` (`account_id`),
   CONSTRAINT `sites_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `sites_ibfk_2` FOREIGN KEY (`primary_domain`) REFERENCES `domains` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
