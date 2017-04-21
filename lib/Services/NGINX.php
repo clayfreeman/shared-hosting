@@ -61,6 +61,10 @@
       $config    = str_replace('{{TEMPLATE}}', $site['template'],    $config);
       $config    = str_replace('{{DOMAINS}}', implode(' ', array_map(
         function($input) { return '.'.$input; }, $this->domains)),   $config);
+      $config    = str_replace('{{CERTIFICATE}}',
+        $site['tls_certificate'], $config);
+      $config    = str_replace('{{PRIVATE}}',
+        $site['tls_private'], $config);
       $config    = str_replace('{{ROOT}}', $root, $config);
       // Write the NGINX config to the appropriate location
       $available = '/etc/nginx/sites-available/'.$site['uuid'];

@@ -7,5 +7,7 @@ server {
 	set $SITEUSER '{{SITEUSER}}';
 	include templates/{{TEMPLATE}}-https.conf;
 	server_name {{DOMAINS}};
+	ssl_certificate {{CERTIFICATE}};
+	ssl_certificate_key {{PRIVATE}};
 	root {{ROOT}};
 }
