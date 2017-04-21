@@ -1,6 +1,6 @@
 <?php
   /**
-   * This file defines a command `enable-tls` used to add HTTPS capability to
+   * This file defines a command `disable-tls` used to add HTTPS capability to
    * the provided site.
    *
    * @copyright  Copyright 2016 Clay Freeman. All rights reserved.
@@ -22,9 +22,9 @@
   use SharedHosting\Utility\Transaction;
 
   /**
-   * The `enable-tls` command adds HTTPS capability to the provided site.
+   * The `disable-tls` command adds HTTPS capability to the provided site.
    */
-  class EnableTLS extends Command {
+  class DisableTLS extends Command {
     protected $db = null;
 
     /**
@@ -33,10 +33,10 @@
      */
     protected function configure() {
       $this->db = $GLOBALS['db'];
-      // Configure this class to represent the `enable-tls` command
-      $this->setName        ('enable-tls')
-           ->setDescription ('Enables HTTPS for the given site')
-           ->setHelp        ('This command will enable HTTPS for the website '.
+      // Configure this class to represent the `disable-tls` command
+      $this->setName        ('disable-tls')
+           ->setDescription ('Disables HTTPS for the given site')
+           ->setHelp        ('This command will disable HTTPS for the website '.
                              'with the provided domain name.')
            ->addArgument    ('domain', InputArgument::REQUIRED,
                              'Any domain associated with a site');
@@ -63,8 +63,9 @@
       $nginx    = new NGINX($site);
       $tls      = new TLS  ($site);
       // Attempt to create or re-use PKI for HTTPS
-      (new Transaction($tls, $nginx))->run();
+      (new Transaction($tls))->run(false);
+      (new Transaction($nginx))->run();
       // Finish the process with an info message
-      $io->success('Site '.escapeshellarg($domain).' now has HTTPS enabled.');
+      $io->success('Site '.escapeshellarg($domain).' now has HTTPS disabled.');
     }
   }

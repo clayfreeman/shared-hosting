@@ -4,6 +4,7 @@
     "CreateSite",
     "DeleteAccount",
     "DeleteSite",
+    "DisableTLS",
     "EnableTLS"
   ],
   "email": "email@address.here",
