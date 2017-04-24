@@ -55,6 +55,8 @@
   // Create the expected schema if it doesn't exist
   $GLOBALS['db']->exec(file_get_contents(implode(__DS__, [
     __PROJECTROOT__, 'schema.sql'])));
+  // Ensure that foriegn key constraints are enabled
+  $GLOBALS['db']->exec('SET FOREIGN_KEY_CHECKS=1');
   // Add the configured e-mail address to the globals array
   $GLOBALS['email'] = $config['email'] ?? '';
 
