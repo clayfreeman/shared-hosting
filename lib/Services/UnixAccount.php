@@ -24,8 +24,14 @@
 
     public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd &&  $this->exists()) ||
+      return ( $this->fwd &&  $this->exists() && $this->mkhtml()) ||
              (!$this->fwd && !$this->exists());
+    }
+
+    protected function mkhtml(): void {
+      $html = $this->fetchHome().'/public_html';
+      return mkdir($html) && chown($html, $this->username) &&
+        chgrp($html, $this->username) && chmod($html, 02775);
     }
 
     public function forward(): void {
