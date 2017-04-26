@@ -43,8 +43,7 @@
     protected function execute(InputInterface $input, OutputInterface $output) {
       // Setup some environment variables to complete this command
       $io       = new SymfonyStyle($input, $output);
-      echo var_export($this->fetchAccounts(), true)."\n";
-      // $io->table(['Username', 'Password (MySQL)'], $this->fetchAccounts());
+      $io->table(['Username', 'Password (MySQL)'], $this->fetchAccounts());
     }
 
     protected function fetchAccounts(): array {
