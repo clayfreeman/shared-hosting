@@ -28,7 +28,7 @@
              (!$this->fwd && !$this->exists());
     }
 
-    protected function mkhtml(): void {
+    protected function mkhtml(): bool {
       $html = $this->fetchHome().'/public_html';
       return mkdir($html) && chown($html, $this->username) &&
         chgrp($html, $this->username) && chmod($html, 02775);
