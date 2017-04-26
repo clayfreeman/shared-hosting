@@ -67,6 +67,6 @@
       (new Transaction($hosting, $fpm, $mysql, $unix))->run(false);
       $io->success('Account '.escapeshellarg($username).' was deleted.');
       // Reset the permission monitoring system to remove this user
-      @shell_exec('web-permissions');
+      @shell_exec('/usr/sbin/web-permissions');
     }
   }

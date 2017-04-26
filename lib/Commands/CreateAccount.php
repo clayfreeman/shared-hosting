@@ -75,6 +75,6 @@
       $io->table(['Username', 'Password (MySQL)'],
                 [[$username,  $password]]);
       // Begin modifying permissions for this user accordingly
-      @shell_exec('web-permissions '.escapeshellarg($username));
+      @shell_exec('/usr/sbin/web-permissions '.escapeshellarg($username));
     }
   }
