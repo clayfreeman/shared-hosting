@@ -72,7 +72,7 @@
     protected function run(): bool {
       system('certbot certonly --quiet --no-eff-email --non-interactive '.
         '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
-        '--webroot-path /var/private/letsencrypt '.
+        '--webroot-path /var/private/letsencrypt --rsa-key-size 4096 '.
         implode(' ', array_map(function($domain) {
           return '-d '.escapeshellarg($domain);
         }, $this->domains)), $exit);
