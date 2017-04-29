@@ -30,7 +30,7 @@
 
     protected function mkhtml(): bool {
       $html = $this->fetchHome().'/public_html';
-      return mkdir($html) && chown($html, $this->username) &&
+      return (is_dir($html) || mkdir($html)) && chown($html, $this->username) &&
         chgrp($html, $this->username) && chmod($html, 02775);
     }
 
