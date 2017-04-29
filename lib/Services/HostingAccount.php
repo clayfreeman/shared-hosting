@@ -102,7 +102,7 @@
         ':username' => $this->username, ':password' => $this->password,
         ':home' => $this->unix->fetchHome() ]);
       // Begin modifying permissions for this user accordingly
-      @shell_exec('/usr/sbin/web-permissions '.escapeshellarg($username));
+      @shell_exec('/usr/sbin/web-permissions '.escapeshellarg($this->username));
       // Attempt to write an autologin configuration for MySQL
       file_put_contents($this->unix->fetchHome().'/.my.cnf', implode("\n",
         ['[client]', 'user="'.$this->username.'"',
