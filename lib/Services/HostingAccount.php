@@ -101,6 +101,10 @@
       $statement->execute([':uuid' => $this->uuid,
         ':username' => $this->username, ':password' => $this->password,
         ':home' => $this->unix->fetchHome() ]);
+      // Attempt to write an autologin configuration for MySQL
+      file_put_contents($this->unix->fetchHome().'/.my.cnf', implode("\n",
+        ['[client]', 'user="'.$this->username.'"',
+        'password="'.$this->password.'"', null]));
     }
 
     protected function delete(): void {
