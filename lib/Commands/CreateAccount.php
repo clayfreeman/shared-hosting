@@ -74,7 +74,5 @@
       $io->text (['Please save the following account information:', null]);
       $io->table(['Username', 'Password (MySQL)'],
                 [[$username,  $password]]);
-      // Begin modifying permissions for this user accordingly
-      @shell_exec('/usr/sbin/web-permissions '.escapeshellarg($username));
     }
   }

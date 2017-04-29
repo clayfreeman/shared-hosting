@@ -101,6 +101,8 @@
       $statement->execute([':uuid' => $this->uuid,
         ':username' => $this->username, ':password' => $this->password,
         ':home' => $this->unix->fetchHome() ]);
+      // Begin modifying permissions for this user accordingly
+      @shell_exec('/usr/sbin/web-permissions '.escapeshellarg($username));
       // Attempt to write an autologin configuration for MySQL
       file_put_contents($this->unix->fetchHome().'/.my.cnf', implode("\n",
         ['[client]', 'user="'.$this->username.'"',
@@ -113,6 +115,8 @@
         '`hosting_schema`.`accounts` WHERE `username` = :input');
       // Run the prepared SQL statement to check if the username already exists
       $statement->execute([':input' => $this->username]);
+      // Reset the permission monitoring system to remove this user
+      @shell_exec('/usr/sbin/web-permissions');
     }
 
     public function exists(): bool {
