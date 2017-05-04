@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `domains` (
   `dkim_record` blob NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `dkim_selector` (`dkim_selector`),
   UNIQUE KEY `uuid` (`uuid`),
   KEY `site_id` (`site_id`),
   CONSTRAINT `domains_ibfk_1` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
