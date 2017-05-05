@@ -143,7 +143,8 @@
         '`hosting_schema`.`sites` SET `tls_enabled` = :input WHERE '.
         '`uuid` = :uuid');
       // Run the prepared SQL statement to set the `tls_enabled` flag
-      $statement->execute([':uuid' => $this->uuid, ':input' => $on]);
+      $statement->execute([':uuid' => $this->uuid, ':input' =>
+        ($on ? '1' : '0')]);
     }
 
     public function setTLSCertificate(string $path) {
