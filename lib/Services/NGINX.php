@@ -111,7 +111,7 @@
       exec('service nginx configtest', $null, $exit);
       if ($exit === 0) {
         // Reload NGINX for the new site to become active
-        exec('systemctl reload nginx', $null, $exit);
+        exec('systemctl restart nginx', $null, $exit);
         return ($exit === 0);
       } return false;
     }
