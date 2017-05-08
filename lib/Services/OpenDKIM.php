@@ -109,7 +109,7 @@
 
     protected function reload(): bool {
       // Attempt to reload the `opendkim` service
-      system('systemctl reload opendkim', $exit);
+      system('systemctl restart opendkim', $exit);
       return ($exit === 0);
     }
   }
