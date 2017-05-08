@@ -93,8 +93,7 @@
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
       $this->result = unlink($available) && unlink($enabled);
       // Reload NGINX for the new site to become active
-      exec('systemctl restart nginx', $null, $exit);
-      $this->result = $this->result && $this->reload();
+      $this->result = $this->reload() && $this->result;
     }
 
     public function exists(): bool {
