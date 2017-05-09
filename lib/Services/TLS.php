@@ -70,12 +70,18 @@
     }
 
     protected function run(): bool {
+      // Ensure that the count of domains for this certificate doesn't exceed 25
+      if (count($this->domains) > 25)
+        throw new \Exception('TLS can only be enabled for sites with less '.
+          'than 25 total domains');
+      // Attempt to create a certificate for all the domains for this site
       system('certbot certonly --quiet --no-eff-email --non-interactive '.
         '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
         '--webroot-path /var/private/letsencrypt --rsa-key-size 4096 '.
         implode(' ', array_map(function($domain) {
-          return '-d '.escapeshellarg($domain);
+          return '-d '.($domain = escapeshellarg($domain)).' -d www.'.$domain;
         }, $this->domains)), $exit);
+      // Determine success based on the exit code of the command
       return $exit === 0;
     }
   }
