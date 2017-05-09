@@ -79,7 +79,12 @@
         '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
         '--webroot-path /var/private/letsencrypt --rsa-key-size 4096 '.
         implode(' ', array_map(function($domain) {
-          return '-d '.($domain = escapeshellarg($domain)).' -d www.'.$domain;
+          $result = '-d '.escapeshellarg($domain);
+          // Check if this domain has a 'www' subdomain
+          if (gethostbyname($domain = 'www.'.$domain) !== $domain)
+            $result .= ' -d '.escapeshellarg($domain);
+          // Return the resulting string for this domain
+          return $result;
         }, $this->domains)), $exit);
       // Determine success based on the exit code of the command
       return $exit === 0;
