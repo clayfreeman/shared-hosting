@@ -19,7 +19,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ -e /etc/letsencrypt/accounts ]; then
     mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
   fi; mkdir -p /etc/letsencrypt/accounts
-  certbot register --non-interactive --agree-tos -m "$RET" 2> /dev/null && break
+  certbot register --quiet --non-interactive --agree-tos -m "$RET" && break
   sleep 1
 done
 
