@@ -9,12 +9,15 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
-  # Backup any existing accounts directory
-  if [ -e /etc/letsencrypt/accounts ]; then
-    mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
-  fi; mkdir -p /etc/letsencrypt/accounts
-  certbot register --non-interactive --agree-tos -m "$RET" 2> /dev/null && break
-  sleep 1
+  if [ "$RET" != "$EMAIL" ]; then
+    # Backup any existing accounts directory
+    if [ -e /etc/letsencrypt/accounts ]; then
+      mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
+    fi; mkdir -p /etc/letsencrypt/accounts
+    certbot register --non-interactive --agree-tos -m "$RET" \
+      2> /dev/null && break
+    sleep 1
+  fi
 done
 
 MY_PWD="$(jq -r .password /usr/share/shared-hosting/config.json 2> /dev/null)"
