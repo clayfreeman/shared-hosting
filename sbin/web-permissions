@@ -37,7 +37,6 @@ fi
 # Relaunch this script using each account's username
 for ACT in $ACTS; do
   if [ -n "$ACT" ]; then
-    echo "'$ACT'" "'$WEB_GROUP'"
     web-permissions "$ACT" "$WEB_GROUP"
   fi
 done
