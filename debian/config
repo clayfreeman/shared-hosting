@@ -3,6 +3,8 @@
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
 
+echo $@
+
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
 while [ -z "$EMAIL" ]; do
