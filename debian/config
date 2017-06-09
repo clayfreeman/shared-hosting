@@ -6,8 +6,6 @@
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
-  db_subst shared-hosting/email skippable \
-    "Press enter to keep the current value."
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
@@ -23,6 +21,10 @@ done
 
 MY_PWD="$(jq -r .password /usr/share/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
+  if [ "$1" = "reconfigure" ]; then
+    db_subst shared-hosting/mysql-password skippable \
+      "Press enter to keep the current value."
+  fi
   db_input high shared-hosting/mysql-password || true
   db_go
   db_get shared-hosting/mysql-password
