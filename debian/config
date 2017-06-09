@@ -4,16 +4,18 @@
 . /usr/share/debconf/confmodule
 
 # Ensure that the user provides a valid e-mail address
-while true; do
+while test -z "$(find /etc/letsencrypt -name 'private_key.json')"; do
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
-  certbot register --non-interactive --agree-tos -m "$RET" && break
+  certbot register --non-interactive --agree-tos -m "$RET" 2> /dev/null && break
+  sleep 1
 done
 
 while true; do
   db_input high shared-hosting/mysql-password || true
   db_go
   db_get shared-hosting/mysql-password
-  mysql -u root -p"$MYSQL_PWD" -e 'QUIT' 2> /dev/null && break
+  mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
+  sleep 1
 done
