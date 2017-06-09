@@ -3,7 +3,7 @@
    * This file defines a command `create-site` used to create a document root,
    * server configurations, and DKIM signing keys for all provided domains.
    *
-   * @copyright  Copyright 2016 Clay Freeman. All rights reserved.
+   * @copyright  Copyright 2017 Clay Freeman. All rights reserved.
    * @license    GNU Lesser General Public License v3 (LGPL-3.0).
    */
 
