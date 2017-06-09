@@ -32,6 +32,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   db_input high shared-hosting/mysql-password || true
   db_go
   db_get shared-hosting/mysql-password
-  mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
-  sleep 1
+  if [ -n "$RET" ]; then
+    mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
+  fi; sleep 1
 done
