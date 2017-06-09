@@ -10,9 +10,9 @@ Vcs-Browser: https://github.com/clayfreeman/shared-hosting
 
 Package: shared-hosting
 Architecture: all
-Depends: adduser (>=3.1), certbot (>=0.14), composer (>=1.0),
- coreutils (>=8.25), git (>=2.7), jq (>=1.5), nginx (>=1.9),
- opendkim (>=2.10), openssl (>=1.0.2), php7.1-fpm, php7.1-cli,
- php7.1-json, php7.1-mysql, unzip (>=6.0),
- mysql-server | mariadb-server, zip (>=3.0), ${misc:Depends}
+Depends: adduser (>=3.1), certbot (>=0.14), composer (>=1.0), 
+ coreutils (>=8.25), git (>=2.7), jq (>=1.5), nginx (>=1.9), opendkim (>=2.10),
+ openssl (>=1.0.2), php-fpm (>=5.6), php-cli (>=7.1), php-json (>=7.1),
+ php-mysql (>=7.1), unzip (>=6.0), zip (>=3.0), ${misc:Depends},
+ mysql-server (>=5.7) | mariadb-server (>=10.0)
 Description: Framework for easy management of shared hosting accounts.
