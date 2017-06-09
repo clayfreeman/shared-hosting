@@ -3,7 +3,7 @@
    * This file defines a command `delete-account` used to delete Unix and MySQL
    * accounts in addition to user-specific PHP FPM pools.
    *
-   * @copyright  Copyright 2016 Clay Freeman. All rights reserved.
+   * @copyright  Copyright 2017 Clay Freeman. All rights reserved.
    * @license    GNU Lesser General Public License v3 (LGPL-3.0).
    */
 
