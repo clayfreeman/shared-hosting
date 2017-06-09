@@ -38,7 +38,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
 done
 
 WEB_GROUP="$(cat /usr/share/shared-hosting/force-group 2> /dev/null | \
-  awk '{print $1}')"
+  head -n 1 | xargs echo -n)"
 while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/force-group skippable \
