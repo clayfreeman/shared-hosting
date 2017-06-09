@@ -20,6 +20,7 @@ case "$1" in
                 mkdir -p /var/private/dhparam
                 openssl dhparam -out /var/private/dhparam/dhparam.pem 2048
         fi
+        cd /usr/share/shared-hosting; composer update
     ;;
 
     abort-upgrade)
