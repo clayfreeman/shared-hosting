@@ -6,5 +6,5 @@ Description: Please enter the e-mail address to use for Let's Encrypt.
 Template: shared-hosting/mysql-password
 Type: password
 Description: Please enter the root password for the local MySQL server.
- This password is required to connect to MySQL for keeping track of the 
+ This password is required to connect to MySQL for keeping track of the
  shared hosting environment. ${skippable}

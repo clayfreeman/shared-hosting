@@ -57,9 +57,10 @@
       // Keep track of the last direction in the internal state
       $this->fwd = true;
       // Install the configuration files for this user's pools
-      foreach ($this->files as $file => $content)
+      foreach ($this->files as $file => $content) {
+        is_dir(basename($file)) || mkdir(basename($file), 0755, true);
         file_put_contents($file, $content);
-      // Restart the PHP FPM services
+      } // Restart the PHP FPM services
       foreach ($this->versions as $version) {
         system('systemctl restart php'.escapeshellarg($version).
           '-fpm', $tempResult);

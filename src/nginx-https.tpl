@@ -1,13 +1,13 @@
 server {
-	include templates/redirect-from-http.conf;
-	server_name {{DOMAINS}};
+  include templates/redirect-from-http.conf;
+  server_name {{DOMAINS}};
 }
 
 server {
-	set $SITEUSER '{{SITEUSER}}';
-	include templates/{{TEMPLATE}}-https.conf;
-	server_name {{DOMAINS}};
-	ssl_certificate {{CERTIFICATE}};
-	ssl_certificate_key {{PRIVATE}};
-	root {{ROOT}};
+  set $SITEUSER '{{SITEUSER}}';
+  include templates/{{TEMPLATE}}-https.conf;
+  server_name {{DOMAINS}};
+  ssl_certificate {{CERTIFICATE}};
+  ssl_certificate_key {{PRIVATE}};
+  root {{ROOT}};
 }

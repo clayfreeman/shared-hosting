@@ -69,6 +69,8 @@
       // Write the NGINX config to the appropriate location
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
+      is_dir(basename($available)) || mkdir(basename($available), 0755, true);
+      is_dir(basename($enabled  )) || mkdir(basename($enabled  ), 0755, true);
       $this->result = file_put_contents($available, $config) &&
           (is_link($enabled) || symlink($available, $enabled));
       // Create the document root for the newly created site

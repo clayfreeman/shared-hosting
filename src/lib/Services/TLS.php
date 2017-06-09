@@ -54,6 +54,8 @@
       Validation::template($this->site->fetchSite()['template'], true);
       // Generate a Let's Encrypt PKI for this site if none exists
       if (!$this->site->hasPKI() && $this->run()) {
+        if (!is_dir('/etc/letsencrypt/live/'.$domain))
+          throw new \Exception('Unable to find generated PKI directory.');
         // Setup the paths for this site's PKI
         $domain      = $this->domains[0] ?? null;
         $certificate = '/etc/letsencrypt/live/'.$domain.'/fullchain.pem';
@@ -74,6 +76,9 @@
       if (count($this->domains) > 25)
         throw new \Exception('TLS can only be enabled for sites with less '.
           'than 25 total domains');
+      // Attempt to create the Let's Encrypt webroot
+      is_dir('/var/private/letsencrypt') ||
+        mkdir('/var/private/letsencrypt', 0755, true);
       // Attempt to create a certificate for all the domains for this site
       system('certbot certonly --quiet --no-eff-email --non-interactive '.
         '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
