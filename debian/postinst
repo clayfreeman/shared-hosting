@@ -28,6 +28,7 @@ case "$1" in
         db_get shared-hosting/mysql-password
         MYSQL_PWD="$RET"
         shared-hosting-config "$LE_EMAIL" "$MYSQL_PWD"
+        cd /usr/share/shared-hosting && composer install
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
