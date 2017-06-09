@@ -3,8 +3,12 @@
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
 
+# Backup any existing accounts directory
+if [ -e /etc/letsencrypt/accounts ]; then
+  mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
+fi; mkdir -p /etc/letsencrypt/accounts
+
 # Ensure that the user provides a valid e-mail address
-mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
 while test -z "$(find /etc/letsencrypt/accounts -name 'private_key.json')"; do
   db_input high shared-hosting/email || true
   db_go
