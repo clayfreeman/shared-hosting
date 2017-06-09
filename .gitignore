@@ -1,3 +1,6 @@
 /composer.lock
 /config.json
+/debian/debhelper-build-stamp
+/debian/shared-hosting
+/debian/shared-hosting.debhelper.log
 /vendor
