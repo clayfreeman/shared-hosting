@@ -37,6 +37,7 @@ ACTS="`list-accounts | sed '1,3d' | tac | sed '1,2d' | tac | awk '{print $1}'`"
 # Relaunch this script using each account's username
 for ACT in $ACTS; do
   if [ -n "$ACT" ]; then
+    echo "$ACT"
     web-permissions "$ACT"
   fi
 done
