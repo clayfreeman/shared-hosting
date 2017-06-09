@@ -12,5 +12,5 @@ Package: shared-hosting
 Architecture: all
 Depends: adduser (>=3.1), certbot (>=0.14), composer (>=1.0), git (>=2.7),
  nginx (>=1.9), opendkim (>=2.10), php-fpm (>=5.6), php7.1-cli, php7.1-json,
- php7.1-mysql, unzip (>=6.0), virtual-mysql-server, zip (>=3.0)
+ php7.1-mysql, unzip (>=6.0), mysql-server | mariadb-server, zip (>=3.0)
 Description: Framework for easy management of shared hosting accounts.
