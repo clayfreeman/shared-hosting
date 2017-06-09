@@ -14,7 +14,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   db_go
   db_get shared-hosting/email
   # Skip the verification process if no changes were made
-  if [ "$RET" = "$EMAIL" ]; then break; fi
+  if [ -n "$EMAIL" ] && [ "$RET" = "$EMAIL" ]; then break; fi
   # Backup any existing accounts directory
   if [ -e /etc/letsencrypt/accounts ]; then
     mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
