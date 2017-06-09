@@ -3,7 +3,7 @@
    * This file defines a command `list-accounts` used to print a list of all
    * hosting accounts.
    *
-   * @copyright  Copyright 2016 Clay Freeman. All rights reserved.
+   * @copyright  Copyright 2017 Clay Freeman. All rights reserved.
    * @license    GNU Lesser General Public License v3 (LGPL-3.0).
    */
 
