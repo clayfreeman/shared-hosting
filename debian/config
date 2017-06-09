@@ -9,7 +9,8 @@ if [ -e /etc/letsencrypt/accounts ]; then
 fi; mkdir -p /etc/letsencrypt/accounts
 
 # Ensure that the user provides a valid e-mail address
-while test -z "$(find /etc/letsencrypt/accounts -name 'private_key.json')"; do
+EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
+while [ -z "$EMAIL" ]; do
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
@@ -17,7 +18,8 @@ while test -z "$(find /etc/letsencrypt/accounts -name 'private_key.json')"; do
   sleep 1
 done
 
-while true; do
+MY_PWD="$(jq -r .password /usr/share/shared-hosting/config.json 2> /dev/null)"
+while [ -z "$MY_PWD" ]; do
   db_input high shared-hosting/mysql-password || true
   db_go
   db_get shared-hosting/mysql-password

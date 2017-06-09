@@ -24,10 +24,16 @@ set -e
 case "$1" in
     configure)
         db_get shared-hosting/email
-        LE_EMAIL="$RET"
+        EMAIL="$RET"
         db_get shared-hosting/mysql-password
-        MYSQL_PWD="$RET"
-        shared-hosting-config "$LE_EMAIL" "$MYSQL_PWD"
+        MY_PWD="$RET"
+        TMP_CONFIG="$(mktemp)"
+        jq -Mr '.email = "'"$EMAIL"'"' \
+          /usr/share/shared-hosting/config.json  > \
+          "$TMP_CONFIG" 2> /dev/null
+        jq -Mr '.password = "'"$MY_PWD"'"' \
+          "$TMP_CONFIG"  >
+          /usr/share/shared-hosting/config.json 2> /dev/null
         cd /usr/share/shared-hosting && composer install
     ;;
 
