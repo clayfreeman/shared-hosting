@@ -16,6 +16,10 @@ set -e
 
 case "$1" in
     install|upgrade)
+        if [ ! -f /var/private/dhparam/dhparam.pem ]; then
+                mkdir -p /var/private/dhparam
+                openssl dhparam -out /var/private/dhparam/dhparam.pem 2048
+        fi
     ;;
 
     abort-upgrade)
