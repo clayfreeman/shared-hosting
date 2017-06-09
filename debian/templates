@@ -1,7 +1,7 @@
 Template: shared-hosting/email
 Type: string
 Description: Please enter the e-mail address to use for Let's Encrypt.
- This e-mail will be used for certificate expiry notifications.
+ This e-mail will be used for certificate expiry notifications. ${skippable}
 
 Template: shared-hosting/mysql-password
 Type: password
