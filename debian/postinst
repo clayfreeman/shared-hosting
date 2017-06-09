@@ -20,6 +20,11 @@ set -e
 
 case "$1" in
     configure)
+        db_get shared-hosting/email
+        LE_EMAIL="$RET"
+        db_get shared-hosting/mysql-password
+        MYSQL_PWD="$RET"
+        shared-hosting-config "$LE_EMAIL" "$MYSQL_PWD"
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
