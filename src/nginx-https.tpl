@@ -1,5 +1,5 @@
 server {
-	include templates/redirect-https.conf;
+	include templates/redirect-from-http.conf;
 	server_name {{DOMAINS}};
 }
 
