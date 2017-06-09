@@ -77,12 +77,12 @@
         throw new \Exception('TLS can only be enabled for sites with less '.
           'than 25 total domains');
       // Attempt to create the Let's Encrypt webroot
-      is_dir('/var/private/letsencrypt') ||
-        mkdir('/var/private/letsencrypt', 0755, true);
+      is_dir('/var/private/certbot') ||
+        mkdir('/var/private/certbot', 0755, true);
       // Attempt to create a certificate for all the domains for this site
       system('certbot certonly --quiet --no-eff-email --non-interactive '.
         '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
-        '--webroot-path /var/private/letsencrypt --rsa-key-size 4096 '.
+        '--webroot-path /var/private/certbot --rsa-key-size 4096 '.
         implode(' ', array_map(function($domain) {
           $result = '-d '.escapeshellarg($domain);
           // Check if this domain has a 'www' subdomain

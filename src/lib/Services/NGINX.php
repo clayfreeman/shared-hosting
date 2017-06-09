@@ -56,7 +56,7 @@
       $html      = $account['home'].'/public_html';
       $root      = $html.'/'.$site['root'];
       $sitetpl   = boolval($site['tls_enabled']) ? 'https' : 'http';
-      $config    = file_get_contents(__PROJECTROOT__.'/nginx-'.$sitetpl.'.tpl');
+      $config    = file_get_contents(__PROJECTROOT__.'/nginx-'.$sitetpl.'.cnf');
       $config    = str_replace('{{SITEUSER}}', $account['username'], $config);
       $config    = str_replace('{{TEMPLATE}}', $site['template'],    $config);
       $config    = str_replace('{{DOMAINS}}', implode(' ', array_map(
