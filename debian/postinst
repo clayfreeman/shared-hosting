@@ -39,7 +39,8 @@ case "$1" in
           "$TMP_CONFIG"  > \
           /usr/share/shared-hosting/config.json 2> /dev/null
         rm -f "$TMP_CONFIG"
-        cd /usr/share/shared-hosting && composer install
+        cd /usr/share/shared-hosting && \
+        composer update && composer install
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
