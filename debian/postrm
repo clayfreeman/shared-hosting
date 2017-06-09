@@ -24,6 +24,8 @@ set -e
 
 case "$1" in
     purge)
+        # Remove this package's configuration file
+        rm -f /usr/share/shared-hosting/config.json
         # Remove this package's modifications to the debconf database
         db_purge
     ;;
