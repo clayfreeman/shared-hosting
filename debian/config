@@ -4,7 +4,8 @@
 . /usr/share/debconf/confmodule
 
 # Ensure that the user provides a valid e-mail address
-while test -z "$(find /etc/letsencrypt -name 'private_key.json')"; do
+mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
+while test -z "$(find /etc/letsencrypt/accounts -name 'private_key.json')"; do
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
