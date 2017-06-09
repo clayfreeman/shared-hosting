@@ -49,6 +49,6 @@ while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   db_get shared-hosting/force-group
   # Skip the verification process of no changes were made
   if [ -n "$WEB_GROUP" ] && [ "$RET" = "$WEB_GROUP" ]; then break; fi
-  getent group "$RET" &> /dev/null && break
+  getent group "$RET" 2>&1 > /dev/null && break
   sleep 1
 done
