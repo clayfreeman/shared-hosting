@@ -5,6 +5,9 @@
 
 set -e
 
+# Load the `debconf` library functions
+. /usr/share/debconf/confmodule
+
 # summary of how this script can be called:
 #        * <postinst> `configure' <most-recently-configured-version>
 #        * <old-postinst> `abort-upgrade' <new version>
