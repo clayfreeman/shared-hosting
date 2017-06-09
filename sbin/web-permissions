@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Attempt to determine which group should be forced
+WEB_GROUP="$(cat /usr/share/shared-hosting/force-group 2> /dev/null | \
+  awk '{print $1}')"
+if [ -z "$WEB_GROUP" ]; then
+  echo "No forced group configured at /usr/share/shared-hosting/force-group"
+  exit 1
+fi
+
+# Define a function to create a bind mount with forced permissions
+function web_permissions() {
+  # Wait until LDAP users begin to populate
+  while [ -z "`getent passwd "$2"`" ] || [ -z "`getent group "$3"`" ]; do
+    sleep 1
+  done
+  # Unmount the directory in case it is already mounted
+  umount "$1" &> /dev/null
+  # Attempt to mount the directory in-place using `bindfs`
+  OPTIONS="noatime,force-user=$2,force-group=$3,perms=0664:a+D"
+  mount -t fuse.bindfs -o "$OPTIONS" "$1" "$1"
+}
+
+# Determine if we should latch to a specific user
+if [ -n "$1" ]; then
+  # Create a bind mount for this user's home directory
+  HOME_DIR="`eval echo "~$1"`/public_html"
+  web_permissions "$HOME_DIR" "$1" "$WEB_GROUP" "2775" "664"; exit 0
+fi
+
+# Unmount all current home directory mounts
+umount /home/*/public_html &> /dev/null
+
+# Get a list of all shared hosting accounts
+ACTS="`list-accounts | sed '1,3d' | tac | sed '1,2d' | tac | awk '{print $1}'`"
+
+# Relaunch this script using each account's username
+for ACT in $ACTS; do
+  if [ -n "$ACT" ]; then
+    web-permissions "$ACT"
+  fi
+done
+
+exit 0

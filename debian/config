@@ -36,3 +36,19 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
     mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
   fi; sleep 1
 done
+
+WEB_GROUP="$(cat /usr/share/shared-hosting/force-group 2> /dev/null | \
+  awk '{print $1}')"
+while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
+  if [ "$1" = "reconfigure" ]; then
+    db_subst shared-hosting/force-group skippable \
+      "Press enter to keep the current value."
+  fi
+  db_input high shared-hosting/force-group || true
+  db_go
+  db_get shared-hosting/force-group
+  # Skip the verification process of no changes were made
+  if [ -n "$WEB_GROUP" ] && [ "$RET" = "$WEB_GROUP" ]; then break; fi
+  getent group "$RET" 2> /dev/null && break
+  sleep 1
+done
