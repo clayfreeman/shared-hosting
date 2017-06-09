@@ -5,6 +5,9 @@
 
 set -e
 
+# Load the `debconf` library functions
+. /usr/share/debconf/confmodule
+
 # summary of how this script can be called:
 #        * <postrm> `remove'
 #        * <postrm> `purge'
@@ -20,7 +23,12 @@ set -e
 
 
 case "$1" in
-    purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+    purge)
+        # Remove this package's modifications to the debconf database
+        db_purge
+    ;;
+
+    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
     ;;
 
     *)
