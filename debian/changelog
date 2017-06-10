@@ -1,6 +1,6 @@
 shared-hosting (1.2ubuntu1) xenial; urgency=medium
 
-  * Allow the commands to validate the e-mail address and MySQL password.
+  * Skip the pre-configure step of installation and wait for `dpkg -i`.
 
  -- Clay Freeman <git@clayfreeman.com>  Fri, 09 Jun 2017 19:42:37 -0500
 
