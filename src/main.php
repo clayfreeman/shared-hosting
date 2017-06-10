@@ -57,8 +57,6 @@
     __PROJECTROOT__, 'schema.sql'])));
   // Ensure that foriegn key constraints are enabled
   $GLOBALS['db']->exec('SET FOREIGN_KEY_CHECKS=1');
-  // Add the configured e-mail address to the globals array
-  $GLOBALS['email'] = $config['email'] ?? '';
 
   // Create a Symfony console application
   $application = new \Symfony\Component\Console\Application();

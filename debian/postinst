@@ -27,16 +27,11 @@ case "$1" in
                 cp /usr/share/shared-hosting/config.example.json \
                    /usr/share/shared-hosting/config.json
         fi
-        db_get shared-hosting/email
-        EMAIL="$RET"
         db_get shared-hosting/mysql-password
         MY_PWD="$RET"
         db_get shared-hosting/force-group
         WEB_GROUP="$RET"
         TMP_CONFIG="$(mktemp)"
-        jq -Mr '.email = "'"$EMAIL"'"' \
-                /usr/share/shared-hosting/config.json  > \
-                "$TMP_CONFIG" 2> /dev/null
         jq -Mr '.password = "'"$MY_PWD"'"' \
                 "$TMP_CONFIG"  > \
                 /usr/share/shared-hosting/config.json 2> /dev/null

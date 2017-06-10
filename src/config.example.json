@@ -8,6 +8,5 @@
     "EnableTLS",
     "ListAccounts"
   ],
-  "email": "email@address.here",
   "password": "MySQL Root Password Here"
 }
