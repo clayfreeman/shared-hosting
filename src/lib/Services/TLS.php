@@ -81,7 +81,7 @@
         mkdir('/var/private/certbot', 0755, true);
       // Attempt to create a certificate for all the domains for this site
       system('certbot certonly --quiet --no-eff-email --non-interactive '.
-        '--agree-tos --register-unsafely-without-email --webroot '.
+        '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
         '--webroot-path /var/private/certbot --rsa-key-size 4096 '.
         implode(' ', array_map(function($domain) {
           $result = '-d '.escapeshellarg($domain);
