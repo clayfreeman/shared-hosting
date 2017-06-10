@@ -1,10 +1,11 @@
 #!/bin/sh
 
-echo "$@"
-exit 0
-
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
+
+# Exit gracefully if `certbot` or `mysql` are missing
+hash certbot 2>/dev/null || exit 0
+hash mysql   2>/dev/null || exit 0
 
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
