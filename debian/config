@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "$@"
+exit 0
+
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
 
