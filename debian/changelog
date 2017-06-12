@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu6) xenial; urgency=medium
+
+  * Use `letsencrypt` executable instead of `certbot` for backward compat.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 13:35:44 -0500
+
 shared-hosting (1.2ubuntu5) xenial; urgency=medium
 
   * Remove redundant check.
