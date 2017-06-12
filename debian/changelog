@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu2) xenial; urgency=medium
+
+  * Add the dependency of `mail-transport-agent`, recommending `postfix`.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 08:15:37 -0500
+
 shared-hosting (1.2ubuntu1) xenial; urgency=medium
 
   * Skip the pre-configure step of installation and wait for `dpkg -i`.
