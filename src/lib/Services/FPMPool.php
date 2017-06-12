@@ -35,8 +35,8 @@
 
     protected function fetchVersions() {
       // Return a list of installed PHP versions based on available binaries
-      return preg_split('/\s+/', trim(shell_exec('ls /usr/bin/php?.? | '.
-        'sed \'s|/usr/bin/php||g\'')));
+      return preg_split('/\s+/', trim(shell_exec('ls /usr/sbin/php-fpm?.? | '.
+        'sed \'s|/usr/sbin/php-fpm||g\'')));
     }
 
     public function fetchResult(): bool {
