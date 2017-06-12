@@ -54,8 +54,6 @@
       Validation::template($this->site->fetchSite()['template'], true);
       // Generate a Let's Encrypt PKI for this site if none exists
       if (!$this->site->hasPKI() && $this->run()) {
-        if (!is_dir('/etc/letsencrypt/live/'.$domain))
-          throw new \Exception('Unable to find generated PKI directory.');
         // Setup the paths for this site's PKI
         $domain      = $this->domains[0] ?? null;
         $certificate = '/etc/letsencrypt/live/'.$domain.'/fullchain.pem';
