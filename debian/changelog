@@ -1,3 +1,15 @@
+shared-hosting (1.2ubuntu4) UNRELEASED; urgency=medium
+
+  * Locate installed versions of PHP in a more reliable fashion.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 12:02:32 -0500
+
+shared-hosting (1.2ubuntu3) xenial; urgency=medium
+
+  * Fix bug locating installed versions of PHP.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 11:47:59 -0500
+
 shared-hosting (1.2ubuntu2) xenial; urgency=medium
 
   * Add the dependency of `mail-transport-agent`, recommending `postfix`.
