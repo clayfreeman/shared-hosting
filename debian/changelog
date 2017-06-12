@@ -1,4 +1,4 @@
-shared-hosting (1.2ubuntu4) UNRELEASED; urgency=medium
+shared-hosting (1.2ubuntu4) xenial; urgency=medium
 
   * Locate installed versions of PHP in a more reliable fashion.
 
