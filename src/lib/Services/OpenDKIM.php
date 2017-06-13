@@ -21,7 +21,7 @@
 
     public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return $this->result && self::reload();
+      return $this->result;
     }
 
     protected function build(): void {
