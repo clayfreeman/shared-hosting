@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu13) xenial; urgency=medium
+
+  * Add OpenDKIM configuration; add `restart-services`.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 13 Jun 2017 16:05:40 -0500
+
 shared-hosting (1.2ubuntu12) xenial; urgency=medium
 
   * Add success message to `flush-config` command.
