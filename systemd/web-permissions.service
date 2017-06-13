@@ -1,0 +1,11 @@
+[Unit]
+Requires=mysql.service
+After=mysql.service ldap-forward.service
+
+[Service]
+ExecStart=/usr/sbin/web-permissions
+RemainAfterExit=yes
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
