@@ -49,11 +49,11 @@
     protected function execute(InputInterface $input, OutputInterface $output) {
       // Regenerate all configuration files relating to each hosting account
       $accounts = new Transaction(...array_map(function($username) {
-        return new FPMPool($username);
+        return new FPMPool($username[0]);
       }, $this->fetchAccounts()));
       // Regenerate all configuration files relating to each site
       $sites    = new Transaction(...array_map(function($uuid) {
-        return new NGINX(new Site($uuid));
+        return new NGINX(new Site($uuid[0]));
       }, $this->fetchSites()));
       // Regenerate all configuration files relating to each domain
       $domains  = new Transaction(new OpenDKIM());
