@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu7) xenial; urgency=medium
+
+  * Add the `flush-config` command to rewrite config files.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 22:04:36 -0500
+
 shared-hosting (1.2ubuntu6) xenial; urgency=medium
 
   * Use `letsencrypt` executable instead of `certbot` for backward compat.
