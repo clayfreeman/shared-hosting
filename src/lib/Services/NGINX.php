@@ -8,7 +8,6 @@
     protected $db         = null;
     protected $domains    = null;
     protected $fwd        = true;
-    protected $result     = false;
     protected $site       = null;
 
     public function __construct(Site $site) {
@@ -27,10 +26,10 @@
       $this->domains = $this->site->fetchDomains();
     }
 
-    public function fetchResult(): bool {
+    public function fetchResult(bool $batch): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd &&  $this->exists() && $this->result) ||
-             (!$this->fwd && !$this->exists() && $this->result);
+      return ( $this->fwd &&  $this->exists() && ($batch || $this->reload())) ||
+             (!$this->fwd && !$this->exists() && ($batch || $this->reload()));
     }
 
     public function forward(): void {
@@ -66,25 +65,28 @@
       $config    = str_replace('{{PRIVATE}}',
         $site['tls_private'], $config);
       $config    = str_replace('{{ROOT}}', $root, $config);
-      // Write the NGINX config to the appropriate location
+      // Determine the appropriate location to store the NGINX config
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
-      is_dir(basename($available)) || mkdir(basename($available), 0755, true);
-      is_dir(basename($enabled  )) || mkdir(basename($enabled  ), 0755, true);
-      $this->result = file_put_contents($available, $config) &&
-          (is_link($enabled) || symlink($available, $enabled));
+      is_dir(basename($available)) || mkdir(basename($available), 0755, true) ||
+        throw new \Exception('Unable to create available sites directory.');
+      is_dir(basename($enabled  )) || mkdir(basename($enabled  ), 0755, true) ||
+        throw new \Exception('Unable to create enabled sites directory.');
+      // Write the configuration files for the site
+      file_put_contents($available, $config) ||
+        throw new \Exception('Unable to write site configuration file.');
+      is_link($enabled) || symlink($available, $enabled) ||
+        throw new \Exception('Failed to enable site configuration.');
       // Create the document root for the newly created site
-      $this->result = $this->result && (is_dir($root) ||
-        mkdir($root, null, true));
-      // Set the ownership for the document root
-      $this->result = $this->result && chown($html, $account['username']);
-      $this->result = $this->result && chgrp($html, $account['username']);
-      $this->result = $this->result && chown($root, $account['username']);
-      $this->result = $this->result && chgrp($root, $account['username']);
-      $this->result = $this->result && chmod($html, 02775);
-      $this->result = $this->result && chmod($root, 02775);
-      // Reload the NGINX to enable the new configuration
-      $this->result = $this->result && $this->reload();
+      is_dir($root) || mkdir($root, null, true) ||
+        throw new \Exception('Unable to create document root.');
+      // Set the permissions for the document root
+      (chown($html, $account['username'])          &&
+       chgrp($html, $account['username'])          &&
+       chown($root, $account['username'])          &&
+       chgrp($root, $account['username'])          &&
+       chmod($html, 02775) && chmod($root, 02775)) ||
+        throw new \Exception('Unable to set document root permissions.');
     }
 
     protected function delete(): void {
@@ -93,9 +95,8 @@
       // Remove the NGINX config files from the appropriate location
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
-      $this->result = unlink($available) && unlink($enabled);
-      // Reload NGINX for the new site to become active
-      $this->result = $this->reload() && $this->result;
+      (unlink($available) && unlink($enabled)) ||
+        throw new \Exception('Unable to remove site configuration.');
     }
 
     public function exists(): bool {

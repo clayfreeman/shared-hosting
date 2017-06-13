@@ -8,7 +8,6 @@
     protected $db       = null;
     protected $files    = [];
     protected $fwd      = true;
-    protected $result   = true;
     protected $username = null;
     protected $versions = [];
 
@@ -39,10 +38,10 @@
         'sed \'s|/usr/sbin/php-fpm||g\'')));
     }
 
-    public function fetchResult(): bool {
+    public function fetchResult(bool $batch): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd && $this->result &&  $this->exists()) ||
-             (!$this->fwd && $this->result && !$this->exists());
+      return ( $this->fwd &&  $this->exists() && ($batch || $this->reload())) ||
+             (!$this->fwd && !$this->exists() && ($batch || $this->reload()));
     }
 
     public function exists(): bool {
@@ -60,11 +59,6 @@
       foreach ($this->files as $file => $content) {
         is_dir(basename($file)) || mkdir(basename($file), 0755, true);
         file_put_contents($file, $content);
-      } // Restart the PHP FPM services
-      foreach ($this->versions as $version) {
-        system('systemctl restart php'.escapeshellarg($version).
-          '-fpm', $tempResult);
-        $this->result = $this->result && ($tempResult === 0);
       }
     }
 
@@ -73,11 +67,15 @@
       $this->fwd = false;
       // Remove the configuration files for this user's pools
       foreach (array_keys($this->files) as $file) unlink($file);
+    }
+
+    public function reload(): bool {
+      $result = true;
       // Restart the PHP FPM services
       foreach ($this->versions as $version) {
         system('systemctl restart php'.escapeshellarg($version).
           '-fpm', $tempResult);
-        $this->result = $this->result && ($tempResult === 0);
-      }
+        $result = $result && ($tempResult === 0);
+      } return $result;
     }
   }

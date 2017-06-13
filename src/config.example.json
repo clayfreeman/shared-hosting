@@ -6,6 +6,7 @@
     "DeleteSite",
     "DisableTLS",
     "EnableTLS",
+    "FlushConfig",
     "ListAccounts"
   ],
   "email": "email@address.here",
