@@ -3,9 +3,9 @@
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
 
-# Exit gracefully if `certbot` or `mysql` are missing
-hash certbot 2>/dev/null || exit 0
-hash mysql   2>/dev/null || exit 0
+# Exit gracefully if `letsencrypt` or `mysql` are missing
+hash letsencrypt 2>/dev/null || exit 0
+hash mysql       2>/dev/null || exit 0
 
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
@@ -23,7 +23,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ -e /etc/letsencrypt/accounts ]; then
     mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
   fi; mkdir -p /etc/letsencrypt/accounts
-  certbot register --quiet --non-interactive --agree-tos -m "$RET" && break
+  letsencrypt register --quiet --non-interactive --agree-tos -m "$RET" && break
   sleep 1
 done
 
