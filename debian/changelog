@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu10) xenial; urgency=medium
+
+  * Fix bugs with the `flush-config` command
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 22:41:26 -0500
+
 shared-hosting (1.2ubuntu9) xenial; urgency=medium
 
   * Fix bugs with the `flush-config` command
