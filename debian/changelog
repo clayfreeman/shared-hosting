@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu8) xenial; urgency=medium
+
+  * Fix bugs with the `flush-config` command
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 12 Jun 2017 22:18:00 -0500
+
 shared-hosting (1.2ubuntu7) xenial; urgency=medium
 
   * Add the `flush-config` command to rewrite config files.
