@@ -68,24 +68,25 @@
       // Determine the appropriate location to store the NGINX config
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
-      is_dir(basename($available)) || mkdir(basename($available), 0755, true) ||
+      if (!is_dir(basename($available)) &&
+          ! mkdir(basename($available), 0755, true))
         throw new \Exception('Unable to create available sites directory.');
-      is_dir(basename($enabled  )) || mkdir(basename($enabled  ), 0755, true) ||
+      if (!is_dir(basename($enabled  )) &&
+          ! mkdir(basename($enabled  ), 0755, true))
         throw new \Exception('Unable to create enabled sites directory.');
       // Write the configuration files for the site
-      file_put_contents($available, $config) ||
+      if (!file_put_contents($available, $config))
         throw new \Exception('Unable to write site configuration file.');
-      is_link($enabled) || symlink($available, $enabled) ||
+      if (!is_link($enabled) && !symlink($available, $enabled))
         throw new \Exception('Failed to enable site configuration.');
       // Create the document root for the newly created site
-      is_dir($root) || mkdir($root, null, true) ||
+      if (!is_dir($root) && !mkdir($root, null, true))
         throw new \Exception('Unable to create document root.');
       // Set the permissions for the document root
-      (chown($html, $account['username'])          &&
-       chgrp($html, $account['username'])          &&
-       chown($root, $account['username'])          &&
-       chgrp($root, $account['username'])          &&
-       chmod($html, 02775) && chmod($root, 02775)) ||
+      if (!chown($html, $account['username']) || !chmod($html, 02775) ||
+          !chgrp($html, $account['username']) ||
+          !chown($root, $account['username']) || !chmod($root, 02775) ||
+          !chgrp($root, $account['username']))
         throw new \Exception('Unable to set document root permissions.');
     }
 
@@ -95,7 +96,7 @@
       // Remove the NGINX config files from the appropriate location
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
-      (unlink($available) && unlink($enabled)) ||
+      if (!unlink($available) || !unlink($enabled))
         throw new \Exception('Unable to remove site configuration.');
     }
 
