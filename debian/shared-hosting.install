@@ -1,4 +1,7 @@
+default/*         /etc/default
 nginx/conf.d/*    /etc/nginx/conf.d
 nginx/templates/* /etc/nginx/templates
+opendkim/*        /etc
 sbin/*            /usr/sbin
 src/*             /usr/share/shared-hosting
+systemd/*         /etc/systemd/system

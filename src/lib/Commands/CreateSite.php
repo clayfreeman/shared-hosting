@@ -113,7 +113,10 @@
         $info[] = [chunk_split($domain['name'],          24, "\n"),
                    chunk_split($domain['dkim_selector'],  8, "\n"),
                    chunk_split($domain['dkim_record'],   36, "\n")];
-      } // Finish the site creation process with an info message
+      } // Reload NGINX and OpenDKIM so that the new site is made available
+      if (!NGINX::reload() || !OpenDKIM::reload())
+        throw new \Exception('Unable to restart services.');
+      // Finish the site creation process with an info message
       $io->success('Site created successfully.');
       $io->title('Site Information');
       $io->text (['Document Root: '.$account->fetchAccount()['home'].

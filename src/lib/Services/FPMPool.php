@@ -17,7 +17,7 @@
       Validation::username($username);
       // Assign the provided username to an internal property
       $this->username = $username;
-      $this->versions = $this->fetchVersions();
+      $this->versions =  self::fetchVersions();
       $this->files    = $this->fetchFiles();
     }
 
@@ -32,16 +32,16 @@
       return $result;
     }
 
-    protected function fetchVersions() {
+    protected static function fetchVersions() {
       // Return a list of installed PHP versions based on available binaries
       return preg_split('/\s+/', trim(shell_exec('ls /usr/sbin/php-fpm?.? | '.
         'sed \'s|/usr/sbin/php-fpm||g\'')));
     }
 
-    public function fetchResult(bool $batch): bool {
+    public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd &&  $this->exists() && ($batch || $this->reload())) ||
-             (!$this->fwd && !$this->exists() && ($batch || $this->reload()));
+      return ( $this->fwd &&  $this->exists()) ||
+             (!$this->fwd && !$this->exists());
     }
 
     public function exists(): bool {
@@ -69,10 +69,10 @@
       foreach (array_keys($this->files) as $file) unlink($file);
     }
 
-    public function reload(): bool {
+    public static function reload(): bool {
       $result = true;
       // Restart the PHP FPM services
-      foreach ($this->versions as $version) {
+      foreach (self::fetchVersions() as $version) {
         system('systemctl restart php'.escapeshellarg($version).
           '-fpm', $tempResult);
         $result = $result && ($tempResult === 0);

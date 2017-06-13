@@ -68,7 +68,7 @@
       return null;
     }
 
-    public function fetchResult(bool $batch): bool {
+    public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
       return ( $this->fwd &&  $this->exists() && $this->result) ||
              (!$this->fwd && !$this->exists());

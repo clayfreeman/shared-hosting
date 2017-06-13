@@ -64,6 +64,9 @@
       $tls      = new TLS  ($site);
       // Attempt to create or re-use PKI for HTTPS
       (new Transaction($tls, $nginx))->run();
+      // Reload NGINX so that the new TLS certificate is activated
+      if (!NGINX::reload())
+        throw new \Exception('Unable to restart services.');
       // Finish the process with an info message
       $io->success('Site '.escapeshellarg($domain).' now has HTTPS enabled.');
     }

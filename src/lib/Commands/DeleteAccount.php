@@ -65,6 +65,10 @@
           'associated with it. Its sites must be deleted to continue.');
       // Attempt to delete the Unix and MySQL user accounts
       (new Transaction($hosting, $fpm, $mysql, $unix))->run(false);
+      // Reload the FPM pool to free the resources of the deleted account
+      if (!FPMPool::reload())
+        throw new \Exception('Unable to restart services.');
+      // Finish the account deletion process with an info message
       $io->success('Account '.escapeshellarg($username).' was deleted.');
     }
   }

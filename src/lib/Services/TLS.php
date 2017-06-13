@@ -27,7 +27,7 @@
       $this->domains = $this->site->fetchDomains();
     }
 
-    public function fetchResult(bool $batch): bool {
+    public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
       return ( $this->fwd &&  $this->site->isTLSEnabled()) ||
              (!$this->fwd && !$this->site->isTLSEnabled());

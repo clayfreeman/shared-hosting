@@ -68,8 +68,11 @@
         throw new \Exception('The requested username is taken.');
       // Attempt to create the Unix and MySQL user accounts
       (new Transaction($unix, $mysql, $fpm, $hosting))->run();
-      $io->success('Hosting account created successfully.');
+      // Restart the FPM pool so that the new account can use PHP
+      if (!FPMPool::reload())
+        throw new \Exception('Unable to restart services.');
       // Finish the account creation process with an info message
+      $io->success('Hosting account created successfully.');
       $io->title( 'Account Information');
       $io->text (['Please save the following account information:', null]);
       $io->table(['Username', 'Password (MySQL)'],

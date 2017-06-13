@@ -62,9 +62,12 @@
         throw new \Exception('Unable to fetch the site for this domain name.');
       $nginx    = new NGINX($site);
       $tls      = new TLS  ($site);
-      // Attempt to create or re-use PKI for HTTPS
+      // Attempt to disable the current PKI for HTTPS
       (new Transaction($tls))->run(false);
       (new Transaction($nginx))->run();
+      // Reload NGINX so that the TLS certificate is removed
+      if (!NGINX::reload())
+        throw new \Exception('Unable to restart services.');
       // Finish the process with an info message
       $io->success('Site '.escapeshellarg($domain).' now has HTTPS disabled.');
     }

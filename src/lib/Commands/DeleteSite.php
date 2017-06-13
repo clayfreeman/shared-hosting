@@ -68,6 +68,9 @@
       $opendkim = new OpenDKIM();
       // Attempt to delete the configuration files, site, and DKIM keys
       (new Transaction($nginx, $site, $opendkim))->run(false);
+      // Reload NGINX and OpenDKIM to make the deleted site unavailable
+      if (!NGINX::reload() || !OpenDKIM::reload())
+        throw new \Exception('Unable to restart services.');
       // Finish the site deletion process with an info message
       $io->success('Site '.escapeshellarg($domain).' was deleted.');
     }

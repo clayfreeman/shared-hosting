@@ -63,6 +63,19 @@
   // Create a Symfony console application
   $application = new \Symfony\Component\Console\Application();
 
+  // Build a list of commands to load for possible execution
+  $config['commands'] = [
+    'CreateAccount',
+    'CreateSite',
+    'DeleteAccount',
+    'DeleteSite',
+    'DisableTLS',
+    'EnableTLS',
+    'FlushConfig',
+    'ListAccounts',
+    'RestartServices'
+  ];
+
   // Load each configured sub-command
   foreach ($config['commands'] ?? [] as $command) {
     // Add the namespace prefix for this command

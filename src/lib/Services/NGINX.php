@@ -26,10 +26,10 @@
       $this->domains = $this->site->fetchDomains();
     }
 
-    public function fetchResult(bool $batch): bool {
+    public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return ( $this->fwd &&  $this->exists() && ($batch || $this->reload())) ||
-             (!$this->fwd && !$this->exists() && ($batch || $this->reload()));
+      return ( $this->fwd &&  $this->exists()) ||
+             (!$this->fwd && !$this->exists());
     }
 
     public function forward(): void {
@@ -109,7 +109,7 @@
       return file_exists($available);
     }
 
-    protected function reload(): bool {
+    public static function reload(): bool {
       // Test the NGINX config for errors
       exec('service nginx configtest', $null, $exit);
       if ($exit === 0) {

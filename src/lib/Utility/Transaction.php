@@ -9,7 +9,7 @@
       $this->services = $services;
     }
 
-    public function run(bool $forward = true, bool $batch = false): void {
+    public function run(bool $forward = true): void {
       // Initialize a direction variable
       $increment = 1; $fail = null;
       // Create a function for the loop condition
@@ -28,7 +28,7 @@
           // Determine if we're the last service in the transaction
           $last = !$condition($increment, $i + ($increment <=> 0));
           // Upon error, switch direction to begin rolling back changes
-          if (!$service->fetchResult($last ? false : $batch)) {
+          if (!$service->fetchResult()) {
             $fail = get_class($service); $increment = -1; ++$i;
           } // Run the reverse method of this service
         } else if (!$forward || ($increment <=> 0) === -1) {
@@ -37,7 +37,7 @@
           // Determine if we're the last service in the transaction
           $last = !$condition($increment, $i + ($increment <=> 0));
           // Upon error, throw an exception to log rollback failure
-          if (!$service->fetchResult($last ? false : $batch))
+          if (!$service->fetchResult())
             throw new \Exception('Unable to rollback transaction (original '.
               'failure caused by '.($fail ?? get_class($service)).').');
           // This should never even happen unless programmer error

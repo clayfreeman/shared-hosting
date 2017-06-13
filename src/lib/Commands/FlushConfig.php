@@ -59,12 +59,10 @@
       }, $this->fetchSites()));
       // Regenerate all configuration files relating to each domain
       $domains  = new Transaction(new OpenDKIM());
-      // Attempt to run all transactions in batch mode
-      $accounts->run(true, true);
-      $sites->run(true, true);
-      $domains->run(true, true);
+      // Attempt to run all transactions and reload associated services
+      $accounts->run(); $sites->run(); $domains->run();
       // Finish the flush config process with an info message
-      $io->success('Configuration flushed to disk and services restarted.');
+      $io->success('Configuration files flushed to disk.');
     }
 
     protected function fetchAccounts(): array {

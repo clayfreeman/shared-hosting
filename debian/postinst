@@ -22,36 +22,34 @@ set -e
 
 
 case "$1" in
-    configure)
-        if [ ! -f /usr/share/shared-hosting/config.json ]; then
-                cp /usr/share/shared-hosting/config.example.json \
-                   /usr/share/shared-hosting/config.json
-        fi
-        db_get shared-hosting/email
-        EMAIL="$RET"
-        db_get shared-hosting/mysql-password
-        MY_PWD="$RET"
-        db_get shared-hosting/force-group
-        WEB_GROUP="$RET"
-        TMP_CONFIG="$(mktemp)"
-        jq -Mr '.email = "'"$EMAIL"'"' \
-                /usr/share/shared-hosting/config.json  > \
-                "$TMP_CONFIG" 2> /dev/null
-        jq -Mr '.password = "'"$MY_PWD"'"' \
-                "$TMP_CONFIG"  > \
-                /usr/share/shared-hosting/config.json 2> /dev/null
-        rm -f "$TMP_CONFIG"
-        echo "$RET" > /usr/share/shared-hosting/force-group
-        cd /usr/share/shared-hosting && composer --quiet update
-    ;;
+  configure)
+    if [ ! -f /usr/share/shared-hosting/config.json ]; then
+      cp /usr/share/shared-hosting/config.example.json \
+         /usr/share/shared-hosting/config.json
+    fi
+    db_get shared-hosting/email
+    EMAIL="$RET"
+    db_get shared-hosting/mysql-password
+    MY_PWD="$RET"
+    db_get shared-hosting/force-group
+    WEB_GROUP="$RET"
+    TMP_CONFIG="$(mktemp)"
+    jq -Mr '.email = "'"$EMAIL"'"' \
+      /usr/share/shared-hosting/config.json  > "$TMP_CONFIG" 2> /dev/null
+    jq -Mr '.password = "'"$MY_PWD"'"' \
+      "$TMP_CONFIG"  > /usr/share/shared-hosting/config.json 2> /dev/null
+    rm -f "$TMP_CONFIG"
+    echo "$RET" > /usr/share/shared-hosting/force-group
+    cd /usr/share/shared-hosting && composer --quiet update
+  ;;
 
-    abort-upgrade|abort-remove|abort-deconfigure)
-    ;;
+  abort-upgrade|abort-remove|abort-deconfigure)
+  ;;
 
-    *)
-        echo "postinst called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
+  *)
+    echo "postinst called with unknown argument \`$1'" >&2
+    exit 1
+  ;;
 esac
 
 # dh_installdeb will replace this with shell code automatically

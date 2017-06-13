@@ -15,20 +15,26 @@ set -e
 
 
 case "$1" in
-    install|upgrade)
-        if [ ! -f /var/private/dhparam/dhparam.pem ]; then
-                mkdir -p /var/private/dhparam
-                openssl dhparam -out /var/private/dhparam/dhparam.pem 2048
-        fi
-    ;;
+  install|upgrade)
+    # Divert OpenDKIM's default config in favor of our own
+    dpkg-divert --add --package shared-hosting --rename --divert \
+      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
+    dpkg-divert --add --package shared-hosting --rename --divert \
+      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf
+    # Generate Diffie-Hellman Parameters (if inexistent)
+    if [ ! -f /var/private/dhparam/dhparam.pem ]; then
+      mkdir -p /var/private/dhparam
+      openssl dhparam -out /var/private/dhparam/dhparam.pem 4096
+    fi
+  ;;
 
-    abort-upgrade)
-    ;;
+  abort-upgrade)
+  ;;
 
-    *)
-        echo "preinst called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
+  *)
+    echo "preinst called with unknown argument \`$1'" >&2
+    exit 1
+  ;;
 esac
 
 # dh_installdeb will replace this with shell code automatically

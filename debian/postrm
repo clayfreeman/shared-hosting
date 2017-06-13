@@ -23,23 +23,26 @@ set -e
 
 
 case "$1" in
-    purge)
-        # Remove this package's configuration file
-        rm -rf /usr/share/shared-hosting/composer.lock \
-               /usr/share/shared-hosting/config.json \
-               /usr/share/shared-hosting/force-group \
-               /usr/share/shared-hosting/vendor
-        # Remove this package's modifications to the debconf database
-        db_purge
-    ;;
+  purge)
+    # Divert our own config in favor of OpenDKIM's default
+    dpkg-divert --remove --package shared-hosting --rename /etc/default/opendkim
+    dpkg-divert --remove --package shared-hosting --rename /etc/opendkim.conf
+    # Remove this package's configuration file
+    rm -rf /usr/share/shared-hosting/composer.lock \
+           /usr/share/shared-hosting/config.json \
+           /usr/share/shared-hosting/force-group \
+           /usr/share/shared-hosting/vendor
+    # Remove this package's modifications to the debconf database
+    db_purge
+  ;;
 
-    remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
-    ;;
+  remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+  ;;
 
-    *)
-        echo "postrm called with unknown argument \`$1'" >&2
-        exit 1
-    ;;
+  *)
+    echo "postrm called with unknown argument \`$1'" >&2
+    exit 1
+  ;;
 esac
 
 # dh_installdeb will replace this with shell code automatically

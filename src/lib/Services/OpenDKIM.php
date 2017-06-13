@@ -19,9 +19,9 @@
       return is_array($data) ? $data : null;
     }
 
-    public function fetchResult(bool $batch): bool {
+    public function fetchResult(): bool {
       // Return whether the forward or reverse methods succeeded
-      return $this->result && $this->reload();
+      return $this->result && self::reload();
     }
 
     protected function build(): void {
@@ -107,7 +107,7 @@
       $this->build();
     }
 
-    protected function reload(): bool {
+    public static function reload(): bool {
       // Attempt to reload the `opendkim` service
       system('systemctl restart opendkim', $exit);
       return ($exit === 0);
