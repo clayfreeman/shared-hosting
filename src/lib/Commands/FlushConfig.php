@@ -47,6 +47,8 @@
      * @param   OutputInterface  $output  An interface to output methods.
      */
     protected function execute(InputInterface $input, OutputInterface $output) {
+      // Setup some environment variables to complete this command
+      $io       = new SymfonyStyle($input, $output);
       // Regenerate all configuration files relating to each hosting account
       $accounts = new Transaction(...array_map(function($result) {
         return new FPMPool($result['username']);
