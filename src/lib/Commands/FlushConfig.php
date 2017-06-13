@@ -61,6 +61,8 @@
       $accounts->run(true, true);
       $sites->run(true, true);
       $domains->run(true, true);
+      // Finish the flush config process with an info message
+      $io->success('Configuration flushed to disk and services restarted.');
     }
 
     protected function fetchAccounts(): array {
