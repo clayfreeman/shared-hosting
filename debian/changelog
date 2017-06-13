@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu15) xenial; urgency=medium
+
+  * Add one crucial symlink.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 13 Jun 2017 16:36:09 -0500
+
 shared-hosting (1.2ubuntu14) xenial; urgency=medium
 
   * Fix bug where OpenDKIM can be restarted twice for one operation.
