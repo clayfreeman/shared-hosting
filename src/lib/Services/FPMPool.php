@@ -27,14 +27,14 @@
         // Create a path key and content value for this version
         $result['/etc/php/'.$version.'/fpm/pool.d/'.$this->username.'.conf'] =
           implode("\n", [ '['.$this->username.']',
-            'include = /etc/php/'.$version.'/fpm/common.conf', null]);
+            'include = /etc/shared-hosting/php'.$version.'-common.conf', null]);
       // Return the resulting array of paths and contents
       return $result;
     }
 
-    protected static function fetchVersions() {
+    protected static function fetchVersions(): array {
       // Return a list of installed PHP versions based on available binaries
-      return preg_split('/\s+/', trim(shell_exec('ls /usr/sbin/php-fpm?.? | '.
+      return preg_split('/\\s+/', trim(shell_exec('ls /usr/sbin/php-fpm?.? | '.
         'sed \'s|/usr/sbin/php-fpm||g\'')));
     }
 
@@ -67,6 +67,15 @@
       $this->fwd = false;
       // Remove the configuration files for this user's pools
       foreach (array_keys($this->files) as $file) unlink($file);
+    }
+
+    public static function flushCommon() {
+      // Flush a common include for each PHP version
+      foreach (self::fetchVersions() as $version) {
+        file_put_contents('/etc/shared-hosting/php'.$version.'-common.conf',
+          str_replace('{{VERSION}}', $version,
+          file_get_contents(__PROJECTROOT__.'/php-common.cnf')));
+      }
     }
 
     public static function reload(): bool {

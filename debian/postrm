@@ -28,10 +28,9 @@ case "$1" in
     dpkg-divert --remove --package shared-hosting --rename /etc/default/opendkim
     dpkg-divert --remove --package shared-hosting --rename /etc/opendkim.conf
     # Remove this package's configuration file
-    rm -rf /usr/share/shared-hosting/composer.lock \
-           /usr/share/shared-hosting/config.json \
-           /usr/share/shared-hosting/force-group \
-           /usr/share/shared-hosting/vendor
+    rm -f /etc/shared-hosting/config.json \
+          /usr/share/shared-hosting/composer.lock \
+          /usr/share/shared-hosting/vendor
     # Remove this package's modifications to the debconf database
     db_purge
   ;;

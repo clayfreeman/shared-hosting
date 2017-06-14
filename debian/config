@@ -8,7 +8,7 @@ hash letsencrypt 2>/dev/null || exit 0
 hash mysql       2>/dev/null || exit 0
 
 # Ensure that the user provides a valid e-mail address
-EMAIL="$(jq -r .email /usr/share/shared-hosting/config.json 2> /dev/null)"
+EMAIL="$(jq -Mer .email /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/email skippable \
@@ -27,7 +27,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   sleep 1
 done
 
-MY_PWD="$(jq -r .password /usr/share/shared-hosting/config.json 2> /dev/null)"
+MY_PWD="$(jq -Mer .password /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/mysql-password skippable \
@@ -41,8 +41,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   fi; sleep 1
 done
 
-WEB_GROUP="$(cat /usr/share/shared-hosting/force-group 2> /dev/null | \
-  head -n 1 | xargs echo -n)"
+WEB_GROUP="$(jq -Mer .group /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/force-group skippable \

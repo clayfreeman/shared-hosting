@@ -23,24 +23,27 @@ set -e
 
 case "$1" in
   configure)
-    if [ ! -f /usr/share/shared-hosting/config.json ]; then
-      cp /usr/share/shared-hosting/config.example.json \
-         /usr/share/shared-hosting/config.json
+    # Ensure that a configuration file exists, or that we use the example
+    if [ ! -f /etc/shared-hosting/config.json ]; then
+      echo '{}' > /etc/shared-hosting/config.json
     fi
+    # Fetch the required varables from debhelper's database
     db_get shared-hosting/email
     EMAIL="$RET"
     db_get shared-hosting/mysql-password
     MY_PWD="$RET"
     db_get shared-hosting/force-group
     WEB_GROUP="$RET"
-    TMP_CONFIG="$(mktemp)"
-    jq -Mr '.email = "'"$EMAIL"'"' \
-      /usr/share/shared-hosting/config.json  > "$TMP_CONFIG" 2> /dev/null
-    jq -Mr '.password = "'"$MY_PWD"'"' \
-      "$TMP_CONFIG"  > /usr/share/shared-hosting/config.json 2> /dev/null
-    rm -f "$TMP_CONFIG"
-    echo "$RET" > /usr/share/shared-hosting/force-group
+    # Update the shared-hosting configuration file with the new values
+    jq -Menr '{ "email": $email, "group": $group, "password": $password }' \
+      --arg "email" "$EMAIL" \
+      --arg "group" "$WEB_GROUP" \
+      --arg "password" "$MY_PWD" \
+      > /etc/shared-hosting/config.json
+    # Update the composer dependencies for this project
     cd /usr/share/shared-hosting && composer --quiet update
+    # Flush any updated configuration files to disk
+    flush-config
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)

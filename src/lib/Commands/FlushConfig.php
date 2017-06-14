@@ -60,7 +60,7 @@
       // Regenerate all configuration files relating to each domain
       $domains  = new Transaction(new OpenDKIM());
       // Attempt to run all transactions and reload associated services
-      $accounts->run(); $sites->run(); $domains->run();
+      $accounts->run(); $sites->run(); $domains->run(); FPMPool::flushCommon();
       // Finish the flush config process with an info message
       $io->success('Configuration files flushed to disk.');
     }

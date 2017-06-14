@@ -1,4 +1,5 @@
 default/*         /etc/default
+etc/*             /etc/shared-hosting
 nginx/conf.d/*    /etc/nginx/conf.d
 nginx/templates/* /etc/nginx/templates
 opendkim/*        /etc
