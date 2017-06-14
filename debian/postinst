@@ -43,7 +43,7 @@ case "$1" in
     # Update the composer dependencies for this project
     cd /usr/share/shared-hosting && composer --quiet update
     # Flush any updated configuration files to disk
-    flush-config
+    flush-config --quiet
   ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)
