@@ -1,3 +1,9 @@
+shared-hosting (1.2ubuntu16) xenial; urgency=medium
+
+  * Create configuration directory for `shared-hosting`.
+
+ -- Clay Freeman <git@clayfreeman.com>  Wed, 14 Jun 2017 11:16:06 -0500
+
 shared-hosting (1.2ubuntu15) xenial; urgency=medium
 
   * Add one crucial symlink.
