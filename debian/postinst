@@ -36,8 +36,8 @@ case "$1" in
     WEB_GROUP="$RET"
     # Update the shared-hosting configuration file with the new values
     jq -Menr '{ "email": $email, "group": $group, "password": $password }' \
-      --arg "email" "$EMAIL" \
-      --arg "group" "$WEB_GROUP" \
+      --arg "email"    "$EMAIL" \
+      --arg "group"    "$WEB_GROUP" \
       --arg "password" "$MY_PWD" \
       > /etc/shared-hosting/config.json
     # Update the composer dependencies for this project

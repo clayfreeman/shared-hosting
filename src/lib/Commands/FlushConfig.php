@@ -67,15 +67,15 @@
 
     protected function fetchAccounts(): array {
       // Query the database for all account usernames
-      $statement = $this->db->query('SELECT username FROM '.
-        '`hosting_schema`.`accounts`');
+      $statement = $this->db->query('SELECT `username` FROM '.
+        '`hosting_schema`.`accounts` ORDER BY `username` ASC');
       // Fetch all results from the prepared statement
       return $statement->fetchAll();
     }
 
     protected function fetchSites(): array {
       // Query the database for all site UUIDs
-      $statement = $this->db->query('SELECT uuid FROM '.
+      $statement = $this->db->query('SELECT `uuid` FROM '.
         '`hosting_schema`.`sites`');
       // Fetch all results from the prepared statement
       return $statement->fetchAll();
