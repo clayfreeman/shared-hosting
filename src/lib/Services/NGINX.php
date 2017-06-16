@@ -68,11 +68,11 @@
       // Determine the appropriate location to store the NGINX config
       $available = '/etc/nginx/sites-available/'.$site['uuid'];
       $enabled   = '/etc/nginx/sites-enabled/'.$site['uuid'];
-      if (!is_dir(basename($available)) &&
-          ! mkdir(basename($available), 0755, true))
+      if (!is_dir(dirname($available)) &&
+          ! mkdir(dirname($available), 0755, true))
         throw new \Exception('Unable to create available sites directory.');
-      if (!is_dir(basename($enabled  )) &&
-          ! mkdir(basename($enabled  ), 0755, true))
+      if (!is_dir(dirname($enabled  )) &&
+          ! mkdir(dirname($enabled  ), 0755, true))
         throw new \Exception('Unable to create enabled sites directory.');
       // Write the configuration files for the site
       if (!file_put_contents($available, $config))

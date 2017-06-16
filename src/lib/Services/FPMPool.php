@@ -57,7 +57,7 @@
       $this->fwd = true;
       // Install the configuration files for this user's pools
       foreach ($this->files as $file => $content) {
-        is_dir(basename($file)) || mkdir(basename($file), 0755, true);
+        is_dir(dirname($file)) || mkdir(dirname($file), 0755, true);
         file_put_contents($file, $content);
       }
     }
