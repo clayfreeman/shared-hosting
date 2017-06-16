@@ -19,6 +19,9 @@ Framework for easy management of shared hosting accounts.
 
 Currently, this package is built and hosted using Launchpad's PPA system.
 
+Before you install this package, make sure that you're running the latest Ubuntu
+LTS (`16.04.2` at the time of writing).
+
 To install this package, run the following commands:
 
 ```bash
