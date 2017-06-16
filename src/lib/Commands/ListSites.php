@@ -53,7 +53,8 @@
         '`hosting_schema`.`domains` INNER JOIN `hosting_schema`.`sites` ON '.
         '`domains`.`site_id` = `sites`.`id` LEFT JOIN '.
         '`hosting_schema`.`accounts` ON '.
-        '`sites`.`account_id` = `accounts`.`id` GROUP BY `domains`.`site_id`');
+        '`sites`.`account_id` = `accounts`.`id` GROUP BY `domains`.`site_id` '.
+        'ORDER BY `username` ASC, `domains` ASC;');
       // Fetch all results from the prepared statement
       return $statement->fetchAll();
     }
