@@ -49,7 +49,7 @@
     protected function fetchSites(): array {
       // Query the database for all sites and their owners
       $statement = $this->db->query('SELECT `username`, GROUP_CONCAT(`name` '.
-        'SEPARATOR \',\\n\' ORDER BY `domains`.`id` ASC) AS `domains` FROM '.
+        'ORDER BY `domains`.`id` ASC SEPARATOR \',\\n\') AS `domains` FROM '.
         '`hosting_schema`.`domains` INNER JOIN `hosting_schema`.`sites` ON '.
         '`domains`.`site_id` = `sites`.`id` LEFT JOIN '.
         '`hosting_schema`.`accounts` ON '.
