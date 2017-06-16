@@ -1,3 +1,9 @@
+shared-hosting (1.3ubuntu2) xenial; urgency=medium
+
+  * Add missing symlink for `list-sites`.
+
+ -- Clay Freeman <git@clayfreeman.com>  Fri, 16 Jun 2017 10:27:25 -0500
+
 shared-hosting (1.3ubuntu1) xenial; urgency=medium
 
   * Final refinements to improve the codebase quality
