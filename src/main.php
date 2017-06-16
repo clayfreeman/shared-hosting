@@ -73,6 +73,7 @@
     'EnableTLS',
     'FlushConfig',
     'ListAccounts',
+    'ListSites',
     'RestartServices'
   ];
 

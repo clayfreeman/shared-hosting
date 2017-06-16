@@ -16,7 +16,7 @@ set -e
 
 case "$1" in
   install|upgrade)
-    # Divert OpenDKIM's default config in favor of our own
+    # Divert to our own config over OpenDKIM's default
     dpkg-divert --add --package shared-hosting --rename --divert \
       /etc/default/opendkim.dpkg-divert /etc/default/opendkim
     dpkg-divert --add --package shared-hosting --rename --divert \

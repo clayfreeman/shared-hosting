@@ -7,35 +7,43 @@
 hash letsencrypt 2>/dev/null || exit 0
 hash mysql       2>/dev/null || exit 0
 
+# Declare the notice informing the user that they can skip a question
+SKIP_PHRASE="Press enter to keep the current value."
+
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -Mer .email /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ "$1" = "reconfigure" ]; then
-    db_subst shared-hosting/email skippable \
-      "Press enter to keep the current value."
+    db_subst shared-hosting/email skippable "$SKIP_PHRASE"
   fi
   db_input high shared-hosting/email || true
   db_go
   db_get shared-hosting/email
   # Skip the verification process if no changes were made
   if [ -n "$EMAIL" ] && [ "$RET" = "$EMAIL" ]; then break; fi
-  # Backup any existing accounts directory
-  if [ -e /etc/letsencrypt/accounts ]; then
-    mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
-  fi; mkdir -p /etc/letsencrypt/accounts
-  letsencrypt register --quiet --non-interactive --agree-tos -m "$RET" && break
-  sleep 1
+  # Only attempt registration if it makes sense
+  if [ -n "$RET" ]; then
+    # Backup any existing accounts directory
+    if [ -e /etc/letsencrypt/accounts ]; then
+      mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
+    fi; mkdir -p /etc/letsencrypt/accounts
+    # Attempt to register using the provided value
+    letsencrypt register --quiet --non-interactive \
+      --agree-tos -m "$RET" && break
+  fi; sleep 1
 done
 
 MY_PWD="$(jq -Mer .password /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   if [ "$1" = "reconfigure" ]; then
-    db_subst shared-hosting/mysql-password skippable \
-      "Press enter to keep the current value."
+    db_subst shared-hosting/email skippable "$SKIP_PHRASE"
   fi
   db_input high shared-hosting/mysql-password || true
   db_go
   db_get shared-hosting/mysql-password
+  # Skip the verification process of no changes were made
+  if [ -n "$MY_PWD" ] && [ "$RET" = "$MY_PWD" ]; then break; fi
+  # Only attempt login if it makes sense
   if [ -n "$RET" ]; then
     mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
   fi; sleep 1
@@ -44,14 +52,15 @@ done
 WEB_GROUP="$(jq -Mer .group /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ "$1" = "reconfigure" ]; then
-    db_subst shared-hosting/force-group skippable \
-      "Press enter to keep the current value."
+    db_subst shared-hosting/email skippable "$SKIP_PHRASE"
   fi
   db_input high shared-hosting/force-group || true
   db_go
   db_get shared-hosting/force-group
   # Skip the verification process of no changes were made
   if [ -n "$WEB_GROUP" ] && [ "$RET" = "$WEB_GROUP" ]; then break; fi
-  getent group "$RET" 2>&1 > /dev/null && break
-  sleep 1
+  # Only attempt to fetch the group if it makes sense
+  if [ -n "$RET" ]; then
+    getent group "$RET" 2>&1 > /dev/null && break
+  fi; sleep 1
 done

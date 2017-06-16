@@ -23,10 +23,6 @@ set -e
 
 case "$1" in
   configure)
-    # Ensure that a configuration file exists, or that we use the example
-    if [ ! -f /etc/shared-hosting/config.json ]; then
-      echo '{}' > /etc/shared-hosting/config.json
-    fi
     # Fetch the required varables from debhelper's database
     db_get shared-hosting/email
     EMAIL="$RET"
