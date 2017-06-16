@@ -3,6 +3,7 @@ Framework for easy management of shared hosting accounts.
 
 ## Table of Contents
 
+* [Installation](#installation)
 * [Administration](#administration)
   * [Creating Accounts](#creating-accounts)
   * [Creating Sites](#creating-sites)
@@ -13,6 +14,20 @@ Framework for easy management of shared hosting accounts.
   * [Flushing Configuration](#flushing-configuration)
   * [Listing Accounts](#listing-accounts)
   * [Restarting Services](#restarting-services)
+
+# Installation
+
+Currently, this package is built and hosted using Launchpad's PPA system.
+
+To install this package, run the following commands:
+
+```bash
+sudo apt-add-repository ppa:certbot/certbot
+sudo apt-add-repository ppa:ondrej/php
+sudo apt-add-repository ppa:clayfreeman/shared-hosting
+sudo apt-get update
+sudo apt-get install shared-hosting
+```
 
 # Administration
 
