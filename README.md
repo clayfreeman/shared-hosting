@@ -136,7 +136,7 @@ simply run `list-accounts`.
 
 ## Listing Sites
 
-To get a list of sites and their respective owner, simply run `list-accounts`.
+To get a list of sites and their respective owner, simply run `list-sites`.
 
 ## Restarting Services
 
