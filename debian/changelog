@@ -1,3 +1,9 @@
+shared-hosting (1.3ubuntu5) xenial; urgency=medium
+
+  * Add the `get-dkim <domain>` command to fetch a DKIM record for a domain.
+
+ -- Clay Freeman <git@clayfreeman.com>  Wed, 21 Jun 2017 09:40:28 -0500
+
 shared-hosting (1.3ubuntu4) xenial; urgency=medium
 
   * Order the results of `list-sites` by username, then domains.

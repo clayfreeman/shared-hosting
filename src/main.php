@@ -72,6 +72,7 @@
     'DisableTLS',
     'EnableTLS',
     'FlushConfig',
+    'GetDKIM',
     'ListAccounts',
     'ListSites',
     'RestartServices'
