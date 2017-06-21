@@ -49,7 +49,7 @@
 
     protected function fetchDKIM(string $input): array {
       // Query the database for a DKIM record for the requested domain
-      $statement = $this->db->prepare('SELECT `dkim_record`, FROM '.
+      $statement = $this->db->prepare('SELECT `dkim_record` FROM '.
         '`hosting_schema`.`domains` WHERE `name` LIKE :input LIMIT 0,1');
       $statement->execute([':input' => $input]);
       // Fetch the results from the prepared statement
