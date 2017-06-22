@@ -44,13 +44,14 @@
      */
     protected function execute(InputInterface $input, OutputInterface $output) {
       // Print the trimmed record from the database
-      echo trim($this->fetchDKIM($input->getArgument('domain')))."\n";
+      echo trim($this->fetchDKIM(strtolower(trim($input->getArgument('domain'),
+        ".\t\n\r\0\x0B "))))."\n";
     }
 
     protected function fetchDKIM(string $input): ?string {
       // Query the database for a DKIM record for the requested domain
       $statement = $this->db->prepare('SELECT `dkim_record` FROM '.
-        '`hosting_schema`.`domains` WHERE `name` LIKE :input LIMIT 0,1');
+        '`hosting_schema`.`domains` WHERE `name` = :input LIMIT 0,1');
       $statement->execute([':input' => $input]);
       // Fetch the results from the prepared statement
       return $statement->fetch()['dkim_record'] ?? null;
