@@ -1,3 +1,9 @@
+shared-hosting (1.3ubuntu14) xenial; urgency=medium
+
+  * Add symlink from __PROJECTROOT__ to /etc/shared-hosting/config.json.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 26 Jun 2017 11:39:30 -0500
+
 shared-hosting (1.3ubuntu13) xenial; urgency=medium
 
   * Revert last change; pre-depend on opendkim.
