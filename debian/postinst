@@ -23,6 +23,11 @@ set -e
 
 case "$1" in
   configure)
+    # Divert to our own config over OpenDKIM's default
+    dpkg-divert --add --package shared-hosting --rename --divert \
+      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
+    dpkg-divert --add --package shared-hosting --rename --divert \
+      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf
     # Fetch the required varables from debhelper's database
     db_get shared-hosting/email
     EMAIL="$RET"
