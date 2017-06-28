@@ -16,11 +16,6 @@ set -e
 
 case "$1" in
   install|upgrade)
-    # Divert to our own config over OpenDKIM's default
-    dpkg-divert --add --package shared-hosting --rename --divert \
-      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
-    dpkg-divert --add --package shared-hosting --rename --divert \
-      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf
     # Generate Diffie-Hellman Parameters (if inexistent)
     if [ ! -f /var/private/dhparam/dhparam.pem ]; then
       mkdir -p /var/private/dhparam
