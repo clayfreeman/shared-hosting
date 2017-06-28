@@ -1,4 +1,3 @@
-etc/*             /etc/shared-hosting
 nginx/conf.d/*    /etc/nginx/conf.d
 nginx/templates/* /etc/nginx/templates
 sbin/*            /usr/sbin

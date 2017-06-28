@@ -25,7 +25,7 @@ set -e
 case "$1" in
   purge)
     # Remove this package's configuration file
-    rm -rf /etc/shared-hosting/config.json \
+    rm -rf /etc/shared-hosting \
            /usr/share/shared-hosting/composer.lock \
            /usr/share/shared-hosting/vendor
     # Remove this package's modifications to the debconf database
