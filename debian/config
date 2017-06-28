@@ -10,6 +10,9 @@ hash mysql       2>/dev/null || exit 0
 # Declare the notice informing the user that they can skip a question
 SKIP_PHRASE="Press enter to keep the current value."
 
+# Ensure that the configuration file exists
+mkdir -p /etc/shared-hosting; touch /etc/shared-hosting/config.json
+
 # Ensure that the user provides a valid e-mail address
 EMAIL="$(jq -Mr .email /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do

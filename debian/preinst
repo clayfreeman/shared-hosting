@@ -16,11 +16,6 @@ set -e
 
 case "$1" in
   install|upgrade)
-    # Create configuration file used during debconf
-    mkdir -p /etc/shared-hosting
-    if [ ! -f /etc/shared-hosting/config.json ]; then
-      echo '{}' > /etc/shared-hosting/config.json
-    fi
     # Generate Diffie-Hellman Parameters (if inexistent)
     if [ ! -f /var/private/dhparam/dhparam.pem ]; then
       mkdir -p /var/private/dhparam
