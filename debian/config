@@ -11,7 +11,7 @@ hash mysql       2>/dev/null || exit 0
 SKIP_PHRASE="Press enter to keep the current value."
 
 # Ensure that the user provides a valid e-mail address
-EMAIL="$(jq -Mer .email /etc/shared-hosting/config.json 2> /dev/null)"
+EMAIL="$(jq -Mr .email /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/email skippable "$SKIP_PHRASE"
@@ -33,7 +33,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   fi; sleep 1
 done
 
-MY_PWD="$(jq -Mer .password /etc/shared-hosting/config.json 2> /dev/null)"
+MY_PWD="$(jq -Mr .password /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/email skippable "$SKIP_PHRASE"
@@ -49,7 +49,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   fi; sleep 1
 done
 
-WEB_GROUP="$(jq -Mer .group /etc/shared-hosting/config.json 2> /dev/null)"
+WEB_GROUP="$(jq -Mr .group /etc/shared-hosting/config.json 2> /dev/null)"
 while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ "$1" = "reconfigure" ]; then
     db_subst shared-hosting/email skippable "$SKIP_PHRASE"

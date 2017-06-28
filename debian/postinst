@@ -31,7 +31,7 @@ case "$1" in
     db_get shared-hosting/force-group
     WEB_GROUP="$RET"
     # Update the shared-hosting configuration file with the new values
-    jq -Menr '{ "email": $email, "group": $group, "password": $password }' \
+    jq -Mnr '{ "email": $email, "group": $group, "password": $password }' \
       --arg "email"    "$EMAIL" \
       --arg "group"    "$WEB_GROUP" \
       --arg "password" "$MY_PWD" \
