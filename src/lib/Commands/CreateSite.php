@@ -107,13 +107,11 @@
       // Attempt to create the site, domains, and configuration files
       (new Transaction(...array_merge([$site], $domains, [$nginx,
         $opendkim])))->run();
-      // Build an information array regarding DKIM records
-      $info = []; foreach ($domains as $domain) {
-        $domain = $domain->fetchDomain();
-        $info[] = [chunk_split($domain['name'],          24, "\n"),
-                   chunk_split($domain['dkim_selector'],  8, "\n"),
-                   chunk_split($domain['dkim_record'],   36, "\n")];
-      } // Reload NGINX and OpenDKIM so that the new site is made available
+      // Build an information array listing the domains
+      $info = array_map(function($domain) {
+        return [$domain->fetchDomain()['name']];
+      }, $domains);
+      // Reload NGINX and OpenDKIM so that the new site is made available
       if (!NGINX::reload() || !OpenDKIM::reload())
         throw new \Exception('Unable to restart services.');
       // Finish the site creation process with an info message
@@ -121,7 +119,9 @@
       $io->title('Site Information');
       $io->text (['Document Root: '.$account->fetchAccount()['home'].
         '/public_html/'.$primary, null]);
-      $io->text ('Please update your DNS records with the following:');
-      $io->table(['Domain', 'Selector', 'TXT'], $info);
+      $io->text ('This site can be reached via:');
+      $io->table(['Domain'], $info);
+      $io->text ('DKIM public keys can be fetched using the '.
+        '`get-dkim <domain>` command.');
     }
   }
