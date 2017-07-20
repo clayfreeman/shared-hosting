@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu3) xenial; urgency=medium
+
+  * Add rewrite-envelope milter used to allow strict DMARC SPF alignmet.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 20 Jul 2017 14:35:44 -0500
+
 shared-hosting (1.4ubuntu2) xenial; urgency=medium
 
   * Remove redundant (and mostly unusable) info from `create-site`.
