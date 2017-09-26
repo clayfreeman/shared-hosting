@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu6) xenial; urgency=medium
+
+  * Change behavior when reconfiguring the Let's Encrypt e-mail.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 26 Sep 2017 10:26:04 -0500
+
 shared-hosting (1.4ubuntu5) xenial; urgency=medium
 
   * Add Moodle NGINX template.
