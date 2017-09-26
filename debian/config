@@ -25,11 +25,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   # Skip the verification process if no changes were made
   if [ -n "$EMAIL" ] && [ "$RET" = "$EMAIL" ]; then break; fi
   # Only attempt registration if it makes sense
-  if [ -n "$RET" ]; then
-    # Backup any existing accounts directory
-    if [ -e /etc/letsencrypt/accounts ]; then
-      mv /etc/letsencrypt/accounts /etc/letsencrypt/accounts."$(date +%s)"
-    fi; mkdir -p /etc/letsencrypt/accounts
+  if [ -n "$RET" ] && [ -z "$(ls -A /etc/letsencrypt/accounts)" ]; then
     # Attempt to register using the provided value
     letsencrypt register --quiet --non-interactive \
       --agree-tos -m "$RET" && break
