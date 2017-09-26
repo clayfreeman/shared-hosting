@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu8) xenial; urgency=medium
+
+  * Prevent non-root users from accessing the package configuration.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 26 Sep 2017 14:52:13 -0500
+
 shared-hosting (1.4ubuntu7) xenial; urgency=medium
 
   * Fix dependency problem with older, non-PPA, Let's Encrypt.
