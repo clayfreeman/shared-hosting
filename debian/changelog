@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu9) xenial; urgency=medium
+
+  * Enable gzip compression across all templates. Fix phpMyAdmin warnings.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 05 Oct 2017 15:29:42 -0500
+
 shared-hosting (1.4ubuntu8) xenial; urgency=medium
 
   * Prevent non-root users from accessing the package configuration.
