@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu10) xenial; urgency=medium
+
+  * Remove gzip compression (since it doesn't work correctly).
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 05 Oct 2017 16:09:23 -0500
+
 shared-hosting (1.4ubuntu9) xenial; urgency=medium
 
   * Enable gzip compression across all templates. Fix phpMyAdmin warnings.
