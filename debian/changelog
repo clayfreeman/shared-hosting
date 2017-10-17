@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu12) xenial; urgency=medium
+
+  * Remove parameters that can't be duplicated.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 17 Oct 2017 14:32:10 -0500
+
 shared-hosting (1.4ubuntu11) xenial; urgency=medium
 
   * Enable gzip compression across all templates.
