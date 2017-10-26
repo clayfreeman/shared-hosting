@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu16) xenial; urgency=medium
+
+  * Add optional default site configuration.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 26 Oct 2017 15:05:32 -0500
+
 shared-hosting (1.4ubuntu15) xenial; urgency=medium
 
   * Add types to NGINX caching.
