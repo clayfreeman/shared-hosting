@@ -17,5 +17,6 @@ Pre-Depends: adduser (>=3.1), bash (>=4.3), bindfs (>=1.12), certbot (>=0.17),
  mariadb-server (>=10.0), nginx (>=1.9), opendkim (>=2.10), openssl (>=1.0.2),
  php7.1-fpm (>=7.1), php7.1-cli (>=7.1), php7.1-json (>=7.1),
  php7.1-mysql (>=7.1), php7.1-zip (>=7.1), python (>=2.7), python (<<3.0),
- python-milter (>=1.0), unzip (>=6.0), zip (>=3.0), ${misc:Depends}
+ python-milter (>=1.0), ssl-cert (>=1.0.37), unzip (>=6.0), zip (>=3.0),
+ ${misc:Depends}
 Description: Framework for easy management of shared hosting accounts.

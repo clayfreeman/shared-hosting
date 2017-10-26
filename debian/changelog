@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu18) xenial; urgency=medium
+
+  * Add TLS to default template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 26 Oct 2017 15:30:50 -0500
+
 shared-hosting (1.4ubuntu17) xenial; urgency=medium
 
   * Fix bug with infinite redirect on default template.
