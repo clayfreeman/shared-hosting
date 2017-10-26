@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu17) xenial; urgency=medium
+
+  * Fix bug with infinite redirect on default template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 26 Oct 2017 15:12:48 -0500
+
 shared-hosting (1.4ubuntu16) xenial; urgency=medium
 
   * Add optional default site configuration.
