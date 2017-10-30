@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu19) xenial; urgency=medium
+
+  * Include the built-in mime.types file in the general template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 30 Oct 2017 16:17:01 -0500
+
 shared-hosting (1.4ubuntu18) xenial; urgency=medium
 
   * Add TLS to default template.
