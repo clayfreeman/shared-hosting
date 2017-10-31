@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu20) xenial; urgency=medium
+
+  * Fix bug with phpMyAdmin not loading static resources.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 31 Oct 2017 10:36:47 -0500
+
 shared-hosting (1.4ubuntu19) xenial; urgency=medium
 
   * Include the built-in mime.types file in the general template.
