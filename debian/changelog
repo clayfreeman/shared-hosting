@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu21) xenial; urgency=medium
+
+  * Add Drupal 6, 7+ templates and reorganize the general template include.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 21 Nov 2017 10:40:04 -0600
+
 shared-hosting (1.4ubuntu20) xenial; urgency=medium
 
   * Fix bug with phpMyAdmin not loading static resources.
