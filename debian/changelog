@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu22) xenial; urgency=medium
+
+  * Add WordPress template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 30 Nov 2017 14:33:53 -0600
+
 shared-hosting (1.4ubuntu21) xenial; urgency=medium
 
   * Add Drupal 6, 7+ templates and reorganize the general template include.
