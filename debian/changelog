@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu23) xenial; urgency=medium
+
+  * Add WordPress (compat) template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Fri, 01 Dec 2017 11:18:53 -0600
+
 shared-hosting (1.4ubuntu22) xenial; urgency=medium
 
   * Add WordPress template.
