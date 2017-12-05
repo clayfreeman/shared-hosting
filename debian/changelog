@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu24) xenial; urgency=medium
+
+  * Add generic PHP 5.6, 7.0, 7.1 templates.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 05 Dec 2017 10:49:54 -0600
+
 shared-hosting (1.4ubuntu23) xenial; urgency=medium
 
   * Add WordPress (compat) template.
