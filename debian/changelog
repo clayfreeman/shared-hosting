@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu25) xenial; urgency=medium
+
+  * Make configuration script more robust against failure.
+
+ -- Clay Freeman <git@clayfreeman.com>  Wed, 06 Dec 2017 10:31:50 -0600
+
 shared-hosting (1.4ubuntu24) xenial; urgency=medium
 
   * Add generic PHP 5.6, 7.0, 7.1 templates.
