@@ -1,3 +1,9 @@
+shared-hosting (1.4ubuntu26) xenial; urgency=medium
+
+  * Revise generic PHP templates to try `$uri.php` too.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 11 Dec 2017 13:15:00 -0600
+
 shared-hosting (1.4ubuntu25) xenial; urgency=medium
 
   * Make configuration script more robust against failure.
