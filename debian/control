@@ -14,10 +14,10 @@ Recommends: postfix (>= 3.1), postfix-pcre
 Pre-Depends: adduser (>=3.1), bash (>=4.3), bindfs (>=1.12), certbot (>=0.17),
  composer (>=1.0), coreutils (>=8.25), git (>=2.7), jq (>=1.5),
  libc-bin (>=2.19), postfix (>=3.1) | mail-transport-agent,
- mysql-server (>=5.7) | mariadb-server (>=10.0), nginx (>=1.9), 
- opendkim (>=2.10), openssl (>=1.0.2), php7.1-fpm (>=7.1), php7.1-cli (>=7.1), 
- php7.1-json (>=7.1), php7.1-mysql (>=7.1), php7.1-zip (>=7.1), python (>=2.7), 
- python (<<3.0), python-milter (>=1.0), ssl-cert (>=1.0.37), unzip (>=6.0), 
+ mysql-server (>=5.7) | mariadb-server (>=10.0), nginx (>=1.9),
+ opendkim (>=2.10), openssl (>=1.0.2), php-fpm (>=7.1), php-cli (>=7.1),
+ php-json (>=7.1), php-mysql (>=7.1), php-zip (>=7.1), python (>=2.7),
+ python (<<3.0), python-milter (>=1.0), ssl-cert (>=1.0.37), unzip (>=6.0),
  zip (>=3.0), ${misc:Depends}
 Description: Framework for easy management of shared hosting accounts.
  This package facilitates the management and hosting of sites under multiple
