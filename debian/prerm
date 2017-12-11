@@ -19,11 +19,11 @@ set -e
 
 case "$1" in
   remove|upgrade|deconfigure)
-    # Divert to OpenDKIM's default over our own config
-    if [ -L /etc/default/opendkim ]; then rm -f /etc/default/opendkim ; fi
-    dpkg-divert --remove --package shared-hosting --rename /etc/default/opendkim
-    if [ -L /etc/opendkim.conf    ]; then rm -f /etc/opendkim.conf    ; fi
-    dpkg-divert --remove --package shared-hosting --rename /etc/opendkim.conf
+#    # Divert to OpenDKIM's default over our own config
+#    if [ -L /etc/default/opendkim ]; then rm -f /etc/default/opendkim ; fi
+#    dpkg-divert --remove --package shared-hosting --rename /etc/default/opendkim
+#    if [ -L /etc/opendkim.conf    ]; then rm -f /etc/opendkim.conf    ; fi
+#    dpkg-divert --remove --package shared-hosting --rename /etc/opendkim.conf
   ;;
 
   failed-upgrade)

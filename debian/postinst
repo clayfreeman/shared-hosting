@@ -40,15 +40,15 @@ case "$1" in
     # Update the composer dependencies for this project
     echo "Updating composer packages ..."
     cd /usr/share/shared-hosting && composer --quiet update
-    # Divert to our own config over OpenDKIM's default
-    dpkg-divert --add --package shared-hosting --rename --divert \
-      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
-    if [ ! -e /etc/default/opendkim ] || [ -L /etc/default/opendkim ]; then
-      ln -sf /usr/share/shared-hosting/opendkim.def /etc/default/opendkim ; fi
-    dpkg-divert --add --package shared-hosting --rename --divert \
-      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf && \
-    if [ ! -e /etc/opendkim.conf    ] || [ -L /etc/opendkim.conf    ]; then
-      ln -sf /usr/share/shared-hosting/opendkim.cnf /etc/opendkim.conf    ; fi
+#    # Divert to our own config over OpenDKIM's default
+#    dpkg-divert --add --package shared-hosting --rename --divert \
+#      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
+#    if [ ! -e /etc/default/opendkim ] || [ -L /etc/default/opendkim ]; then
+#      ln -sf /usr/share/shared-hosting/opendkim.def /etc/default/opendkim ; fi
+#    dpkg-divert --add --package shared-hosting --rename --divert \
+#      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf && \
+#    if [ ! -e /etc/opendkim.conf    ] || [ -L /etc/opendkim.conf    ]; then
+#      ln -sf /usr/share/shared-hosting/opendkim.cnf /etc/opendkim.conf    ; fi
     # Flush any updated configuration files to disk
     echo "Flusing account/site configuration to disk ..."
     flush-config --quiet
