@@ -2,4 +2,4 @@ nginx/conf.d/*    /etc/nginx/conf.d
 nginx/templates/* /etc/nginx/templates
 sbin/*            /usr/sbin
 src/*             /usr/share/shared-hosting
-systemd/*         /etc/systemd/system
+systemd/*         /lib/systemd/system
