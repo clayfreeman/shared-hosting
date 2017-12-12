@@ -11,15 +11,15 @@ Vcs-Browser: https://github.com/clayfreeman/shared-hosting
 Package: shared-hosting
 Architecture: all
 Recommends: postfix, postfix-pcre
-Pre-Depends: adduser
- bash,
+Pre-Depends: adduser,
+ bash (>=4.3),
  bindfs,
  certbot,
  composer,
- coreutils,
+ coreutils (>=8.25),
  git,
  jq,
- libc-bin,
+ libc-bin (>=2.23),
  mysql-server | mariadb-server,
  nginx,
  opendkim,
