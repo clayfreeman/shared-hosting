@@ -1,0 +1,134 @@
+Content-type: text/html; charset=UTF-8
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of CREATE-ACCOUNT</TITLE>
+</HEAD><BODY>
+<H1>CREATE-ACCOUNT</H1>
+Section: Maintenance Commands (8)<BR>Updated: December 12 2017<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+create-account - Creates a shared hosting account.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>create-account</B>
+
+[<I>options</I>]<I> username</I>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>create-account</B>
+
+will attempt to create and configure the necessary accounts and services
+including a MySQL user, a user-specific PHP-FPM pool and a Unix account using
+the provided <I>username</I>.
+<P>
+
+Before creating any accounts, this command will check the validity of the
+provided <I>username</I> against the following regular expression:
+<P>
+
+<TT>/^[a-z][a-z0-9]{2,30}$/</TT>
+
+<P>
+In addition to <I>username</I> format validation, the requested <I>username</I> is
+also checked for availability across all necessary resources.
+<P>
+
+Once all preconditions for account creation are met, the following actions will
+occur (assuming no failures):
+<DL COMPACT>
+<DT>&bull;<DD>
+A password-less Unix user account is created using the provided <I>username</I>.
+The resulting user's home directory will be used for hosting its associated
+sites' files.
+<DT>&bull;<DD>
+A MySQL user account is created using the provided <I>username</I> with a
+randomly generated password and is then granted
+full access to databases matching the <I>username</I><TT>\_%</TT> wildcard
+expression.
+<P>
+MySQL accounts are limited to <TT>localhost</TT>-only connectivity by default.
+After the MySQL user account is created, the credentials are populated in the
+MySQL client configuration located at <TT>~</TT><I>username</I><TT>/.my.cnf</TT> to
+enable MySQL auto-login via command-line.
+<DT>&bull;<DD>
+A PHP-FPM pool is created for each installed version of PHP-FPM (at the time of
+account creation) that is sandboxed to the hosting account's home directory.
+</DL>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+These programs follow the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of options is included below.
+<DL COMPACT>
+<DT><B>-h, --help</B>
+
+<DD>
+Display the help message.
+<DT><B>-q, --quiet</B>
+
+<DD>
+Do not output any message.
+<DT><B>-V, --version</B>
+
+<DD>
+Display the application version.
+<DT><B>--ansi</B>
+
+<DD>
+Force ANSI output.
+<DT><B>--no-ansi</B>
+
+<DD>
+Disable ANSI output.
+<DT><B>-n, --no-interaction</B>
+
+<DD>
+Do not ask any interactive question.
+<DT><B>-v|vv|vvv, --verbose</B>
+
+<DD>
+Increase the verbosity of messages: 1 for normal output, 2 for more verbose
+output and 3 for debug.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="/cgi-bin/man/man2html?8+delete-account">delete-account</A></B>(8).
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 22:24:15 GMT, December 12, 2017
+</BODY>
+</HTML>
