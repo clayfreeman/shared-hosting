@@ -1,0 +1,5 @@
+# Automatically added by dh_systemd_start
+if [ -d /run/systemd/system ]; then
+	deb-systemd-invoke stop rewrite-envelope.service web-permissions.service >/dev/null
+fi
+# End automatically added section
