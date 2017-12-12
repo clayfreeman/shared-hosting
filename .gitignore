@@ -2,5 +2,7 @@
 /debian/debhelper-build-stamp
 /debian/files
 /debian/shared-hosting
-/debian/shared-hosting.debhelper.log
+/debian/*.debhelper
+/debian/*.log
+/debian/shared-hosting.substvars
 /src/vendor
