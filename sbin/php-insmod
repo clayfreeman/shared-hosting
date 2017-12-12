@@ -1,5 +1,7 @@
 #!/bin/bash
 
+LOGFILE="/var/log/php-insmod.log"
+
 function install_module() {
   # Install this module for each PHP version
   for VERSION in /usr/bin/php?.?; do
@@ -15,5 +17,7 @@ fi
 
 # Iterate over each specified module and install it
 for MODULE in $@; do
+  echo "${MODULE}" >> "${LOGFILE}"
+  sort -u "${LOGFILE}" -o "${LOGFILE}"
   install_module $MODULE
 done
