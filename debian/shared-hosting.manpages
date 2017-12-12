@@ -4,4 +4,11 @@ debian/delete-account.8
 debian/delete-site.8
 debian/disable-tls.8
 debian/enable-tls.8
+debian/flush-config.8
+debian/get-dkim.8
+debian/list-accounts.8
 debian/list-sites.8
+debian/php-insmod.8
+debian/restart-services.8
+debian/rewrite-envelope.8
+debian/web-permissions.8
