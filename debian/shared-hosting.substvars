@@ -1,2 +1,0 @@
-misc:Depends=debconf (>= 0.5) | debconf-2.0, init-system-helpers (>= 1.18~)
-misc:Pre-Depends=
