@@ -1,7 +1,7 @@
 .\"                                      Hey, EMACS: -*- nroff -*-
 .\" (C) Copyright 2017 Clay Freeman <git@clayfreeman.com>.
 .\"
-.TH ENABLE-TLS 8 "December 12 2017"
+.TH DELETE-SITE 8 "December 12 2017"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -15,29 +15,13 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-enable-tls \- Creates a TLS certificate with the help of Let's Encrypt and
-enables it in the site's \fBnginx\fP configuration.
+delete-site \- .
 .SH SYNOPSIS
-.B enable-tls
+.B delete-site
 .RI [ options ] " domain"
 .SH DESCRIPTION
-.B enable-tls
-makes use of the convenient, cost-effective, and automated facility of Let's
-Encrypt to acquire Domain Validation (DV) certificates for the requested
-\fIdomain\fP. DNS must be pointed to the web server prior to running this
-command, as it makes use of Let's Encrypt's web root authenticator.
-.PP
-When enabling TLS for a given \fIdomain\fP, prior server configuration need not
-be made as long as the template for the associated site inherits from the
-\fLgeneral.conf\fP \fBnginx\fP template. If this is not the case, special
-accommodations must be made for the site's template prior to running this
-command.
-.PP
-Before attempting to create a certificate using Let's Encrypt, this command will
-attempt to auto-detect the presence of any \fLwww\fP subdomains to determine
-whether they should be included in the resulting certificate. All other domains
-associated with the corresponding \fIsite\fP will be included in the resulting
-certificate as Subject Alternative Name(s) (SANs) to the primary domain.
+.B delete-site
+.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
@@ -65,4 +49,4 @@ Do not ask any interactive question.
 Increase the verbosity of messages: 1 for normal output, 2 for more verbose
 output and 3 for debug.
 .SH SEE ALSO
-.BR disable-tls (8).
+.BR create-site (8).

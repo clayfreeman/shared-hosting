@@ -1,2 +1,7 @@
+debian/create-account.8
+debian/create-site.8
+debian/delete-account.8
+debian/delete-site.8
 debian/disable-tls.8
 debian/enable-tls.8
+debian/list-sites.8
