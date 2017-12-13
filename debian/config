@@ -30,17 +30,17 @@ if [ -f "/etc/shared-hosting/config.json" ]; then
   db_set shared-hosting/email          "$EMAIL"
   db_set shared-hosting/mysql-password "$MY_PWD"
   db_set shared-hosting/force-group    "$WEB_GROUP"
+  # Print the current configuration values
+  echo "Found current configuration values:"
+  echo    "  * E-mail Address: $EMAIL"
+  echo -n "  * MySQL Password: "
+  if [ -n "$MY_PWD" ]; then echo "********"; else echo ""; fi
+  echo    "  * Group Override: $WEB_GROUP"
 else
   # Create the configuration file if it does not exist
+  echo "Creating new configuration file ..."
   touch /etc/shared-hosting/config.json
 fi
-
-# Print the current configuration values
-echo "Found current configuration values:"
-echo    "  * E-mail Address: $EMAIL"
-echo -n "  * MySQL Password: "
-if [ -n "$MY_PWD" ]; then echo "********"; else echo ""; fi
-echo    "  * Group Override: $WEB_GROUP"
 
 while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ "$1" = "reconfigure" ]; then
@@ -52,7 +52,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   # Skip the verification process if no changes were made
   if [ -n "$EMAIL" ] && [ "$RET" = "$EMAIL" ]; then break; fi
   # Only attempt registration if it makes sense
-  if [ -n "$RET" ] && [ -z "$(ls -A /etc/letsencrypt/accounts)" ]; then
+  if [ -n "$RET" ]; then
     # Attempt to register using the provided value
     letsencrypt register --quiet --non-interactive \
       --agree-tos -m "$RET" && break

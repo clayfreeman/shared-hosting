@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `uuid` varchar(36) NOT NULL,
   `username` varchar(32) NOT NULL DEFAULT '',
   `password` varchar(32) NOT NULL DEFAULT '',
-  `home` varchar(255) NOT NULL DEFAULT '',
+  `home` varchar(191) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `home` (`home`),
