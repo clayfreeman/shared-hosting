@@ -38,6 +38,13 @@ generated for each \fIdomain\fP using PHP's OpenSSL extension. Finally, after
 verifying that the requested \fItemplate\fP exists, the configuration is flushed
 to disk and the applicable services are restarted.
 .PP
+The first provided \fIdomain\fP becomes the primary domain for the site. This
+will decide the Common Name (CN) of any subsequently generated certificates (see
+.BR enable-tls (8))
+and the path to the site's document root which is located at
+\fL~\fP\fIaccount\fP\fL/public_html/\fP\fIdomain\fP. All \fIdomain\fP(s) act as
+wildcard virtual hosts (\fL*.\fP\fIdomain\fP) to the same document root.
+.PP
 Templates that can be specified for this command are stored in
 \fL/etc/nginx/templates\fP. When specifying \fItemplate\fP, the \fL-http.conf\fP
 suffix should be omitted. Custom templates can be created in this directory if
