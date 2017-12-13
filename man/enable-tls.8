@@ -28,10 +28,12 @@ Encrypt to acquire Domain Validation (DV) certificates for the requested
 command, as it makes use of Let's Encrypt's web root authenticator.
 .PP
 When enabling TLS for a given \fIdomain\fP, prior server configuration need not
-be made as long as the template for the associated site inherits from the
-\fLgeneral.conf\fP nginx template. If this is not the case, special
-accommodations must be made for the site's template prior to running this
-command.
+be made as long as the template for the associated site has an \fLhttps\fP
+variant (see
+.BR create-site (8))
+and inherits from the \fLgeneral.conf\fP
+nginx template. If this is not the case, special accommodations must be made for
+the site's template prior to running this command.
 .PP
 Before attempting to create a certificate using Let's Encrypt, this command will
 attempt to auto-detect the presence of any \fLwww\fP subdomains to determine
@@ -65,4 +67,5 @@ Do not ask any interactive question.
 Increase the verbosity of messages: 1 for normal output, 2 for more verbose
 output and 3 for debug.
 .SH SEE ALSO
+.BR create-site (8),
 .BR disable-tls (8).
