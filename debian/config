@@ -55,7 +55,8 @@ while [ "$1" = "reconfigure" ] || [ -z "$EMAIL" ]; do
   if [ -n "$RET" ]; then
     # Attempt to register using the provided value
     letsencrypt register --quiet --non-interactive \
-      --agree-tos -m "$RET" && break
+      --agree-tos -m "$RET"
+    break
   fi; sleep 1
 done
 
@@ -70,7 +71,8 @@ while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
   if [ -n "$MY_PWD" ] && [ "$RET" = "$MY_PWD" ]; then break; fi
   # Only attempt login if it makes sense
   if [ -n "$RET" ]; then
-    mysql -u root -p"$RET" -e 'QUIT' 2> /dev/null && break
+    mysql -u root -p"$RET" -e 'QUIT' 2>&1 > /dev/null
+    break
   fi; sleep 1
 done
 
@@ -85,6 +87,7 @@ while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ -n "$WEB_GROUP" ] && [ "$RET" = "$WEB_GROUP" ]; then break; fi
   # Only attempt to fetch the group if it makes sense
   if [ -n "$RET" ]; then
-    getent group "$RET" 2>&1 > /dev/null && break
+    getent group "$RET" 2>&1 > /dev/null
+    break
   fi; sleep 1
 done
