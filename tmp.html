@@ -1,9 +1,9 @@
 Content-type: text/html; charset=UTF-8
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of CREATE-ACCOUNT</TITLE>
+<HTML><HEAD><TITLE>Man page of CREATE-SITE</TITLE>
 </HEAD><BODY>
-<H1>CREATE-ACCOUNT</H1>
+<H1>CREATE-SITE</H1>
 Section: Maintenance Commands (8)<BR>Updated: December 12 2017<BR><A HREF="#index">Index</A>
 <A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
 
@@ -22,56 +22,23 @@ Section: Maintenance Commands (8)<BR>Updated: December 12 2017<BR><A HREF="#inde
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
-create-account - Creates a shared hosting account.
+create-site - Creates a shared hosting site.
 <A NAME="lbAC">&nbsp;</A>
 <H2>SYNOPSIS</H2>
 
-<B>create-account</B>
+<B>create-site</B>
 
-[<I>options</I>]<I> username</I>
+[<I>options</I>]<I> account template domain</I>
+
+[<I>domains</I>]<I> ...</I>
 
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-<B>create-account</B>
+<B>create-site</B>
 
-will attempt to create and configure the necessary accounts and services
-including a MySQL user, a user-specific PHP-FPM pool and a Unix account using
-the provided <I>username</I>.
-<P>
-
-Before creating any accounts, this command will check the validity of the
-provided <I>username</I> against the following regular expression:
-<P>
-
-<TT>/^[a-z][a-z0-9]{2,30}$/</TT>
-
-<P>
-In addition to <I>username</I> format validation, the requested <I>username</I> is
-also checked for availability across all necessary resources.
-<P>
-
-Once all preconditions for account creation are met, the following actions will
-occur (assuming no failures):
-<DL COMPACT>
-<DT>&bull;<DD>
-A password-less Unix user account is created using the provided <I>username</I>.
-The resulting user's home directory will be used for hosting its associated
-sites' files.
-<DT>&bull;<DD>
-A MySQL user account is created using the provided <I>username</I> with a
-randomly generated password and is then granted
-full access to databases matching the <I>username</I><TT>\_%</TT> wildcard
-expression.
-<P>
-MySQL accounts are limited to <TT>localhost</TT>-only connectivity by default.
-After the MySQL user account is created, the credentials are populated in the
-MySQL client configuration located at <TT>~</TT><I>username</I><TT>/.my.cnf</TT> to
-enable MySQL auto-login via command-line.
-<DT>&bull;<DD>
-A PHP-FPM pool is created for each installed version of PHP-FPM (at the time of
-account creation) that is sandboxed to the hosting account's home directory.
-</DL>
+will attempt to create the necessary nginx and OpenDKIM configuration files for
+the requested <I>domain</I>(s) using the specified <I>template</I>.
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
@@ -112,7 +79,7 @@ output and 3 for debug.
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="/cgi-bin/man/man2html?8+delete-account">delete-account</A></B>(8).
+<B><A HREF="/cgi-bin/man/man2html?8+delete-site">delete-site</A></B>(8).
 
 <P>
 
@@ -129,6 +96,6 @@ output and 3 for debug.
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 22:24:15 GMT, December 12, 2017
+Time: 16:10:04 GMT, December 13, 2017
 </BODY>
 </HTML>

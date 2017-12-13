@@ -16,7 +16,7 @@
 .\" for manpage-specific macros, see man(7)
 .SH NAME
 enable-tls \- Creates a TLS certificate with the help of Let's Encrypt and
-enables it in the site's \fBnginx\fP configuration.
+enables it in the site's nginx configuration.
 .SH SYNOPSIS
 .B enable-tls
 .RI [ options ] " domain"
@@ -29,7 +29,7 @@ command, as it makes use of Let's Encrypt's web root authenticator.
 .PP
 When enabling TLS for a given \fIdomain\fP, prior server configuration need not
 be made as long as the template for the associated site inherits from the
-\fLgeneral.conf\fP \fBnginx\fP template. If this is not the case, special
+\fLgeneral.conf\fP nginx template. If this is not the case, special
 accommodations must be made for the site's template prior to running this
 command.
 .PP

@@ -15,14 +15,19 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-create-site \- .
+create-site \- Creates a shared hosting site.
 .SH SYNOPSIS
 .B create-site
 .RI [ options ] " account template domain"
-.RI [ domains ] " ..."
+.RI [ domain ] " ..."
 .SH DESCRIPTION
 .B create-site
-.
+will attempt to create the necessary nginx and OpenDKIM configuration files for
+the requested \fIdomain\fP(s) using the specified \fItemplate\fP.
+.PP
+First, \fBcreate-site\fP will ensure that the provided \fIaccount\fP already
+exists within the internal database. Next, a 1024-bit RSA private key is
+generated for each provided \fIdomain\fP using PHP's OpenSSL extension.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
