@@ -1,1 +1,3 @@
 GRANT SELECT(`user`) ON `mysql`.`user` TO `_DBC_DBUSER_`@`localhost`;
+GRANT CREATE USER ON *.* TO `_DBC_DBUSER_`@`localhost` WITH GRANT OPTION;
+FLUSH PRIVILEGES;
