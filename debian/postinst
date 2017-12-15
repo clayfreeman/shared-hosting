@@ -26,6 +26,8 @@ if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
   dbc_generate_include_owner="root:root"
   dbc_generate_include_perms="0640"
   dbc_generate_include="php:/etc/shared-hosting/config-db.php"
+  dbc_mysql_createdb_encoding="utf8mb4"
+  dbc_sql_substitutions="1"
   dbc_go shared-hosting "$@"
 fi
 

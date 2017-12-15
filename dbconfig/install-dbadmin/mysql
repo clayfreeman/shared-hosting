@@ -1,0 +1,1 @@
+GRANT SELECT(`user`) ON `mysql`.`user` TO _DBC_DBUSER_@`localhost`;

@@ -41,6 +41,8 @@ fi
 # Attempt to configure the database using dbconfig-common
 if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
   . /usr/share/dbconfig-common/dpkg/config.mysql
+  dbc_dbname="hosting_schema"
+  dbc_dbtypes="mysql"
   dbc_go shared-hosting "$@"
 fi
 
