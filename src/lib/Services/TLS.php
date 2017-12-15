@@ -78,10 +78,9 @@
       is_dir('/var/private/letsencrypt') ||
         mkdir('/var/private/letsencrypt', 0755, true);
       // Attempt to create a certificate for all the domains for this site
-      system('letsencrypt certonly --quiet --no-eff-email --non-interactive '.
-        '--agree-tos --email '.escapeshellarg($GLOBALS['email']).' --webroot '.
-        '--webroot-path /var/private/letsencrypt --rsa-key-size 4096 '.
-        implode(' ', array_map(function($domain) {
+      system('letsencrypt certonly --quiet --non-interactive --agree-tos '.
+        '--webroot --webroot-path /var/private/letsencrypt '.
+        '--rsa-key-size 4096 '.implode(' ', array_map(function($domain) {
           $result = '-d '.escapeshellarg($domain);
           // Check if this domain has a 'www' subdomain
           if (gethostbyname($domain = 'www.'.$domain) !== $domain)
