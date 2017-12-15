@@ -5,6 +5,9 @@
 
 set -e
 
+# Load the `debconf` library functions
+. /usr/share/debconf/confmodule
+
 # summary of how this script can be called:
 #        * <prerm> `remove'
 #        * <old-prerm> `upgrade' <new-version>
@@ -16,14 +19,14 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+# Process the dbconfig-common hook
+if [ -f /usr/share/dbconfig-common/dpkg/prerm.mysql ]; then
+  . /usr/share/dbconfig-common/dpkg/prerm.mysql
+  dbc_go shared-hosting $@
+fi
 
 case "$1" in
   remove|upgrade|deconfigure)
-#    # Divert to OpenDKIM's default over our own config
-#    if [ -L /etc/default/opendkim ]; then rm -f /etc/default/opendkim ; fi
-#    dpkg-divert --remove --package shared-hosting --rename /etc/default/opendkim
-#    if [ -L /etc/opendkim.conf    ]; then rm -f /etc/opendkim.conf    ; fi
-#    dpkg-divert --remove --package shared-hosting --rename /etc/opendkim.conf
   ;;
 
   failed-upgrade)

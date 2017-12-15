@@ -48,7 +48,7 @@
     public function fetchAccount(): ?array {
       // Prepare an SQL statement to fetch the hosting account
       $statement = $this->db->prepare('SELECT * FROM '.
-        '`hosting_schema`.`accounts` WHERE `username` = :input');
+        '`'.$GLOBALS['dbname'].'`.`accounts` WHERE `username` = :input');
       // Run the prepared SQL statement to fetch the hosting account
       if ($statement->execute([':input' => $this->username]) &&
           is_array($result = $statement->fetch()))
@@ -66,8 +66,8 @@
     public function fetchSites(): ?array {
       // Prepare an SQL statement to fetch the sites for this account
       $statement = $this->db->prepare('SELECT `uuid` FROM '.
-        '`hosting_schema`.`sites` WHERE `account_id` = (SELECT `id` FROM '.
-        '`hosting_schema`.`accounts` WHERE `username` = :input)');
+        '`'.$GLOBALS['dbname'].'`.`sites` WHERE `account_id` = (SELECT `id` '.
+        'FROM `'.$GLOBALS['dbname'].'`.`accounts` WHERE `username` = :input)');
       // Run the prepared SQL statement to fetch the sites for this account
       if ($statement->execute([':input' => $this->username]) &&
           is_array($result = $statement->fetchAll()))
@@ -95,7 +95,7 @@
     protected function create(): void {
       // Prepare an SQL statement to insert an account record
       $statement = $this->db->prepare('INSERT INTO '.
-        '`hosting_schema`.`accounts` (`uuid`, `username`, `password`, '.
+        '`'.$GLOBALS['dbname'].'`.`accounts` (`uuid`, `username`, `password`, '.
         '`home`) VALUES (:uuid, :username, :password, :home)');
       // Insert a record into the database reflecting the new account
       $statement->execute([':uuid' => $this->uuid,
@@ -112,7 +112,7 @@
     protected function delete(): void {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('DELETE FROM '.
-        '`hosting_schema`.`accounts` WHERE `username` = :input');
+        '`'.$GLOBALS['dbname'].'`.`accounts` WHERE `username` = :input');
       // Run the prepared SQL statement to check if the username already exists
       $statement->execute([':input' => $this->username]);
       // Reset the permission monitoring system to remove this user
@@ -122,7 +122,8 @@
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.
-        '`hosting_schema`.`accounts` WHERE `username` = :input) AS `exists`');
+        '`'.$GLOBALS['dbname'].'`.`accounts` WHERE `username` = :input) '.
+        'AS `exists`');
       // Run the prepared SQL statement to check if the username already exists
       return !$statement->execute([':input' => $this->username]) ||
         boolval($statement->fetch()['exists']);

@@ -38,21 +38,11 @@ else
   touch /etc/shared-hosting/config.json
 fi
 
-while [ "$1" = "reconfigure" ] || [ -z "$MY_PWD" ]; do
-  if [ "$1" = "reconfigure" ]; then
-    db_subst shared-hosting/mysql-password skippable "$SKIP_PHRASE"
-  fi
-  db_input high shared-hosting/mysql-password || true
-  db_go
-  db_get shared-hosting/mysql-password
-  # Skip the verification process of no changes were made
-  if [ -n "$MY_PWD" ] && [ "$RET" = "$MY_PWD" ]; then break; fi
-  # Only attempt login if it makes sense
-  if [ -n "$RET" ]; then
-    mysql -u root -p"$RET" -e 'QUIT' 2>&1 > /dev/null
-    break
-  fi; sleep 1
-done
+# Attempt to configure the database using dbconfig-common
+if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
+  . /usr/share/dbconfig-common/dpkg/config.mysql
+  dbc_go shared-hosting "$@"
+fi
 
 while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
   if [ "$1" = "reconfigure" ]; then

@@ -20,32 +20,28 @@ set -e
 # for details, see https://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+# Process the dbconfig-common hook
+if [ -f /usr/share/dbconfig-common/dpkg/postinst.mysql ]; then
+  . /usr/share/dbconfig-common/dpkg/postinst.mysql
+  dbc_generate_include_owner="root:root"
+  dbc_generate_include_perms="0640"
+  dbc_generate_include="php:/etc/shared-hosting/config-db.php"
+  dbc_go shared-hosting "$@"
+fi
 
 case "$1" in
   configure)
     # Fetch the required varables from debhelper's database
-    db_get shared-hosting/mysql-password
-    MY_PWD="$RET"
     db_get shared-hosting/force-group
     WEB_GROUP="$RET"
     # Update the shared-hosting configuration file with the new values
     echo "Writing configuration file ..."
-    jq -Mnr '{ "group": $group, "password": $password }' \
+    jq -Mnr '{ "group": $group }' \
       --arg "group"    "$WEB_GROUP" \
-      --arg "password" "$MY_PWD" \
       > /etc/shared-hosting/config.json
     # Update the composer dependencies for this project
     echo "Updating composer packages ..."
     cd /usr/share/shared-hosting && composer --quiet update
-#    # Divert to our own config over OpenDKIM's default
-#    dpkg-divert --add --package shared-hosting --rename --divert \
-#      /etc/default/opendkim.dpkg-divert /etc/default/opendkim
-#    if [ ! -e /etc/default/opendkim ] || [ -L /etc/default/opendkim ]; then
-#      ln -sf /usr/share/shared-hosting/opendkim.def /etc/default/opendkim ; fi
-#    dpkg-divert --add --package shared-hosting --rename --divert \
-#      /etc/opendkim.conf.dpkg-divert /etc/opendkim.conf && \
-#    if [ ! -e /etc/opendkim.conf    ] || [ -L /etc/opendkim.conf    ]; then
-#      ln -sf /usr/share/shared-hosting/opendkim.cnf /etc/opendkim.conf    ; fi
     # Flush any updated configuration files to disk
     echo "Flusing account/site configuration to disk ..."
     flush-config --quiet

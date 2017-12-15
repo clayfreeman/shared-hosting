@@ -35,26 +35,17 @@
   require_once(implode(__DS__, [__VENDORROOT__, 'autoload.php']));
 
   // Load the configuration file
-  $config = @json_decode(@file_get_contents(implode(__DS__, [
-    __PROJECTROOT__, 'config.json'
-  ])), true);
-
-  // Ensure that there were no errors while loading the configuration
-  if (!is_array($config))
-    trigger_error('Could not load configuration file', E_USER_ERROR);
+  require_once('/etc/shared-hosting/config-db.php');
 
   // Connect to MySQL using the configured root password
-  $dsn           = 'mysql:charset=utf8mb4;host=localhost';
-  $GLOBALS['db'] = new \PDO($dsn, 'root', $config['password'] ?? '', [
+  $dsn           = $dbtype.':charset=utf8mb4;host='.$dbserver.';port='.$dbport;
+  $GLOBALS['db'] = new \PDO($dsn, $dbuser, $dbpass, [
     // Fetch associative array result sets by default
     \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
     // Ensure that emulated prepared statements are disabled for security
     \PDO::ATTR_EMULATE_PREPARES   => false,
     // Force PDO to throw exceptions when an error occurs
     \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION ]);
-  // Create the expected schema if it doesn't exist
-  $GLOBALS['db']->exec(file_get_contents(implode(__DS__, [
-    __PROJECTROOT__, 'schema.sql'])));
   // Ensure that foriegn key constraints are enabled
   $GLOBALS['db']->exec('SET FOREIGN_KEY_CHECKS=1');
 

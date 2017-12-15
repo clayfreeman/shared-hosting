@@ -58,7 +58,7 @@
     public function fetchDomain(): ?array {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT * FROM '.
-        '`hosting_schema`.`domains` WHERE `name` = :input');
+        '`'.$GLOBALS['dbname'].'`.`domains` WHERE `name` = :input');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->name]) &&
           is_array($result = $statement->fetch()))
@@ -76,8 +76,8 @@
     public function fetchSite(): ?string {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT `uuid` FROM '.
-        '`hosting_schema`.`sites` WHERE `id` = (SELECT `site_id` FROM '.
-        '`hosting_schema`.`domains` WHERE `uuid` = :input)');
+        '`'.$GLOBALS['dbname'].'`.`sites` WHERE `id` = (SELECT `site_id` FROM '.
+        '`'.$GLOBALS['dbname'].'`.`domains` WHERE `uuid` = :input)');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
         return $statement->fetch()['uuid'];
@@ -108,7 +108,7 @@
     protected function create(): void {
       // Prepare an SQL statement to insert a domain record
       $statement = $this->db->prepare('INSERT INTO '.
-        '`hosting_schema`.`domains` (`site_id`, `uuid`, `name`, '.
+        '`'.$GLOBALS['dbname'].'`.`domains` (`site_id`, `uuid`, `name`, '.
         '`dkim_selector`, `dkim_private`, `dkim_record`) VALUES (:site_id, '.
         ':uuid, :name, :selector, :secret, :record)');
       // Insert a record into the database reflecting the new domain
@@ -121,7 +121,7 @@
     protected function delete(): void {
       // Prepare an SQL statement to delete the domain
       $statement = $this->db->prepare('DELETE FROM '.
-        '`hosting_schema`.`domains` WHERE `name` = :input');
+        '`'.$GLOBALS['dbname'].'`.`domains` WHERE `name` = :input');
       // Run the prepared SQL statement to delete the domain
       $statement->execute([':input' => $this->name]);
     }
@@ -129,7 +129,8 @@
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.
-        '`hosting_schema`.`domains` WHERE `name` = :input) AS `exists`');
+        '`'.$GLOBALS['dbname'].'`.`domains` WHERE `name` = :input) '.
+        'AS `exists`');
       // Run the prepared SQL statement to check if the username already exists
       return !$statement->execute([':input' => $this->name]) ||
         boolval($statement->fetch()['exists']);
