@@ -29,6 +29,6 @@ db_input high shared-hosting/force-group || true
 db_go
 db_get shared-hosting/force-group
 # Attempt to verify the provided group
-if [ -n "$RET" ] && [ "$RET" -ne "$WEB_GROUP" ]; then
+if [ -n "$RET" ] && [ "$RET" != "$WEB_GROUP" ]; then
   getent group "$RET" 2>&1 > /dev/null
 fi
