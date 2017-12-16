@@ -45,8 +45,8 @@
     public function fetchDomains(): ?array {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT `name` FROM '.
-        '`'.$GLOBALS['dbname'].'`.`domains` WHERE `site_id` = (SELECT `id` '.
-        'FROM `'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :input)');
+        '`hosting_schema`.`domains` WHERE `site_id` = (SELECT `id` '.
+        'FROM `hosting_schema`.`sites` WHERE `uuid` = :input)');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
         return array_map(function($domain) {
@@ -59,8 +59,8 @@
     public function fetchOwner(): ?string {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT `username` FROM '.
-        '`'.$GLOBALS['dbname'].'`.`accounts` WHERE `id` = (SELECT '.
-        '`account_id` FROM `'.$GLOBALS['dbname'].'`.`sites` WHERE '.
+        '`hosting_schema`.`accounts` WHERE `id` = (SELECT '.
+        '`account_id` FROM `hosting_schema`.`sites` WHERE '.
         '`uuid` = :input)');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
@@ -78,7 +78,7 @@
     public function fetchSite(): ?array {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT * FROM '.
-        '`'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :input');
+        '`hosting_schema`.`sites` WHERE `uuid` = :input');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
         return $statement->fetch();
@@ -103,7 +103,7 @@
     protected function create(): void {
       // Prepare an SQL statement to insert a site record
       $statement = $this->db->prepare('INSERT INTO '.
-        '`'.$GLOBALS['dbname'].'`.`sites` (`account_id`, `template`, `uuid`, '.
+        '`hosting_schema`.`sites` (`account_id`, `template`, `uuid`, '.
         '`root`) VALUES (:account_id, :template, :uuid, :root)');
       // Insert a record into the database reflecting the new account
       $this->result   =  $statement->execute([':uuid' => $this->uuid,
@@ -114,7 +114,7 @@
     protected function delete(): void {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('DELETE FROM '.
-        '`'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :input');
+        '`hosting_schema`.`sites` WHERE `uuid` = :input');
       // Run the prepared SQL statement to check if the username already exists
       $statement->execute([':input' => $this->uuid]);
     }
@@ -123,7 +123,7 @@
       // Prepare an SQL statement to determine if this site has a PKI
       $statement = $this->db->prepare('SELECT NULLIF(`tls_certificate`, \'\') '.
         'IS NOT NULL AND NULLIF(`tls_private`, \'\') IS NOT NULL AS `has_pki` '.
-        'FROM `'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :uuid');
+        'FROM `hosting_schema`.`sites` WHERE `uuid` = :uuid');
       // Run the prepared SQL statement to determine if this site has a PKI
       $statement->execute([':uuid' => $this->uuid]);
       return boolval($statement->fetch()['has_pki']);
@@ -132,7 +132,7 @@
     public function isTLSEnabled(): bool {
       // Prepare an SQL statement to determine if this site has TLS
       $statement = $this->db->prepare('SELECT `tls_enabled` '.
-        'FROM `'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :uuid');
+        'FROM `hosting_schema`.`sites` WHERE `uuid` = :uuid');
       // Run the prepared SQL statement to determine if this site has TLS
       $statement->execute([':uuid' => $this->uuid]);
       return boolval($statement->fetch()['tls_enabled']);
@@ -141,7 +141,7 @@
     public function setTLSEnabled(bool $on) {
       // Prepare an SQL statement to set the `tls_enabled` flag
       $statement = $this->db->prepare('UPDATE '.
-        '`'.$GLOBALS['dbname'].'`.`sites` SET `tls_enabled` = :input WHERE '.
+        '`hosting_schema`.`sites` SET `tls_enabled` = :input WHERE '.
         '`uuid` = :uuid');
       // Run the prepared SQL statement to set the `tls_enabled` flag
       $statement->execute([':uuid' => $this->uuid, ':input' =>
@@ -151,7 +151,7 @@
     public function setTLSCertificate(string $path) {
       // Prepare an SQL statement to set the `tls_certificate` value
       $statement = $this->db->prepare('UPDATE '.
-        '`'.$GLOBALS['dbname'].'`.`sites` SET `tls_certificate` = :input '.
+        '`hosting_schema`.`sites` SET `tls_certificate` = :input '.
         'WHERE `uuid` = :uuid');
       // Run the prepared SQL statement to set the `tls_certificate` value
       $statement->execute([':uuid' => $this->uuid, ':input' => $path]);
@@ -160,7 +160,7 @@
     public function setTLSPrivate(string $path) {
       // Prepare an SQL statement to set the `tls_private` value
       $statement = $this->db->prepare('UPDATE '.
-        '`'.$GLOBALS['dbname'].'`.`sites` SET `tls_private` = :input '.
+        '`hosting_schema`.`sites` SET `tls_private` = :input '.
         'WHERE `uuid` = :uuid');
       // Run the prepared SQL statement to set the `tls_private` value
       $statement->execute([':uuid' => $this->uuid, ':input' => $path]);
@@ -169,7 +169,7 @@
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested site exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.
-        '`'.$GLOBALS['dbname'].'`.`sites` WHERE `uuid` = :input) AS `exists`');
+        '`hosting_schema`.`sites` WHERE `uuid` = :input) AS `exists`');
       // Run the prepared SQL statement to check if the site already exists
       return !$statement->execute([':input' => $this->uuid]) ||
         boolval($statement->fetch()['exists']);

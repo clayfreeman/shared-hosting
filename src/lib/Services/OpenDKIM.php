@@ -14,7 +14,7 @@
     public function fetchDomains(): ?array {
       // Run an SQL statement to fetch all domains
       $data = $this->db->query('SELECT * FROM '.
-        '`'.$GLOBALS['dbname'].'`.`domains`');
+        '`hosting_schema`.`domains`');
       $data = $data->fetchAll();
       // Check if the resulting data is an array
       return is_array($data) ? $data : null;

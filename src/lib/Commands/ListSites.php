@@ -50,9 +50,9 @@
       // Query the database for all sites and their owners
       $statement = $this->db->query('SELECT `username`, GROUP_CONCAT(`name` '.
         'ORDER BY `domains`.`id` ASC SEPARATOR \',\\n\') AS `domains` FROM '.
-        '`'.$GLOBALS['dbname'].'`.`domains` INNER JOIN `'.$GLOBALS['dbname'].
-        '`.`sites` ON `domains`.`site_id` = `sites`.`id` LEFT JOIN '.
-        '`'.$GLOBALS['dbname'].'`.`accounts` ON '.
+        '`hosting_schema`.`domains` INNER JOIN `hosting_schema`.`sites` ON '.
+        '`domains`.`site_id` = `sites`.`id` LEFT JOIN '.
+        '`hosting_schema`.`accounts` ON '.
         '`sites`.`account_id` = `accounts`.`id` GROUP BY `domains`.`site_id` '.
         'ORDER BY `username` ASC, `domains` ASC;');
       // Fetch all results from the prepared statement

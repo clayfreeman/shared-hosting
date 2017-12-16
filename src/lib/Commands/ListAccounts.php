@@ -49,7 +49,7 @@
     protected function fetchAccounts(): array {
       // Query the database for all accounts and passwords
       $statement = $this->db->query('SELECT `username`, `password` FROM '.
-        '`'.$GLOBALS['dbname'].'`.`accounts` ORDER BY `username` ASC');
+        '`hosting_schema`.`accounts` ORDER BY `username` ASC');
       // Fetch all results from the prepared statement
       return $statement->fetchAll();
     }
