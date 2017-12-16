@@ -11,18 +11,8 @@ mkdir -p /etc/shared-hosting
 # Prevent non-root users from accessing the package configuration
 chmod o= /etc/shared-hosting
 
-WEB_GROUP=""
-# Attempt to load the current config values
-if [ -f "/etc/shared-hosting/config.json" ]; then
-  WEB_GROUP="$(jq -Mr .group /etc/shared-hosting/config.json 2> /dev/null)"
-  # Override the values currently held by debconf
-  db_set shared-hosting/force-group "$WEB_GROUP"
-  # Print the current configuration values
-  echo "Found current configuration values:"
-  echo    "  * Group Override: $WEB_GROUP"
-else
-  # Create the configuration file if it does not exist
-  echo "Creating new configuration file ..."
+# Create the configuration file if it does not exist
+if [ ! -f "/etc/shared-hosting/config.json" ]; then
   touch /etc/shared-hosting/config.json
 fi
 
