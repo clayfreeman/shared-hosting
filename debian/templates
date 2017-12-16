@@ -1,11 +1,5 @@
-Template: shared-hosting/mysql-password
-Type: password
-_Description: Please enter the root password for the local MySQL server:
- This password is required to connect to MySQL for keeping track of the
- shared hosting environment. ${skippable}
-
 Template: shared-hosting/force-group
 Type: string
 _Description: Please enter the group that should be forced on all site files:
  This feature enables out-of-band management of account files without the need
- for root access. ${skippable}
+ for root access.
