@@ -6,13 +6,6 @@ set -e
 # Load the `debconf` library functions
 . /usr/share/debconf/confmodule
 
-# Exit gracefully if `letsencrypt` or `mysql` are missing
-hash letsencrypt 2>/dev/null || exit 0
-hash mysql       2>/dev/null || exit 0
-
-# Declare the notice informing the user that they can skip a question
-SKIP_PHRASE="Press enter to keep the current value."
-
 # Ensure that the configuration file exists
 mkdir -p /etc/shared-hosting
 # Prevent non-root users from accessing the package configuration
@@ -41,18 +34,11 @@ if [ -f /usr/share/dbconfig-common/dpkg/config.mysql ]; then
   dbc_go shared-hosting "$@"
 fi
 
-while [ "$1" = "reconfigure" ] || [ -z "$WEB_GROUP" ]; do
-  if [ "$1" = "reconfigure" ]; then
-    db_subst shared-hosting/force-group skippable "$SKIP_PHRASE"
-  fi
-  db_input high shared-hosting/force-group || true
-  db_go
-  db_get shared-hosting/force-group
-  # Skip the verification process of no changes were made
-  if [ -n "$WEB_GROUP" ] && [ "$RET" = "$WEB_GROUP" ]; then break; fi
-  # Only attempt to fetch the group if it makes sense
-  if [ -n "$RET" ]; then
-    getent group "$RET" 2>&1 > /dev/null
-    break
-  fi; sleep 1
-done
+# Ask the user whether they want group overrides
+db_input high shared-hosting/force-group || true
+db_go
+db_get shared-hosting/force-group
+# Attempt to verify the provided group
+if [ -n "$RET" ] && [ "$RET" -ne "$WEB_GROUP" ]; then
+  getent group "$RET" 2>&1 > /dev/null
+fi

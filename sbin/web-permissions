@@ -30,7 +30,7 @@ ACTS="`list-accounts | sed '1,3d' | tac | sed '1,2d' | tac | awk '{print $1}'`"
 WEB_GROUP="$(jq -Mer .group /etc/shared-hosting/config.json 2> /dev/null)"
 if [ "$?" != "0" ] || [ -z "$WEB_GROUP" ]; then
   echo "No forced group configured in /etc/shared-hosting/config.json"
-  exit 1
+  exit 0
 fi
 
 # Relaunch this script using each account's username
