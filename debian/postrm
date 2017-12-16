@@ -29,14 +29,14 @@ fi
 
 case "$1" in
   purge)
-    rm -f /etc/phpmyadmin/config-db.php
+    # Remove this package's configuration file
+    rm -rf /etc/shared-hosting \
+           /usr/share/shared-hosting/composer.lock \
+           /usr/share/shared-hosting/vendor
+    # Purge the database configuration file
     if which ucf >/dev/null 2>&1; then
       ucf --debconf-ok --purge /etc/shared-hosting/config-db.php
     fi
-    # Remove this package's configuration file
-    rm -rf /etc/shared-hosting \
-    /usr/share/shared-hosting/composer.lock \
-    /usr/share/shared-hosting/vendor
     # Remove this package's modifications to the debconf database
     db_purge
   ;;

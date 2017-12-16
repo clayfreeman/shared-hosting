@@ -37,14 +37,14 @@ case "$1" in
     db_get shared-hosting/force-group
     WEB_GROUP="$RET"
     # Update the shared-hosting configuration file with the new values
-    echo "Writing configuration file ..."
+    echo "Writing configuration file ..." >&2
     jq -Mnr '{ "group": $group }' --arg "group" "$WEB_GROUP" \
       > /etc/shared-hosting/config.json
     # Update the composer dependencies for this project
-    echo "Updating composer packages ..."
+    echo "Updating composer packages ..." >&2
     cd /usr/share/shared-hosting && composer --quiet update
     # Flush any updated configuration files to disk
-    echo "Flusing account/site configuration to disk ..."
+    echo "Flusing account/site configuration to disk ..." >&2
     flush-config --quiet
   ;;
 
