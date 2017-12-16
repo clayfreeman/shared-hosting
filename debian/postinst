@@ -38,8 +38,7 @@ case "$1" in
     WEB_GROUP="$RET"
     # Update the shared-hosting configuration file with the new values
     echo "Writing configuration file ..."
-    jq -Mnr '{ "group": $group }' \
-      --arg "group"    "$WEB_GROUP" \
+    jq -Mnr '{ "group": $group }' --arg "group" "$WEB_GROUP" \
       > /etc/shared-hosting/config.json
     # Update the composer dependencies for this project
     echo "Updating composer packages ..."

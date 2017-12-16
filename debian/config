@@ -18,19 +18,14 @@ mkdir -p /etc/shared-hosting
 # Prevent non-root users from accessing the package configuration
 chmod o= /etc/shared-hosting
 
-MY_PWD=""
 WEB_GROUP=""
 # Attempt to load the current config values
 if [ -f "/etc/shared-hosting/config.json" ]; then
-  MY_PWD="$(jq -Mr .password /etc/shared-hosting/config.json 2> /dev/null)"
   WEB_GROUP="$(jq -Mr .group /etc/shared-hosting/config.json 2> /dev/null)"
   # Override the values currently held by debconf
-  db_set shared-hosting/mysql-password "$MY_PWD"
-  db_set shared-hosting/force-group    "$WEB_GROUP"
+  db_set shared-hosting/force-group "$WEB_GROUP"
   # Print the current configuration values
   echo "Found current configuration values:"
-  echo -n "  * MySQL Password: "
-  if [ -n "$MY_PWD" ]; then echo "********"; else echo ""; fi
   echo    "  * Group Override: $WEB_GROUP"
 else
   # Create the configuration file if it does not exist
