@@ -33,5 +33,6 @@ if [ -n "$RET" ] && [ "$RET" != "$WEB_GROUP" ]; then
   if ! getent group "$RET" 2>&1 > /dev/null; then
     echo "ERROR: Inexistent group specified; ignoring ..." >&2
     db_set shared-hosting/force-group ""
+    sleep 3
   fi
 fi
