@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: shared-hosting\n"
 "Report-Msgid-Bugs-To: shared-hosting@packages.debian.org\n"
-"POT-Creation-Date: 2017-12-15 10:09-0600\n"
+"POT-Creation-Date: 2017-12-15 18:26-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Type: password
-#. Description
-#: ../templates:1001
-msgid "Please enter the root password for the local MySQL server:"
-msgstr ""
-
-#. Type: password
-#. Description
-#: ../templates:1001
-msgid ""
-"This password is required to connect to MySQL for keeping track of the "
-"shared hosting environment. ${skippable}"
-msgstr ""
-
 #. Type: string
 #. Description
-#: ../templates:2001
+#: ../templates:1001
 msgid "Please enter the group that should be forced on all site files:"
 msgstr ""
 
 #. Type: string
 #. Description
-#: ../templates:2001
+#: ../templates:1001
 msgid ""
 "This feature enables out-of-band management of account files without the "
-"need for root access. ${skippable}"
+"need for root access."
 msgstr ""
