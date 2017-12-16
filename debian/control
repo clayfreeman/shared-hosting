@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Clay Freeman <git@clayfreeman.com>
 Build-Depends: debhelper (>=9), dh-systemd, po-debconf
-Standards-Version: 3.9.7
+Standards-Version: 3.9.8
 Homepage: https://github.com/clayfreeman/shared-hosting
 Vcs-Git: https://github.com/clayfreeman/shared-hosting.git
 Vcs-Browser: https://github.com/clayfreeman/shared-hosting
