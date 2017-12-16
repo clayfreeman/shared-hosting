@@ -30,5 +30,8 @@ db_go
 db_get shared-hosting/force-group
 # Attempt to verify the provided group
 if [ -n "$RET" ] && [ "$RET" != "$WEB_GROUP" ]; then
-  getent group "$RET" 2>&1 > /dev/null
+  if ! getent group "$RET" 2>&1 > /dev/null; then
+    echo "ERROR: Inexistent group specified; ignoring ..." >&2
+    db_set shared-hosting/force-group ""
+  fi
 fi
