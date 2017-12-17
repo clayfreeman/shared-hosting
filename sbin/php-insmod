@@ -1,0 +1,23 @@
+#!/bin/bash
+
+LOGFILE="/var/log/php-insmod.log"
+
+function install_module() {
+  # Install this module for each PHP version
+  for VERSION in /usr/bin/php?.?; do
+    apt install -y php"${VERSION##/usr/bin/php}"-"${1}"
+  done
+}
+
+# Ensure that there is an argument containing the module to install
+if [ -z "${1}" ]; then
+  echo "Usage: `basename "${0}"` <module> [module] ..."
+  exit 1
+fi
+
+# Iterate over each specified module and install it
+for MODULE in $@; do
+  echo "${MODULE}" >> "${LOGFILE}"
+  sort -u "${LOGFILE}" -o "${LOGFILE}"
+  install_module $MODULE
+done

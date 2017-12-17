@@ -1,0 +1,10 @@
+[Unit]
+Requires=network.target
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/rewrite-envelope -d -p /var/run/rewrite-envelope.pid
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
