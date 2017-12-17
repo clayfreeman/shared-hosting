@@ -1,0 +1,71 @@
+Source: shared-hosting
+Section: admin
+Priority: optional
+Maintainer: Clay Freeman <git@clayfreeman.com>
+Build-Depends: debhelper (>=9), dh-systemd, po-debconf
+Standards-Version: 3.9.8
+Homepage: https://github.com/clayfreeman/shared-hosting
+Vcs-Git: https://github.com/clayfreeman/shared-hosting.git
+Vcs-Browser: https://github.com/clayfreeman/shared-hosting
+
+Package: shared-hosting
+Architecture: all
+Pre-Depends: composer,
+ mysql-server | mariadb-server,
+ openssl,
+ php7.2-cli,
+ php7.2-json,
+ php7.2-mysql,
+ php7.2-zip
+Depends: adduser,
+ bindfs,
+ certbot,
+ dbconfig-mysql | dbconfig-no-thanks,
+ git,
+ jq,
+ nginx,
+ opendkim,
+ php7.2-dev,
+ php7.2-fpm,
+ php7.2-curl,
+ php7.2-gd,
+ php7.2-mbstring,
+ php7.2-xml,
+ php7.2-xmlrpc,
+ python (>=2.7),
+ python (<<3.0),
+ python-milter,
+ ssl-cert,
+ unzip,
+ zip,
+ ${misc:Depends}
+Recommends: php7.0-cli,
+ php7.0-dev,
+ php7.0-fpm,
+ php7.0-curl,
+ php7.0-gd,
+ php7.0-json,
+ php7.0-mbstring,
+ php7.0-mysql,
+ php7.0-xml,
+ php7.0-xmlrpc,
+ php7.0-zip,
+ php7.1-cli,
+ php7.1-dev,
+ php7.1-fpm,
+ php7.1-curl,
+ php7.1-gd,
+ php7.1-json,
+ php7.1-mbstring,
+ php7.1-mysql,
+ php7.1-xml,
+ php7.1-xmlrpc,
+ php7.1-zip,
+ mail-transport-agent
+Description: Framework for easy management of shared hosting accounts.
+ This package facilitates the management and hosting of sites under multiple
+ separate accounts. Each hosting account uses its own instance of PHP-FPM that
+ is sandboxed to its home directory for extra security. Out of band management
+ is made possible with the use of bindfs to override group permissions in each
+ hosting account's home directory. Free TLS certificates can be enabled for each
+ site with the help of Let's Encrypt.

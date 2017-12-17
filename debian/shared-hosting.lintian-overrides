@@ -1,0 +1,2 @@
+# Override this broken Lintian tag (we DO depend on phpX.X-cli)
+shared-hosting binary: php-script-but-no-phpX-cli-dep
