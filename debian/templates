@@ -1,5 +1,0 @@
-Template: shared-hosting/force-group
-Type: string
-_Description: Please enter the group that should be forced on all site files:
- This feature enables out-of-band management of account files without the need
- for root access.

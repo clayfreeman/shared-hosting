@@ -1,2 +1,0 @@
-# Force the OpenDKIM daemon to listen on localhost:8891
-SOCKET="inet:8891@localhost"
