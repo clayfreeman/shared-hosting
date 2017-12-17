@@ -1,3 +1,9 @@
+shared-hosting (1.5.0-1) stable; urgency=medium
+
+  * Switch to git-buildpackage.
+
+ -- Clay Freeman <git@clayfreeman.com>  Sun, 17 Dec 2017 16:39:42 -0600
+
 shared-hosting (1.4.0-1) stable; urgency=medium
 
   * Initial release.
