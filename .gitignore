@@ -1,6 +1,0 @@
-/debian/debhelper-build-stamp
-/debian/files
-/debian/shared-hosting
-/debian/*.debhelper
-/debian/*.log
-/debian/shared-hosting.substvars
