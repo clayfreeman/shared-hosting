@@ -1,7 +1,7 @@
-/.pc
-/debian/debhelper-build-stamp
-/debian/files
-/debian/shared-hosting
-/debian/shared-hosting.substvars
-/debian/*.debhelper
-/debian/*.log
+../.pc
+debhelper-build-stamp
+files
+shared-hosting
+shared-hosting.substvars
+*.debhelper
+*.log
