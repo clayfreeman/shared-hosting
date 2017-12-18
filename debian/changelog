@@ -1,3 +1,9 @@
+shared-hosting (1.5.3-1) stable; urgency=medium
+
+  * Include support for upstream CHANGELOG.md and signed releases.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 18 Dec 2017 15:20:50 -0600
+
 shared-hosting (1.5.2-2) stable; urgency=medium
 
   * Change PHP dependencies to try to fix Lintian errors.
