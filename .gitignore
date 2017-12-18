@@ -1,8 +1,2 @@
 /src/composer.lock
 /src/vendor
-/debian/debhelper-build-stamp
-/debian/files
-/debian/shared-hosting
-/debian/shared-hosting.substvars
-/debian/*.debhelper
-/debian/*.log
