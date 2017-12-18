@@ -1,3 +1,9 @@
+shared-hosting (1.5.2-1) stable; urgency=medium
+
+  * Fix some Lintian messages.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 18 Dec 2017 11:04:39 -0600
+
 shared-hosting (1.5.1-1) stable; urgency=medium
 
   * Merge new upstream release.
