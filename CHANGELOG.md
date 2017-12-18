@@ -2,5 +2,5 @@
 
 ## 1.5.3
 
-- Add `CHANGELOG.md`.
+- Begin tracking changes with `CHANGELOG.md`.
 - Introduced signed Git commits.
