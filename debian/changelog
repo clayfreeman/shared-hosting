@@ -2,7 +2,7 @@ shared-hosting (1.5.1-1) stable; urgency=medium
 
   * Merge new upstream release.
 
- -- Clay Freeman <clay@office.bluewall.com>  Mon, 18 Dec 2017 10:15:13 -0600
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 18 Dec 2017 10:15:13 -0600
 
 shared-hosting (1.5.0-1) stable; urgency=medium
 
