@@ -7,4 +7,4 @@ pm = ondemand
 pm.max_children = 5
 pm.max_requests = 200
 pm.process_idle_timeout = 1s
-php_admin_value[open_basedir] = /dev:/home/$pool:/run:/tmp:/usr/share:/var
+php_admin_value[open_basedir] = /dev:/home/$pool:/run:/tmp:/usr:/var
