@@ -1,3 +1,9 @@
+shared-hosting (1.5.2-2) stable; urgency=medium
+
+  * Change PHP dependencies to try to fix Lintian errors.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 18 Dec 2017 11:30:12 -0600
+
 shared-hosting (1.5.2-1) stable; urgency=medium
 
   * Fix some Lintian messages.
