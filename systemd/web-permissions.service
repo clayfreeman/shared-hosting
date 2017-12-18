@@ -1,6 +1,7 @@
 [Unit]
+Documentation=man:web-permissions(8)
 Requires=mysql.service
-After=mysql.service ldap-forward.service
+After=mysql.service
 
 [Service]
 ExecStart=/usr/sbin/web-permissions

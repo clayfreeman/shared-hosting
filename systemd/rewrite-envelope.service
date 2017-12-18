@@ -1,6 +1,7 @@
 [Unit]
-Requires=network.target
+Documentation=man:rewrite-envelope(8)
 After=network.target
+Requires=network.target
 
 [Service]
 ExecStart=/usr/sbin/rewrite-envelope -d -p /var/run/rewrite-envelope.pid
