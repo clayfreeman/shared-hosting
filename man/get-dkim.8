@@ -15,13 +15,16 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-get-dkim \- .
+get-dkim \- Print information about the DKIM record for a domain.
 .SH SYNOPSIS
 .B get-dkim
 .RI [ options ] " domain"
 .SH DESCRIPTION
 .B get-dkim
-.
+prints the value (or FQDN) of a DKIM record for the provided \fIdomain\fP.
+.PP
+The selector for the DKIM record can be retrieved using the \fL--get-fqdn\fP
+option.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
@@ -29,6 +32,10 @@ A summary of options is included below.
 .TP
 .B \-h, \-\-help
 Display the help message.
+.TP
+.B \-\-get\-fqdn
+Fetch the Fully-Qualified Domain Name (FQDN) for the DKIM record instead of its
+value.
 .TP
 .B \-q, \-\-quiet
 Do not output any message.

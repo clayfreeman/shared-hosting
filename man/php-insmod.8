@@ -15,12 +15,24 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-php-insmod \- .
+php-insmod \- Install PHP module(s) for all versions of PHP-FPM.
 .SH SYNOPSIS
 .B php-insmod
 .RI [ modules ] " ..."
 .SH DESCRIPTION
 .B php-insmod
-.
+will iterate through each installed version of PHP-FPM and attempt to install
+the requested \fImodules\fP for each version.
+.PP
+\fImodules\fP should not include any prefix or suffix (e.g. \fLmysql\fP or
+\fLzip\fP). The list of modules is then transformed into a list of packages for
+each specific version of PHP-FPM (e.g. \fLphp7.1-mysql\fP or \fLphp7.2-zip\fP).
+.PP
+Each module is installed with a separate call to
+.BR apt-get (8)
+so that any errors or missing packages do not affect any other module. Once each
+module is installed,
+.BR restart-services (8)
+should be called to ensure that each PHP-FPM pool is reloaded.
 .SH SEE ALSO
 .BR restart-services (8).

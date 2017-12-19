@@ -15,13 +15,15 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-restart-services \- .
+restart-services \- Restart all shared hosting services.
 .SH SYNOPSIS
 .B restart-services
 .RI [ options ]
 .SH DESCRIPTION
 .B restart-services
-.
+attempts to restart configuration-dependent shared hosting services. This
+includes nginx, OpenDKIM and PHP-FPM. nginx configuration will be tested before
+a reload is attempted.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
