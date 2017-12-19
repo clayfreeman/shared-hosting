@@ -37,7 +37,10 @@
       $this->setName        ('flush-config')
            ->setDescription ('Rewrites the configuration for all services')
            ->setHelp        ('This command will regenerate the configuration '.
-                             'files for all associated services.');
+                             'files for all associated services.')
+           ->addOption      ('overwrite', null, InputOption::VALUE_NONE,
+                             'Replaces any existing version-specific PHP-FPM '.
+                             'common configuration files.');
     }
 
     /**
@@ -50,8 +53,8 @@
       // Setup some environment variables to complete this command
       $io       = new SymfonyStyle($input, $output);
       // Regenerate all configuration files relating to each hosting account
-      $accounts = new Transaction(...array_map(function($result) {
-        return new FPMPool($result['username']);
+      $accounts = new Transaction(...array_map(function($result) use ($input) {
+        return new FPMPool($result['username'], $input->getOption('overwrite'));
       }, $this->fetchAccounts()));
       // Regenerate all configuration files relating to each site
       $sites    = new Transaction(...array_map(function($result) {
