@@ -15,15 +15,15 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-create-site \- Creates a shared hosting site.
+create-site \- Create a shared hosting site.
 .SH SYNOPSIS
 .B create-site
 .RI [ options ] " account template domain"
 .RI [ domain ] " ..."
 .SH DESCRIPTION
 .B create-site
-will attempt to create the necessary nginx and OpenDKIM configuration files for
-the requested \fIdomain\fP(s) using the specified \fItemplate\fP.
+will attempt to create nginx and OpenDKIM configuration files for the requested
+\fIdomain\fP(s) using the specified \fItemplate\fP.
 .PP
 Before modifying any resources, \fBcreate-site\fP will ensure that the provided
 \fIaccount\fP already exists within the internal database and that each
@@ -54,17 +54,18 @@ Templates are generally split between \fItemplate\fP\fL-common.conf\fP,
 \fItemplate\fP\fL-http.conf\fP and \fItemplate\fP\fL-https.conf\fP.
 \fBcreate-site\fP only requires the plain-text \fLhttp\fP variant, so the
 \fLcommon\fP and \fLhttps\fP variants can be omitted (although not suggested).
-\fBenable-tls\fP(8) switches from the \fLhttp\fP variant to the \fLhttps\fP
-variant.
+\fBenable-tls\fP(8) switches the site template from the \fLhttp\fP variant to
+the \fLhttps\fP variant.
 .IP \[bu]
-Templates should always \fLinclude\fP the appropriate URL scheme template
-(\fLhttp.conf\fP or \fLhttps.conf\fP). These URL scheme templates contain two
+Templates should always \fLinclude\fP the appropriate URL scheme parent-template
+(\fLhttp.conf\fP or \fLhttps.conf\fP). These parent-templates contain two
 \fLlisten\fP directives (IPv4 and IPv6; standard port numbers) and include the
-overall \fLgeneral.conf\fP template. \fLhttps.conf\fP contains various HTTPS
-tuning directives in addition to the other directives for heightened security.
+overall \fLgeneral.conf\fP parent-template. \fLhttps.conf\fP contains various
+HTTPS tuning directives in addition to the other directives for heightened
+security.
 .IP \[bu]
 Templates should always place custom or non-standard functionality last so that
-it can override boilerplate directives if necessary.
+they can override boilerplate directives if necessary.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').

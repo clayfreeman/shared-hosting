@@ -15,13 +15,16 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-delete-site \- .
+delete-site \- Remove a shared hosting site.
 .SH SYNOPSIS
 .B delete-site
 .RI [ options ] " domain"
 .SH DESCRIPTION
 .B delete-site
-.
+attempts to remove all configuration created by
+.BR create-site (8)
+for the provided \fIdomain\fP's site. Files in the document root will be kept,
+however, DKIM private keys for all associated domains will be deleted.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').

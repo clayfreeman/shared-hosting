@@ -15,13 +15,22 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-delete-account \- .
+delete-account \- Backup and remove a shared hosting account.
 .SH SYNOPSIS
 .B delete-account
 .RI [ options ] " username"
 .SH DESCRIPTION
 .B delete-account
-.
+attempts to remove all associated account resources configured by
+.BR create-account (8)
+after a backup is created of the user's home directory.
+.PP
+The backup of the user's home directory is created during the call to
+.BR deluser (8).
+for the Unix account.
+.PP
+Databases owned by the deleted account will not be removed, and instead will
+only be accessible via MySQL's administrative account (i.e. \fLroot\fP).
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
@@ -49,4 +58,5 @@ Do not ask any interactive question.
 Increase the verbosity of messages: 1 for normal output, 2 for more verbose
 output and 3 for debug.
 .SH SEE ALSO
-.BR create-account (8).
+.BR create-account (8),
+.BR deluser (8).
