@@ -15,13 +15,20 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-flush-config \- .
+flush-config \- Flush all shared hosting configuration to disk.
 .SH SYNOPSIS
 .B flush-config
 .RI [ options ]
 .SH DESCRIPTION
 .B flush-config
-.
+rewrites all shared hosting configuration to disk including all PHP-FPM pools
+(with respective version-specific includes at
+\fL/etc/shared-hosting/phpVER-common.conf\fP), each site's virtual host file,
+and each domain's DKIM signing key.
+.PP
+If a version-specific PHP-FPM include already exists, it will not be
+overwritten; only newly installed versions of PHP-FPM will be flushed. This
+behavior can be changed with the \fL--overwrite\fP option.
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
@@ -44,6 +51,9 @@ Disable ANSI output.
 .TP
 .B \-n, \-\-no\-interaction
 Do not ask any interactive question.
+.TP
+.B \-\-overwrite
+Replaces any existing version-specific PHP-FPM common configuration files.
 .TP
 .B \-v|vv|vvv, \-\-verbose
 Increase the verbosity of messages: 1 for normal output, 2 for more verbose

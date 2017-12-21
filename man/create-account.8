@@ -15,15 +15,14 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-create-account \- Creates a shared hosting account.
+create-account \- Create a shared hosting account.
 .SH SYNOPSIS
 .B create-account
 .RI [ options ] " username"
 .SH DESCRIPTION
 .B create-account
-will attempt to create and configure the necessary accounts and services for a
-shared hosting account including a MySQL user, a user-specific PHP-FPM pool and
-a Unix account using the provided \fIusername\fP for each.
+will attempt to create and configure a MySQL user, a user-specific PHP-FPM pool
+and a Unix account using the provided \fIusername\fP for each.
 .PP
 Before modifying any resources, this command will check the validity of the
 provided \fIusername\fP against the following regular expression:

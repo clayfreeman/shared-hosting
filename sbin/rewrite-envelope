@@ -77,37 +77,37 @@ class RewriteEnvelopeMilter(Milter.Base):
 
 def runner():
     Milter.factory = RewriteEnvelopeMilter
-    flags = Milter.CHGHDRS + Milter.ADDHDRS + Milter.QUARANTINE
+    flags = Milter.CHGHDRS
     Milter.set_flags(flags)
-    Milter.runmilter(NAME, config.sock, timeout=300)
+    Milter.runmilter(NAME, config.socket, timeout=300)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(epilog="rewrite-envelope - "
-                                            "rewrite the domain name of the "
-                                            "envelope sender")
-    parser.add_argument("--dbg", "-d",
+                                            "Milter for rewriting envelope "
+                                            "domains of e-mail.")
+    parser.add_argument("--debug", "-d",
                         default=False,
                         action="store_true",
-                        help="run in the foreground with debug mode enabled")
-    parser.add_argument("--grp", "-g",
+                        help="Run in the foreground with verbose logging.")
+    parser.add_argument("--group", "-g",
                         type=str,
                         default=MILTERGROUP,
-                        help="run the milter as this group "
-                             "(default: %(default)s)")
+                        help="Run the milter as this group "
+                             "(default: %(default)s).")
     parser.add_argument("--pid", "-p",
                         type=str,
                         default=None,
-                        help="optional PID file path")
-    parser.add_argument("--sock", "-s",
+                        help="Write a PID file to this path.")
+    parser.add_argument("--socket", "-s",
                         type=str,
                         default="inet:{0}@{1}".format(PORT, BINDADDR),
                         help="IPv4, IPv6 or Unix socket to listen on "
-                             "(default: %(default)s)")
+                             "(default: %(default)s).")
     parser.add_argument("--user", "-u",
                         type=str,
                         default=MILTERUSER,
-                        help="run the milter as this user "
-                             "(default: %(default)s)")
+                        help="Run the milter as this user "
+                             "(default: %(default)s).")
 
     config = parser.parse_args()
 
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     try:
         # Attempt to load the configured user/group by name
         uid = pwd.getpwnam(config.user)[2]
-        gid = grp.getgrnam(config.grp)[2]
+        gid = grp.getgrnam(config.group)[2]
     except KeyError as e:
         print("User or group not known: {0}".format(e.message))
         sys.exit(1)
@@ -140,7 +140,7 @@ if __name__ == "__main__":
             with open(config.pid, "w") as fd:
                 fd.write(str(os.getpid()))
     except IOError as e:
-        if config.dbg:
+        if config.debug:
             print("Cannot create PID file: (%d) %s" % (e.errno, e.strerror))
 
     try:
@@ -156,7 +156,7 @@ if __name__ == "__main__":
         print('Could not set effective user id: %s' % e)
         sys.exit(1)
 
-    if config.dbg:
+    if config.debug:
         print("Switched user to %s, group to %s" % (uid, gid))
         print("Staying in foreground...")
     else:
@@ -205,7 +205,7 @@ if __name__ == "__main__":
             # Attempt to remove the PID file
             os.unlink(config.pid)
     except IOError as e:
-        if config.dbg:
+        if config.debug:
             print("Cannot remove PID file: (%d) %s" % (e.errno, e.strerror))
         sys.exit(1)
 

@@ -17,7 +17,7 @@ function web_permissions() {
 if [ -n "$1" ] && [ -n "$2" ]; then
   # Create a bind mount for this user's home directory
   HOME_DIR="`eval echo "~$1"`/public_html"
-  web_permissions "$HOME_DIR" "$1" "$2" "2775" "664"; exit 0
+  web_permissions "$HOME_DIR" "$1" "$2"; exit 0
 fi
 
 # Unmount all current home directory mounts

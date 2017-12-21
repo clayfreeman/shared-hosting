@@ -24,6 +24,10 @@ disable-tls \- Disables any associated TLS certificate in the site's
 .B disable-tls
 disables any associated TLS certificate for the provided \fIdomain\fP in the
 site's \fBnginx\fP configuration.
+.PP
+Certificates will not be removed from the file system, and can be re-enabled at
+any time with
+.BR enable-tls (8).
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
 options starting with two dashes (`-').
