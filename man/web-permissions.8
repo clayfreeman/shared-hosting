@@ -15,12 +15,16 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-web-permissions \- .
+web-permissions \- Force administrative permissions on shared hosting accounts.
 .SH SYNOPSIS
 .B web-permissions
-.RI [ modules ] " ..."
+[ \fIgroup\fP \fIusername\fP ]
 .SH DESCRIPTION
 .B web-permissions
-.
-.SH SEE ALSO
-.BR create-account (8).
+will recursively force the provided \fIgroup\fP ownership on \fIusername\fP's
+\fLpublic_html\fP directory and also set file mode 2775 for all directories and
+0664 for all files within the same directory.
+.PP
+\fIgroup\fP is a Unix group and \fIusername\fP is a Unix user. Each argument is
+compatible with names found via
+.BR nsswitch.conf (5).
