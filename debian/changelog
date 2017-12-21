@@ -1,3 +1,9 @@
+shared-hosting (1.5.4-1) stable; urgency=medium
+
+  * Finish writing documentation for all binaries.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 21 Dec 2017 11:55:55 -0600
+
 shared-hosting (1.5.3-1) stable; urgency=medium
 
   * Include support for upstream CHANGELOG.md and signed releases.
