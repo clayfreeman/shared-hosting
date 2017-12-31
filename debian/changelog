@@ -1,3 +1,9 @@
+shared-hosting (1.5.4-2) stable; urgency=medium
+
+  * Remove Let's Encrypt crontab entry. This should be managed external.
+
+ -- Clay Freeman <git@clayfreeman.com>  Sat, 30 Dec 2017 19:01:46 -0600
+
 shared-hosting (1.5.4-1) stable; urgency=medium
 
   * Finish writing documentation for all binaries.
