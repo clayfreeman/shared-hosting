@@ -1,3 +1,9 @@
+shared-hosting (1.5.4-3) stable; urgency=medium
+
+  * Alter dependencies so that this package can be installed on derivatives.
+
+ -- Clay Freeman <git@clayfreeman.com>  Sat, 30 Dec 2017 19:20:29 -0600
+
 shared-hosting (1.5.4-2) stable; urgency=medium
 
   * Remove Let's Encrypt crontab entry. This should be managed external.
