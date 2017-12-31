@@ -3,11 +3,11 @@
         "psr-4": {"SharedHosting\\": "lib/"}
     },
     "require": {
-        "ext-json": "^1.6",
-        "ext-openssl": "^7.0",
-        "ext-pdo": "^7.0",
-        "ext-pdo_mysql": "^7.0",
-        "ext-zlib": "^7.0",
+        "ext-json": "*",
+        "ext-openssl": "*",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-zlib": "*",
         "symfony/console": "^4.0",
         "symfony/finder": "^4.0",
         "ramsey/uuid": "^3.7"
