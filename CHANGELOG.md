@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.5.5
+
+- Change composer.json to accept any version of PHP extension (defer to
+  packaging control dependency management).
+
 ## 1.5.4
 
 - Finish all man page documentation.
