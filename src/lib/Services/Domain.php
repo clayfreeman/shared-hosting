@@ -129,8 +129,7 @@
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.
-        '`hosting_schema`.`domains` WHERE `name` = :input) '.
-        'AS `exists`');
+        '`hosting_schema`.`domains` WHERE `name` = :input) AS `exists`');
       // Run the prepared SQL statement to check if the username already exists
       return !$statement->execute([':input' => $this->name]) ||
         boolval($statement->fetch()['exists']);

@@ -66,8 +66,8 @@
     public function fetchSites(): ?array {
       // Prepare an SQL statement to fetch the sites for this account
       $statement = $this->db->prepare('SELECT `uuid` FROM '.
-        '`hosting_schema`.`sites` WHERE `account_id` = (SELECT `id` '.
-        'FROM `hosting_schema`.`accounts` WHERE `username` = :input)');
+        '`hosting_schema`.`sites` WHERE `account_id` = (SELECT `id` FROM '.
+        '`hosting_schema`.`accounts` WHERE `username` = :input)');
       // Run the prepared SQL statement to fetch the sites for this account
       if ($statement->execute([':input' => $this->username]) &&
           is_array($result = $statement->fetchAll()))
@@ -122,8 +122,7 @@
     public function exists(): bool {
       // Prepare an SQL statement to check if the requested username exists
       $statement = $this->db->prepare('SELECT EXISTS(SELECT 1 FROM '.
-        '`hosting_schema`.`accounts` WHERE `username` = :input) '.
-        'AS `exists`');
+        '`hosting_schema`.`accounts` WHERE `username` = :input) AS `exists`');
       // Run the prepared SQL statement to check if the username already exists
       return !$statement->execute([':input' => $this->username]) ||
         boolval($statement->fetch()['exists']);
