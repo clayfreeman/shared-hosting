@@ -45,8 +45,8 @@
     public function fetchDomains(): ?array {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT `name` FROM '.
-        '`hosting_schema`.`domains` WHERE `site_id` = (SELECT `id` '.
-        'FROM `hosting_schema`.`sites` WHERE `uuid` = :input)');
+        '`hosting_schema`.`domains` WHERE `site_id` = (SELECT `id` FROM '.
+        '`hosting_schema`.`sites` WHERE `uuid` = :input)');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
         return array_map(function($domain) {
@@ -59,9 +59,8 @@
     public function fetchOwner(): ?string {
       // Prepare an SQL statement to fetch the site
       $statement = $this->db->prepare('SELECT `username` FROM '.
-        '`hosting_schema`.`accounts` WHERE `id` = (SELECT '.
-        '`account_id` FROM `hosting_schema`.`sites` WHERE '.
-        '`uuid` = :input)');
+        '`hosting_schema`.`accounts` WHERE `id` = (SELECT `account_id` FROM '.
+        '`hosting_schema`.`sites` WHERE `uuid` = :input)');
       // Run the prepared SQL statement to fetch the site
       if ($statement->execute([':input' => $this->uuid]))
         return $statement->fetch()['username'];
@@ -103,8 +102,8 @@
     protected function create(): void {
       // Prepare an SQL statement to insert a site record
       $statement = $this->db->prepare('INSERT INTO '.
-        '`hosting_schema`.`sites` (`account_id`, `template`, `uuid`, '.
-        '`root`) VALUES (:account_id, :template, :uuid, :root)');
+        '`hosting_schema`.`sites` (`account_id`, `template`, `uuid`, `root`) '.
+        'VALUES (:account_id, :template, :uuid, :root)');
       // Insert a record into the database reflecting the new account
       $this->result   =  $statement->execute([':uuid' => $this->uuid,
         ':account_id' => $this->account->fetchAccount()['id'],

@@ -12,6 +12,7 @@
   use Symfony\Component\Console\Command\Command;
   use Symfony\Component\Console\Input\InputArgument;
   use Symfony\Component\Console\Input\InputInterface;
+  use Symfony\Component\Console\Input\InputOption;
   use Symfony\Component\Console\Output\OutputInterface;
   use Symfony\Component\Console\Style\SymfonyStyle;
 
@@ -49,6 +50,9 @@
       $domain = strtolower(trim($input->getArgument('domain'),
         ".\t\n\r\0\x0B "));
       $info   = $this->fetchDKIMInfo($domain);
+      // Ensure that the DKIM information was found for this domain
+      if (!is_array($info))
+        throw new \Exception('Unable to fetch DKIM for this domain name');
       // Optionally print the FQDN for the DKIM record or ...
       if ($input->getOption('get-fqdn'))
         echo trim($info['dkim_selector']).'._domainkey.'.
@@ -57,7 +61,7 @@
       else echo trim($info['dkim_record'])."\n";
     }
 
-    protected function fetchDKIM(string $input): ?array {
+    protected function fetchDKIMInfo(string $input): ?array {
       // Query the database for a DKIM record for the requested domain
       $statement = $this->db->prepare('SELECT `name`, `dkim_record`, '.
         '`dkim_selector` FROM `hosting_schema`.`domains` WHERE `name` = '.

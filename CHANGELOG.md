@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.6
+
+- Fix a bug with the `flush-config` command.
+
 ## 1.5.5
 
 - Change composer.json to accept any version of PHP extension (defer to
