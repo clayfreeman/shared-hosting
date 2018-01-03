@@ -1,3 +1,9 @@
+shared-hosting (1.5.6-1) stable; urgency=medium
+
+  * Import upstream source to fix bug with `flush-config`(8).
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 02 Jan 2018 18:30:40 -0600
+
 shared-hosting (1.5.5-1) stable; urgency=medium
 
   * Update composer.json to support any version of required PHP extensions.
