@@ -1,3 +1,9 @@
+shared-hosting (1.5.7-1) xenial; urgency=medium
+
+  * Import upstream source to fix bug with `FPMPool` class.
+
+ -- Clay Freeman <git@clayfreeman.com>  Thu, 04 Jan 2018 09:27:03 -0600
+
 shared-hosting (1.5.6-2) xenial; urgency=medium
 
   * Rewrite control file to be Ubuntu specific.
