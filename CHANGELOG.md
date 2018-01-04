@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.7
+
+- Fix a bug with the `FPMPool` class.
+
 ## 1.5.6
 
 - Fix a bug with the `flush-config` command.

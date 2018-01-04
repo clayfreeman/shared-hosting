@@ -5,12 +5,12 @@
   use \SharedHosting\Utility\Validation;
 
   class FPMPool implements Service {
-    protected $db        = null;
-    protected $files     = [];
-    protected $fwd       = true;
-    protected $overwrite = false;
-    protected $username  = null;
-    protected $versions  = [];
+    protected        $db        = null;
+    protected        $files     = [];
+    protected        $fwd       = true;
+    protected static $overwrite = false;
+    protected        $username  = null;
+    protected        $versions  = [];
 
     public function __construct(string $username, bool $overwrite = false) {
       $this->db = $GLOBALS['db'];
@@ -18,7 +18,7 @@
       Validation::username($username);
       // Assign the provided username to an internal property
       $this->username  = $username;
-      $this->overwrite = $overwrite;
+      self::$overwrite = $overwrite;
       $this->versions  =  self::fetchVersions();
       $this->files     = $this->fetchFiles();
     }
@@ -76,7 +76,7 @@
       foreach (self::fetchVersions() as $version) {
         $file = '/etc/shared-hosting/php'.$version.'-common.conf';
         // Only write the file if it doesn't exist, or overwrite requested
-        if (!file_exists($file) || $this->overwrite)
+        if (!file_exists($file) || self::$overwrite)
           file_put_contents($file, str_replace('{{VERSION}}', $version,
             file_get_contents(__PROJECTROOT__.'/php-common.cnf')));
       }
