@@ -1,3 +1,9 @@
+shared-hosting (1.5.6-2) stable; urgency=medium
+
+  * Rewrite control file to be Debian specific.
+
+ -- Clay Freeman <git@clayfreeman.com>  Tue, 02 Jan 2018 18:30:40 -0600
+
 shared-hosting (1.5.6-1) stable; urgency=medium
 
   * Import upstream source to fix bug with `flush-config`(8).

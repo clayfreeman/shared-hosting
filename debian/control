@@ -11,7 +11,7 @@ Vcs-Browser: https://github.com/clayfreeman/shared-hosting
 Package: shared-hosting
 Architecture: all
 Pre-Depends: composer,
- default-mysql-server | mysql-server | mariadb-server,
+ default-mysql-server,
  openssl,
  php-cli (>= 7.1),
  php-json (>= 7.1),
