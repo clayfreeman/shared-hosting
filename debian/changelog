@@ -1,4 +1,4 @@
-shared-hosting (1.5.6-1) xenial; urgency=medium
+shared-hosting (1.5.6-2) xenial; urgency=medium
 
   * Rewrite control file to be Ubuntu specific.
 
