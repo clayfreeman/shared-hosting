@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.8
+
+- Switch `Cache-Control` optimization header from 'private' to 'public'.
+
 ## 1.5.7
 
 - Fix a bug with the `FPMPool` class.
