@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.9
+
+- Add public caching rules to each template for static resources.
+
 ## 1.5.8
 
 - Switch `Cache-Control` optimization header from 'private' to 'public'.
