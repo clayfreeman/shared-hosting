@@ -1,3 +1,9 @@
+shared-hosting (1.5.10-1) xenial; urgency=medium
+
+  * Add `generic-php7.2` template.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 08 Jan 2018 08:25:32 -0600
+
 shared-hosting (1.5.9-1) xenial; urgency=medium
 
   * Import upstream source to alter `Cache-Control` for static resources.
