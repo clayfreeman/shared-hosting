@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.10
+
+- Add `generic-php7.2` template.
+
 ## 1.5.9
 
 - Add public caching rules to each template for static resources.
