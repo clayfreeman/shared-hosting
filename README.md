@@ -41,20 +41,20 @@ password.
 To create a site, you must decide on a variety of templates. Currently, the
 following templates are available for site creation:
 
-|                       | Canonical Name   | PHP Version |
-|-----------------------|------------------|-------------|
-| Drupal 6.x            | drupal6          | 5.6         |
-| Drupal 7+             | drupal7          | 7.1         |
-| Generic (PHP 5.6)     | generic-php5.6   | 5.6         |
-| Generic (PHP 7.0)     | generic-php7.0   | 7.0         |
-| Generic (PHP 7.1)     | generic-php7.1   | 7.1         |
-| Generic (PHP 7.2)     | generic-php7.2   | 7.2         |
-| Joomla 2.x            | joomla2x         | 5.6         |
-| Joomla 3.5.x to 3.7.x | joomla35         | 7.1         |
-| Joomla 3.8+           | joomla38         | 7.2         |
-| Moodle 3.2+           | moodle           | 7.1         |
-| WordPress (Compat)    | wordpress-compat | 5.6         |
-| WordPress             | wordpress        | 7.1         |
+|                       | Canonical Name     | PHP Version |
+|-----------------------|--------------------|-------------|
+| Drupal 6.x            | `drupal6`          | 5.6         |
+| Drupal 7+             | `drupal7`          | 7.1         |
+| Generic (PHP 5.6)     | `generic-php5.6`   | 5.6         |
+| Generic (PHP 7.0)     | `generic-php7.0`   | 7.0         |
+| Generic (PHP 7.1)     | `generic-php7.1`   | 7.1         |
+| Generic (PHP 7.2)     | `generic-php7.2`   | 7.2         |
+| Joomla 2.x            | `joomla2x`         | 5.6         |
+| Joomla 3.5.x to 3.7.x | `joomla35`         | 7.1         |
+| Joomla 3.8+           | `joomla38`         | 7.2         |
+| Moodle 3.2+           | `moodle`           | 7.1         |
+| WordPress (Compat)    | `wordpress-compat` | 5.6         |
+| WordPress             | `wordpress`        | 7.1         |
 
 Once a template is selected (noting its canonical name), you may run
 `create-site <account> <template> <primary-domain> [<domains>]...` to create a
