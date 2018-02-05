@@ -1,3 +1,9 @@
+shared-hosting (1.5.11-1) xenial; urgency=medium
+
+  * Ensure Joomla! /media directory is cached too.
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 05 Feb 2018 17:07:22 -0600
+
 shared-hosting (1.5.10-1) xenial; urgency=medium
 
   * Add `generic-php7.2` template.
