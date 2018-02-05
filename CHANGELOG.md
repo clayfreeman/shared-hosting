@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.5.11
+
+- Ensure that the `/media` location block for Joomla! sites also caches.
+
 ## 1.5.10
 
 - Add `generic-php7.2` template.
