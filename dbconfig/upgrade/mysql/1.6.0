@@ -1,0 +1,14 @@
+-- Since the templates for Joomla! were renamed during this update, we should
+-- make sure that the sites using the old template names are changed.
+
+UPDATE `hosting_schema`.`sites`
+   SET `template` = 'joomla2.x'
+ WHERE `template` = 'joomla2x';
+
+UPDATE `hosting_schema`.`sites`
+   SET `template` = 'joomla3.5'
+ WHERE `template` = 'joomla35';
+
+UPDATE `hosting_schema`.`sites`
+   SET `template` = 'joomla3.8'
+ WHERE `template` = 'joomla38';
