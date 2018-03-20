@@ -67,6 +67,10 @@ security.
 Templates should always place custom or non-standard functionality last so that
 they can override boilerplate directives if necessary.
 .PP
+Files placed at \fL/etc/shared-hosting/sites.d/\fP\fIdomain\fP\fL/*.conf\fP can
+be used to override or extend templates. These files are included as the very
+last directive in each site's configuration.
+.PP
 Below is a list of templates currently available at the time of writing:
 .TS
 tab(@);

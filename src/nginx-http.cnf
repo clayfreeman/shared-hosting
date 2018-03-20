@@ -3,4 +3,5 @@ server {
   include templates/{{TEMPLATE}}-http.conf;
   server_name {{DOMAINS}};
   root {{ROOT}};
+  include /etc/shared-hosting/sites.d/{{PRIMARY}}/*.conf;
 }

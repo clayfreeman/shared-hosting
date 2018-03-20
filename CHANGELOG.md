@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.6.0
+
+- Rename the Joomla! templates to be consistent with the naming scheme of the
+  rest of the templates.
+- Add per-site includes to allow configuration of edge-case scenarios that
+  shouldn't be covered by the template.
+
 ## 1.5.11
 
 - Ensure that the `/media` location block for Joomla! sites also caches.

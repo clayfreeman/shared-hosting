@@ -58,6 +58,7 @@
       $config    = file_get_contents(__PROJECTROOT__.'/nginx-'.$sitetpl.'.cnf');
       $config    = str_replace('{{SITEUSER}}', $account['username'], $config);
       $config    = str_replace('{{TEMPLATE}}', $site['template'],    $config);
+      $config    = str_replace('{{PRIMARY}}',  $site['root'],        $config);
       $config    = str_replace('{{DOMAINS}}', implode(' ', array_map(
         function($input) { return '.'.$input; }, $this->domains)),   $config);
       $config    = str_replace('{{CERTIFICATE}}',
