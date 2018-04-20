@@ -4,12 +4,6 @@ shared-hosting (1.6.0-1) bionic; urgency=medium
 
  -- Clay Freeman <git@clayfreeman.com>  Fri, 20 Apr 2018 14:51:13 -0500
 
-shared-hosting (1.6.0-1) xenial; urgency=medium
-
-  * Improve consistency with template naming and add per-site include paths.
-
- -- Clay Freeman <git@clayfreeman.com>  Fri, 20 Apr 2018 14:50:55 -0500
-
 shared-hosting (1.5.11-1) xenial; urgency=medium
 
   * Ensure Joomla! /media directory is cached too.
