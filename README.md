@@ -49,9 +49,9 @@ following templates are available for site creation:
 | Generic (PHP 7.0)     | `generic-php7.0`   | 7.0         |
 | Generic (PHP 7.1)     | `generic-php7.1`   | 7.1         |
 | Generic (PHP 7.2)     | `generic-php7.2`   | 7.2         |
-| Joomla 2.x            | `joomla2x`         | 5.6         |
-| Joomla 3.5.x to 3.7.x | `joomla35`         | 7.1         |
-| Joomla 3.8+           | `joomla38`         | 7.2         |
+| Joomla 2.x            | `joomla2.x`        | 5.6         |
+| Joomla 3.5.x to 3.7.x | `joomla3.5`        | 7.1         |
+| Joomla 3.8+           | `joomla3.8`        | 7.2         |
 | Moodle 3.2+           | `moodle`           | 7.1         |
 | WordPress (Compat)    | `wordpress-compat` | 5.6         |
 | WordPress             | `wordpress`        | 7.1         |

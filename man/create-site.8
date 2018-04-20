@@ -67,6 +67,10 @@ security.
 Templates should always place custom or non-standard functionality last so that
 they can override boilerplate directives if necessary.
 .PP
+Files placed at \fL/etc/shared-hosting/sites.d/\fP\fIdomain\fP\fL/*.conf\fP can
+be used to override or extend templates. These files are included as the very
+last directive in each site's configuration.
+.PP
 Below is a list of templates currently available at the time of writing:
 .TS
 tab(@);
@@ -78,9 +82,9 @@ Generic (PHP 5.6)@\fLgeneric-php5.6\fP@5.6
 Generic (PHP 7.0)@\fLgeneric-php7.0\fP@7.0
 Generic (PHP 7.1)@\fLgeneric-php7.1\fP@7.1
 Generic (PHP 7.2)@\fLgeneric-php7.2\fP@7.2
-Joomla! 2.x to 3.4.x@\fLjoomla2x\fP@5.6
-Joomla! 3.5.x to 3.7.x@\fLjoomla35\fP@7.1
-Joomla! 3.8+@\fLjoomla38\fP@7.2
+Joomla! 2.x to 3.4.x@\fLjoomla2.x\fP@5.6
+Joomla! 3.5.x to 3.7.x@\fLjoomla3.5\fP@7.1
+Joomla! 3.8+@\fLjoomla3.8\fP@7.2
 Moodle 3.2+@\fLmoodle\fP@7.1
 WordPress (Compat)@\fLwordpress-compat\fP@5.6
 WordPress@\fLwordpress\fP@7.1
