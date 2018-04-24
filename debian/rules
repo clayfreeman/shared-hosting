@@ -15,10 +15,14 @@
 
 
 %:
-	dh $@ --with systemd
+	dh $@
 
 override_dh_installchangelogs:
 	dh_installchangelogs CHANGELOG.md upstream
+
+override_dh_installsystemd:
+	dh_installsystemd systemd/rewrite-envelope.service \
+	  systemd/web-permissions.service
 
 # This is example for Cmake (See https://bugs.debian.org/641051 )
 #override_dh_auto_configure:
