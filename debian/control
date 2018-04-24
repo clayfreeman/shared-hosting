@@ -39,7 +39,8 @@ Depends: adduser,
  unzip,
  zip,
  ${misc:Depends}
-Recommends: php7.0-cli,
+Recommends: default-mta | mail-transport-agent,
+ php7.0-cli,
  php7.0-dev,
  php7.0-fpm,
  php7.0-curl,
@@ -60,8 +61,7 @@ Recommends: php7.0-cli,
  php7.2-mysql,
  php7.2-xml,
  php7.2-xmlrpc,
- php7.2-zip,
- mail-transport-agent
+ php7.2-zip
 Description: Framework for easy management of shared hosting accounts
  This package facilitates the management and hosting of sites under multiple
  separate accounts. Each hosting account uses its own instance of PHP-FPM that
