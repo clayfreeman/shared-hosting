@@ -1,0 +1,13 @@
+Bug-Database: "https://github.com/clayfreeman/shared-hosting/issues"
+Bug-Submit: "https://github.com/clayfreeman/shared-hosting/issues/new"
+Cite-As: "Clay D. Freeman, MSCS:
+  <a href='https://github.com/clayfreeman/shared-hosting'>Shared Hosting</a>"
+Changelog:
+  "https://github.com/clayfreeman/shared-hosting/blob/upstream/CHANGELOG.md"
+Contact: "git@clayfreeman.com"
+Documentation:
+  "https://github.com/clayfreeman/shared-hosting/blob/upstream/README.md"
+Name: "shared-hosting"
+Repository: "https://github.com/clayfreeman/shared-hosting"
+Repository-Browse: "https://github.com/clayfreeman/shared-hosting"
+Security-Contact: "git@clayfreeman.com"
