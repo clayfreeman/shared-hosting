@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.6.1
+
+- Add per-site includes to HTTPS too (I accidentally missed the HTTPS template
+  in the last release).
+
 ## 1.6.0
 
 - Rename the Joomla! templates to be consistent with the naming scheme of the
