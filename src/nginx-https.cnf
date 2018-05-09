@@ -10,4 +10,5 @@ server {
   ssl_certificate {{CERTIFICATE}};
   ssl_certificate_key {{PRIVATE}};
   root {{ROOT}};
+  include /etc/shared-hosting/sites.d/{{PRIMARY}}/*.conf;
 }
