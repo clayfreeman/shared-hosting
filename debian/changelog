@@ -1,3 +1,9 @@
+shared-hosting (1.6.1-1) bionic; urgency=medium
+
+  * Add missing custom template include for HTTPS.
+
+ -- Clay Freeman <git@clayfreeman.com>  Wed, 09 May 2018 16:39:46 -0500
+
 shared-hosting (1.6.0-1) bionic; urgency=medium
 
   * Improve consistency with template naming and add per-site include paths.
