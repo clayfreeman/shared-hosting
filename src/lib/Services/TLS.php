@@ -88,7 +88,8 @@
         '--rsa-key-size 4096 '.implode(' ', array_map(function($domain) {
           $result = '-d '.escapeshellarg($domain);
           // Check if this domain has a 'www' subdomain
-          if (gethostbyname($domain = 'www.'.$domain) !== $domain)
+           if ((gethostbyname($domain = 'www.'.$domain.'.') !== gethostbyname(
+            $domain.'invalid.')) && (gethostbyname($domain) !== $domain))
             $result .= ' -d '.escapeshellarg($domain);
           // Return the resulting string for this domain
           return $result;
