@@ -74,7 +74,7 @@ when adding these records (`@` refers to the base domain name):
 
 | Record | Type  | Name       | Value                                                            | TTL       |
 |--------|-------|------------|------------------------------------------------------------------|-----------|
-| DMARC  | `TXT` | `_dmarc.@` | `v=DMARC1; p=none; sp=none; fo=1; ruf=mailto:email@address.here` | Automatic |
+| DMARC  | `TXT` | `_dmarc.@` | `v=DMARC1; p=none; sp=none; ruf=mailto:email@address.here; fo=1` | Automatic |
 | SPF    | `TXT` | `@`        | `v=spf1 include:server.hostname ~all`                            | Automatic |
 
 Any domain with an SPF record that is also used for client e-mail might require
