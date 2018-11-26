@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.6.3
+
+- Automatically promote sites using the `generic-php7.0` template to use the
+  `generic-php7.1` template instead.
+
 ## 1.6.2
 
 - Preemptively replace all occurrences of PHP 7.0 with 7.1 and drop support for
