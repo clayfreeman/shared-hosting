@@ -46,7 +46,6 @@ following templates are available for site creation:
 | Drupal 6.x            | `drupal6`          | 5.6         |
 | Drupal 7+             | `drupal7`          | 7.1         |
 | Generic (PHP 5.6)     | `generic-php5.6`   | 5.6         |
-| Generic (PHP 7.0)     | `generic-php7.0`   | 7.0         |
 | Generic (PHP 7.1)     | `generic-php7.1`   | 7.1         |
 | Generic (PHP 7.2)     | `generic-php7.2`   | 7.2         |
 | Joomla 2.x            | `joomla2.x`        | 5.6         |
