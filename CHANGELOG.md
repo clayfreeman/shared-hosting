@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.6.2
+
+- Preemptively replace all occurrences of PHP 7.0 with 7.1 and drop support for
+  Ubuntu `xenial`.
+
 ## 1.6.1
 
 - Add per-site includes to HTTPS too (I accidentally missed the HTTPS template

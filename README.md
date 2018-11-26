@@ -46,7 +46,6 @@ following templates are available for site creation:
 | Drupal 6.x            | `drupal6`          | 5.6         |
 | Drupal 7+             | `drupal7`          | 7.1         |
 | Generic (PHP 5.6)     | `generic-php5.6`   | 5.6         |
-| Generic (PHP 7.0)     | `generic-php7.0`   | 7.0         |
 | Generic (PHP 7.1)     | `generic-php7.1`   | 7.1         |
 | Generic (PHP 7.2)     | `generic-php7.2`   | 7.2         |
 | Joomla 2.x            | `joomla2.x`        | 5.6         |
@@ -74,7 +73,7 @@ when adding these records (`@` refers to the base domain name):
 
 | Record | Type  | Name       | Value                                                            | TTL       |
 |--------|-------|------------|------------------------------------------------------------------|-----------|
-| DMARC  | `TXT` | `_dmarc.@` | `v=DMARC1; p=none; sp=none; fo=1; ruf=mailto:email@address.here` | Automatic |
+| DMARC  | `TXT` | `_dmarc.@` | `v=DMARC1; p=none; sp=none; ruf=mailto:email@address.here; fo=1` | Automatic |
 | SPF    | `TXT` | `@`        | `v=spf1 include:server.hostname ~all`                            | Automatic |
 
 Any domain with an SPF record that is also used for client e-mail might require
