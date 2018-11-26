@@ -1,3 +1,9 @@
+shared-hosting (1.6.3-1) bionic; urgency=medium
+
+  * promote sites using generic-php7.0 on upgrade
+
+ -- Clay Freeman <git@clayfreeman.com>  Mon, 26 Nov 2018 10:24:01 -0600
+
 shared-hosting (1.6.2-1) bionic; urgency=medium
 
   * prepare for deprecation of PHP 7.0
