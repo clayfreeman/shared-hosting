@@ -1,0 +1,6 @@
+-- We need to automatically promote sites that are using the old PHP 7.0
+-- template to PHP 7.1.
+
+UPDATE `hosting_schema`.`sites`
+   SET `template` = 'generic-php7.1'
+ WHERE `template` = 'generic-php7.0';
