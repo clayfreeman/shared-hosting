@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.5
+
+- Update manpages regarding last patch release.
+
 ## 1.6.4
 
 - Upgrade PHP version of template `joomla3.8` to 7.3.
