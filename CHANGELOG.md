@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.6.4
+
+- Upgrade PHP version of template `joomla3.8` to 7.3.
+- Remove template `generic-php5.6` and promote it to `generic-php7.1`.
+- Remove templates `drupal6`, `joomla2.x`, `webpress`, `wordpress-compat`.
+
 ## 1.6.3
 
 - Automatically promote sites using the `generic-php7.0` template to use the
