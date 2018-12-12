@@ -1,3 +1,9 @@
+shared-hosting (1.6.4-1) bionic; urgency=medium
+
+  * modify templates in preparation for PHP 5.6 EOL
+
+ -- Clay Freeman <git@clayfreeman.com>  Wed, 12 Dec 2018 10:21:19 -0600
+
 shared-hosting (1.6.3-1) bionic; urgency=medium
 
   * promote sites using generic-php7.0 on upgrade

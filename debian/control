@@ -50,7 +50,18 @@ Recommends: default-mta | mail-transport-agent,
  php7.2-mysql,
  php7.2-xml,
  php7.2-xmlrpc,
- php7.2-zip
+ php7.2-zip,
+ php7.3-cli,
+ php7.3-dev,
+ php7.3-fpm,
+ php7.3-curl,
+ php7.3-gd,
+ php7.3-json,
+ php7.3-mbstring,
+ php7.3-mysql,
+ php7.3-xml,
+ php7.3-xmlrpc,
+ php7.3-zip
 Description: Framework for easy management of shared hosting accounts
  This package facilitates the management and hosting of sites under multiple
  separate accounts. Each hosting account uses its own instance of PHP-FPM that
