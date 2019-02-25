@@ -43,16 +43,17 @@
     protected function execute(InputInterface $input, OutputInterface $output) {
       // Setup some environment variables to complete this command
       $io       = new SymfonyStyle($input, $output);
-      $io->table(['Username', 'Domains (Primary First)'], $this->fetchSites());
+      $io->table(['Username', 'Template', 'Domains (Primary First)'],
+        $this->fetchSites());
     }
 
     protected function fetchSites(): array {
       // Query the database for all sites and their owners
-      $statement = $this->db->query('SELECT `username`, GROUP_CONCAT(`name` '.
-        'ORDER BY `domains`.`id` ASC SEPARATOR \',\\n\') AS `domains` FROM '.
-        '`hosting_schema`.`domains` INNER JOIN `hosting_schema`.`sites` ON '.
-        '`domains`.`site_id` = `sites`.`id` LEFT JOIN '.
-        '`hosting_schema`.`accounts` ON '.
+      $statement = $this->db->query('SELECT `username`, `template`, '.
+        'GROUP_CONCAT(`name` ORDER BY `domains`.`id` ASC SEPARATOR \',\\n\') AS '.
+        '`domains` FROM `hosting_schema`.`domains` INNER JOIN '.
+        '`hosting_schema`.`sites` ON `domains`.`site_id` = `sites`.`id` '.
+        'LEFT JOIN `hosting_schema`.`accounts` ON '.
         '`sites`.`account_id` = `accounts`.`id` GROUP BY `domains`.`site_id` '.
         'ORDER BY `username` ASC, `domains` ASC;');
       // Fetch all results from the prepared statement
